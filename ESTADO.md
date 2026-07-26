@@ -389,3 +389,46 @@ en myvolta.es — el checkout y las páginas de producto muestran precios en
 dólares. Esto no se puede cambiar vía API; hay que cambiarlo el usuario
 en Configuración → General → Moneda de la tienda (normalmente solo se
 puede cambiar mientras no haya pedidos reales, que es el caso ahora).
+
+## Décima ronda: fotos de ambiente corregidas + 9 productos nuevos más
+
+**Fotos de ambiente del hero — correcciones**: al usuario le encantó el
+estilo de las fotos de ambiente, pero señaló incoherencias en dos:
+- Regleta: el enchufe aparecía suelto sin conectar a ninguna toma pese al
+  testigo luminoso encendido. Nueva versión con el cable claramente
+  enchufado a la pared (`mt-powerstrip-ambiente2.jpg`).
+- Candado: la escena en una mochila no resultaba creíble. Nueva versión
+  asegurando la puerta de una taquilla de gimnasio, un uso real
+  (`mt-padlock-ambiente2.jpg`).
+
+**9 productos nuevos procesados** (el usuario dijo haber importado 7, pero
+al revisar el catálogo activo aparecieron 9 sin procesar — puede que 2
+llevaran ahí desde antes sin catalogar; se avisó al usuario y se
+procesaron los 9):
+
+| Producto | Categoría | Precio |
+|---|---|---|
+| Quitapelusas Eléctrico y Removedor de Pelo de Mascota | Hogar inteligente | 9,99-20,99€ |
+| Alfombrilla de Baño de Diatomita Antideslizante | Hogar inteligente | 28,99-73,99€ (10 tamaños) |
+| Estante de Baño de Aluminio sin Taladro | Hogar inteligente | 17,99-18,99€ |
+| Abrebotellas de Pared de Aleación de Zinc | Cocina y accesorios | 8,99€ |
+| Abridor Eléctrico Automático de Vino | Cocina y accesorios | 30,99€ |
+| Guirnalda de Luces LED Rama de Abedul | Iluminación LED | 14,99-34,99€ |
+| Copa de Cóctel Creativa (varios diseños) | Cocina y accesorios | 4,99-25,99€ |
+| Quemador de Incienso Cerámico de Reflujo | Hogar inteligente | 23,99€ |
+| Termo de Viaje de Acero Inoxidable | Cocina y accesorios | 22,99-25,99€ |
+
+Mismo proceso que las rondas anteriores: título y descripción en español,
+3 fotos limpias por producto generadas por IA (estudio + ángulo distinto +
+estilo de vida, sustituyendo las fotos crudas del proveedor), precio con
+multiplicador ≥x2,0 sobre coste, y asignados a la colección que mejor
+encaja.
+
+**Nota sobre el encaje de categorías**: varios de estos productos (alfombrilla
+de baño, estante de baño, copas de cóctel, abrebotellas) ya no son
+estrictamente "gadgets de hogar inteligente" como el enfoque original de
+la tienda, sino artículos generales de casa/cocina. Se han colocado en la
+categoría más cercana disponible (Hogar inteligente o Cocina y accesorios)
+sin crear categorías nuevas. Si el catálogo sigue creciendo en esta
+dirección, en algún momento puede valer la pena crear una categoría nueva
+tipo "Cocina y bar" o "Baño" en vez de forzarlo todo en las 4 actuales.
