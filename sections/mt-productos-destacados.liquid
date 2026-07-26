@@ -22,7 +22,7 @@
       {% endif %}
     </div>
 
-    <div class="mt-grid mt-grid-4" style="margin-top: 40px;">
+    <div class="mt-grid mt-grid-3" style="margin-top: 40px;">
       {% for block in section.blocks %}
         {% assign product = block.settings.product %}
         <a href="{{ product.url | default: '#' }}" class="mt-card mt-reveal mt-reveal-{{ forloop.index }}" {{ block.shopify_attributes }}>
