@@ -156,6 +156,17 @@
                 {%- endcase -%}
               </div>
             {%- endfor -%}
+            <div class="footer-block grid__item footer-block--menu">
+              <h2 class="footer-block__heading inline-richtext">Ayuda y legal</h2>
+              <ul class="footer-block__details-content list-unstyled">
+                <li><a href="mailto:{{ shop.email }}" class="link link--text list-menu__item list-menu__item--link">Contacto</a></li>
+                {%- for policy in shop.policies -%}
+                  {%- if policy != blank -%}
+                    <li><a href="{{ policy.url }}" class="link link--text list-menu__item list-menu__item--link">{{ policy.title | escape }}</a></li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
           </div>
         {%- endif -%}
 

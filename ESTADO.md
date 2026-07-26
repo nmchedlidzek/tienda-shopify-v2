@@ -176,6 +176,29 @@ Ayuda y legal" con enlaces reales): necesita permiso adicional de la Admin
 API (gestión de menús de navegación) que hoy no está concedido — se puede
 pedir cuando el usuario quiera ese nivel de detalle en el pie.
 
+## Cuarta ronda: pie de página + honestidad del contenido (misma noche)
+
+1. **Pie de página**: añadida columna fija "Ayuda y legal" (no depende de
+   menús de Shopify, así que no necesita permisos nuevos): Contacto
+   (`mailto:` al correo real de la tienda) + enlaces a políticas nativas
+   (aparecerán en cuanto el usuario las rellene en el panel). Se quitó el
+   bloque de navegación duplicado que solo mostraba "Search".
+2. **Contenido de relleno corregido tras pregunta directa del usuario**:
+   - Las reseñas llevaban una insignia de "verificado" siendo texto 100%
+     inventado — **quitada** (`verificado: false` por defecto) y marcadas
+     como "Reseña de ejemplo — sustitúyela" hasta que el usuario ponga
+     reseñas reales.
+   - Quitada la cifra "Envío en 48h" de la sección de historia (inventada,
+     poco realista para dropshipping) y la de "2 años de garantía"
+     (también inventada). Sustituidas por cifras seguras: nº de productos
+     seleccionados y "revisados antes de vender".
+   - PENDIENTE de verificar con el usuario (no se ha tocado, solo señalado):
+     el texto de la FAQ dice "envío en 3-7 días laborables" y "devolución
+     en 30 días" — son valores de mercado habituales que redacté yo, NO
+     confirmados con el proveedor real. Antes de publicar en serio, pedir al
+     usuario sus tiempos de envío reales y confirmar la política de
+     devoluciones.
+
 ## Nota pendiente (cosmética, no bloqueante)
 El título de la pestaña del navegador usa el nombre real de la tienda en
 Shopify (`autods-user-store-27923`), no "VOLTA", porque ese nombre vive en
