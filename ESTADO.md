@@ -264,3 +264,26 @@ Shopify (`autods-user-store-27923`), no "VOLTA", porque ese nombre vive en
 Configuración → General y no lo he tocado (cambiarlo no es necesario para
 que la web se vea bien, pero si el usuario quiere que la pestaña diga
 "VOLTA" hay que cambiarlo ahí).
+
+## Séptima ronda: precios competitivos (misma noche)
+
+A petición del usuario, se investigaron precios reales de la competencia
+(Amazon España, búsquedas por categoría) y se recalcularon TODOS los
+precios de los 12 productos con un multiplicador ajustado por categoría
+(entre x2,0 y x2,75 sobre coste — nunca por debajo de x2), en vez del x3
+plano anterior que dejaba varios productos por encima de mercado
+(sobre todo el difusor de aromas y la tira LED de coche, que bajaron un
+~30-35%). Resumen de multiplicadores aplicados:
+
+- Difusor de aromas: x2,0 (48-50€ → 33€)
+- Tira LED coche: x2,2 (63-112€ → 46-82€)
+- Altavoz bici: x2,3 (42-43€ → 32-33€)
+- Altavoz ducha: x2,6 (17-18€ → 15€)
+- Tira LED RGB app: x2,2 (34-39€ → 25-28€)
+- Diadema: x2,75 (24-25€ → 22-23€)
+- Báscula cocina: x2,65 (15€ → 13-14€)
+- Limpiapantallas: x2,55 (17€ → 14-15€)
+- Aspiradora: x2,6 (29€ → 25€)
+- Regleta: x2,15 (40€ → 29€)
+- Candado: x2,7 (31€ → 28€)
+- Tira LED WS2812B (24 variantes): x2,3 (antes x3, bajan proporcionalmente)
