@@ -455,3 +455,27 @@ directamente con AutoDS. Se actualizó el texto real de la política de
 envíos (Aduanas e impuestos) y la respuesta de la FAQ para reflejar esto
 con precisión en vez de la redacción genérica anterior ("es posible que
 se apliquen aranceles").
+
+## Duodécima ronda: pulido de microinteracciones (filosofía Emil Kowalski)
+
+El usuario pidió mejorar la web con la "skill de Emil Kowalski" (diseñador
+conocido por Vaul/Sonner y su curso de animación). No existe tal skill
+instalada en esta sesión/rama — apareció en otra rama (`claude/emil-design-eng-skill-alnjmp`)
+de otra conversación distinta, así que no estaba disponible aquí. Se
+revisó el contenido de ese archivo (SKILL.md, 674 líneas, solo texto de
+referencia, sin código ejecutable) antes de aplicar nada, y se usaron sus
+principios directamente sobre el CSS de la tienda:
+
+- **Feedback táctil en botones**: `:active { transform: scale(0.97) }` en
+  todos los `.mt-btn` (incluye el botón de añadir al carrito, los CTA del
+  hero y de las secciones), en las tarjetas de producto/categoría, en las
+  miniaturas de la galería y en los selectores de variante — así la
+  interfaz responde al instante a la pulsación.
+- **`transition: all` eliminado**: sustituido por las propiedades exactas
+  en los selectores de variante del producto (antes transicionaba todo,
+  ahora solo border-color/background/color/transform).
+- **Acordeón de FAQ más rápido**: de 350ms a 250ms (la guía recomienda
+  150-250ms para este tipo de elemento; 350ms se siente algo lento).
+- Se confirmó que ya cumplíamos otro principio clave sin querer: nunca
+  animar entradas desde `scale(0)` (el reveal-on-scroll ya partía de
+  `scale(0.98)`, no de 0).

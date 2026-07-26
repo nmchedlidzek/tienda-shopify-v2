@@ -56,7 +56,9 @@
     overflow: hidden;
     aspect-ratio: 3/4;
     box-shadow: var(--mt-shadow);
+    transition: transform 0.1s var(--mt-ease);
   }
+  #shopify-section-{{ section.id }} .mt-categoria-card:active { transform: scale(0.98); }
   #shopify-section-{{ section.id }} .mt-categoria-media {
     position: absolute; inset: 0;
     background: var(--mt-bg);
