@@ -337,4 +337,55 @@ margen) y sin categoría asignada — el usuario mencionó que iba a añadir
 más productos. Señalado al usuario, pendiente de confirmación antes de
 procesarlos igual que la tanda anterior (título/descripción en español,
 fotos limpias, precio competitivo, categoría).
-- Tira LED WS2812B (24 variantes): x2,3 (antes x3, bajan proporcionalmente)
+
+## Novena ronda: hero de portada en móvil + 5 productos nuevos procesados
+
+**Hero de portada — foto fea + hueco en blanco en móvil**: el usuario señaló
+dos problemas de la portada:
+1. La foto de la tira LED en el carrusel superior (cables sueltos sobre
+   fondo negro, foto cruda del proveedor) se sustituyó por la foto de
+   ambiente ya existente (tira instalada en un mueble de salón). El
+   recuadro del hero pasó de 4:3.4 a formato cuadrado 1:1 y se le añadió
+   la misma animación de "respiración" que el resto del sitio. Se añadió
+   el mismo workaround `imagen_asset` (texto → asset_url) que ya usaban
+   las tarjetas de categoría.
+2. En móvil, la portada dejaba un hueco en blanco enorme debajo del hero:
+   la media query `@media (max-width: 989px)` forzaba `position: relative`
+   en TODAS las slides del hero (visible u ocultas), así que las 3 slides
+   invisibles seguían ocupando su altura completa en el documento. Corregido
+   restringiendo esa regla solo a `.mt-hero-slide.mt-visible`.
+
+**5 productos nuevos procesados** (importados por el usuario desde AutoDS,
+detectados a medio importar en la ronda anterior — título en inglés, precio
+a coste, sin categoría, fotos crudas del proveedor):
+
+| Producto | Categoría | Precio |
+|---|---|---|
+| Cargador de Coche Rápido 66W con Pantalla Digital y 4 Puertos USB | Hogar inteligente | 14,99-15,99€ |
+| Foco Solar de Pared con Sensor de Movimiento, 190 LED, IP65 | Iluminación LED | 26,99€ |
+| Mini Ventilador Portátil 3 en 1 con Humidificador y Luz Nocturna | Hogar inteligente | 31,99-32,99€ |
+| Proyector de Galaxia y Olas del Océano LED con Mando a Distancia | Iluminación LED | 22,99€ (2 uds: 30,99€) |
+| Difusor de Aromas con Efecto Chimenea 3D y Humidificador | Hogar inteligente | 68,99-69,99€ |
+
+Para cada uno: título y descripción en español, fotos limpias generadas por
+IA (mínimo 3 por producto: estudio + ángulo distinto + estilo de vida),
+fotos crudas del proveedor eliminadas, precio con multiplicador ≥x2,3 sobre
+coste (excepto el cargador de coche a x3,0, y el difusor chimenea a x2,0
+por su coste ya elevado), y añadidos a su colección correspondiente.
+
+**Nota sobre el difusor de chimenea**: el import de AutoDS traía mezclados
+como si fueran "variantes de color" dos packs de aceites esenciales ("4
+Packs Eo Set" / "6 Packs Eo Set") junto a las opciones reales del producto
+(Blanco/Negro) — un cliente que eligiera "4 Packs Eo Set" pensando que era
+un color habría recibido solo botes de aceite, no el difusor. Se eliminaron
+esas 2 variantes-señuelo, dejando solo Blanco/Negro como opciones reales.
+Es un diseño distinto (más grande, forma de chimenea rectangular) al
+difusor geométrico que ya teníamos, así que no es un duplicado, aunque
+ambos son de la misma marca del proveedor (Kinscoter) y categoría.
+
+**Pendiente importante — moneda de la tienda**: la tienda está configurada
+en USD (`currencyCode: "USD"`), no en EUR, pese a ser una tienda española
+en myvolta.es — el checkout y las páginas de producto muestran precios en
+dólares. Esto no se puede cambiar vía API; hay que cambiarlo el usuario
+en Configuración → General → Moneda de la tienda (normalmente solo se
+puede cambiar mientras no haya pedidos reales, que es el caso ahora).
