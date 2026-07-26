@@ -81,7 +81,7 @@
       "blocks": {
         "c1": { "type": "categoria", "settings": { "coleccion": "hogar-inteligente", "titulo": "Hogar inteligente" } },
         "c2": { "type": "categoria", "settings": { "coleccion": "iluminacion-led", "titulo": "Iluminación LED" } },
-        "c3": { "type": "categoria", "settings": { "coleccion": "audio-y-sonido", "titulo": "Audio y sonido" } },
+        "c3": { "type": "categoria", "settings": { "coleccion": "audio-y-sonido", "titulo": "Audio y sonido", "imagen_asset": "mt-duchaspeaker-hero.jpg" } },
         "c4": { "type": "categoria", "settings": { "coleccion": "cocina-y-accesorios", "titulo": "Cocina y accesorios" } }
       },
       "block_order": ["c1", "c2", "c3", "c4"]
