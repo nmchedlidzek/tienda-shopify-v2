@@ -43,10 +43,9 @@ llamarse "Los más vendidos" (los 4 originales). Los 8 productos ocultados
 antes (dron, proyectores, cámara, lámpara luna, etc.) siguen en borrador,
 el usuario decidió dejarlos así.
 
-PENDIENTE: las 4 colecciones dan 404 en la tienda porque no están publicadas
-en el canal "Tienda online" — hace falta el scope `read_publications` +
-`write_publications` (ya añadido a la app y desplegado; pendiente de que el
-usuario reinstale la app para concederlo, igual que las veces anteriores).
+RESUELTO: usuario reinstaló la app con el scope `write_publications`
+concedido; las 4 colecciones se publicaron en el canal "Tienda online"
+(`publishablePublish`) y ya cargan correctamente (200) en myvolta.es.
 
 ## Notas de entorno importantes
 
