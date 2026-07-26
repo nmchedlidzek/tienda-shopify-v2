@@ -17,7 +17,8 @@
             "eyebrow": "Esenciales de hogar inteligente",
             "headline": "Limpieza rápida, sin cables de por medio",
             "body": "Una aspiradora de mano ligera y potente para esos líos del día a día: migas, pelo de mascota, el interior del coche.",
-            "button_label": "Ver aspiradora"
+            "button_label": "Ver aspiradora",
+            "imagen_asset": "mt-vacuum-ambiente.jpg"
           }
         },
         "slide-2": {
@@ -27,7 +28,8 @@
             "eyebrow": "Esenciales de hogar inteligente",
             "headline": "Todos tus aparatos, un único enchufe",
             "body": "Regleta inteligente con puertos USB y carga rápida: organiza tu escritorio o tu salón sin liarte con adaptadores.",
-            "button_label": "Ver regleta"
+            "button_label": "Ver regleta",
+            "imagen_asset": "mt-powerstrip-ambiente.jpg"
           }
         },
         "slide-3": {
@@ -48,7 +50,8 @@
             "eyebrow": "Esenciales de hogar inteligente",
             "headline": "Seguridad sin llaves que perder",
             "body": "Candado con huella dactilar: abre en un segundo y olvídate de duplicar llaves.",
-            "button_label": "Ver candado"
+            "button_label": "Ver candado",
+            "imagen_asset": "mt-padlock-ambiente.jpg"
           }
         }
       },
