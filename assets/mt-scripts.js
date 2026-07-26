@@ -1,11 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
-  initReveal();
-  initHero();
-  initCountUp();
-  initMarquee();
-  initGaleriaProducto();
-  initVariantesProducto();
+  [initReveal, initHero, initCountUp, initMarquee, initGaleriaProducto, initVariantesProducto, initFaq].forEach(function (fn) {
+    try { fn(); } catch (e) { console.error('mt-scripts:', fn.name, e); }
+  });
 });
+
+function initFaq() {
+  document.querySelectorAll('.mt-faq-item').forEach(function (item) {
+    var pregunta = item.querySelector('.mt-faq-pregunta');
+    if (!pregunta) return;
+    pregunta.addEventListener('click', function () {
+      var abierto = item.classList.contains('mt-abierto');
+      item.closest('.mt-faq-lista').querySelectorAll('.mt-faq-item').forEach(function (i) { i.classList.remove('mt-abierto'); });
+      if (!abierto) item.classList.add('mt-abierto');
+    });
+  });
+}
 
 function initGaleriaProducto() {
   document.querySelectorAll('[data-mt-producto]').forEach(function (seccion) {
@@ -102,7 +111,6 @@ function initReveal() {
   var els = document.querySelectorAll('.mt-reveal');
   if (!els.length) return;
   if (!('IntersectionObserver' in window)) {
-    els.forEach(function (el) { el.classList.add('mt-visible'); });
     return;
   }
   var observer = new IntersectionObserver(function (entries) {
@@ -112,8 +120,11 @@ function initReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
-  els.forEach(function (el) { observer.observe(el); });
+  }, { threshold: 0.1 });
+  els.forEach(function (el) {
+    el.classList.add('mt-reveal-armed');
+    observer.observe(el);
+  });
 }
 
 function initHero() {

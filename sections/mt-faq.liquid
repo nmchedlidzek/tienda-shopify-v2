@@ -1,0 +1,87 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+{{ 'mt-scripts.js' | asset_url | script_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+{% endstyle %}
+
+<section class="mt-section mt-faq">
+  <div class="mt-container mt-faq-grid">
+    <div class="mt-faq-cabecera mt-reveal">
+      <p class="mt-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+      {% if section.settings.texto != blank %}
+        <p class="mt-body" style="margin-top: 16px; max-width: 380px;">{{ section.settings.texto }}</p>
+      {% endif %}
+    </div>
+
+    <div class="mt-faq-lista mt-reveal mt-reveal-1">
+      {% for block in section.blocks %}
+        <div class="mt-faq-item{% if forloop.first %} mt-abierto{% endif %}" {{ block.shopify_attributes }}>
+          <button type="button" class="mt-faq-pregunta">
+            {{ block.settings.pregunta }}
+            <span class="mt-faq-icono"></span>
+          </button>
+          <div class="mt-faq-respuesta">
+            <div class="mt-faq-respuesta-inner">{{ block.settings.respuesta }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .mt-faq-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 56px;
+    align-items: start;
+  }
+  #shopify-section-{{ section.id }} .mt-faq-cabecera { position: sticky; top: 32px; }
+  @media (max-width: 989px) {
+    #shopify-section-{{ section.id }} .mt-faq-grid { grid-template-columns: 1fr; gap: 24px; }
+    #shopify-section-{{ section.id }} .mt-faq-cabecera { position: static; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MT – Preguntas frecuentes",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#FFFFFF" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Dudas resueltas" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Preguntas frecuentes" },
+    { "type": "textarea", "id": "texto", "label": "Texto", "default": "Todo lo que necesitas saber antes de comprar." },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "pregunta",
+      "name": "Pregunta",
+      "settings": [
+        { "type": "text", "id": "pregunta", "label": "Pregunta", "default": "¿Cuánto tarda el envío?" },
+        { "type": "richtext", "id": "respuesta", "label": "Respuesta", "default": "<p>Normalmente entre 3 y 7 días laborables.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Preguntas",
+      "blocks": [
+        { "type": "pregunta" },
+        { "type": "pregunta" },
+        { "type": "pregunta" },
+        { "type": "pregunta" }
+      ]
+    }
+  ]
+}
+{% endschema %}

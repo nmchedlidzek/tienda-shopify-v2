@@ -145,6 +145,37 @@ original con descuento ya configurado por AutoDS).
    espaciado de todas las secciones (registrado en cada ajuste de "Espacio
    superior/inferior" del editor).
 
+## Tercera ronda de correcciones (misma noche, tras captura real del usuario)
+
+1. **FALLO GRAVE encontrado y corregido**: las secciones con animación de
+   aparición al hacer scroll (`.mt-reveal`) tenían `opacity: 0` por defecto en
+   el CSS puro, dependiendo de que el JavaScript llegara a tiempo a añadir
+   `.mt-visible`. En la práctica, se veían huecos en blanco enormes entre el
+   héroe y el pie (confianza, destacados, historia, reseñas — todo
+   invisible). Arreglado con un patrón "a prueba de fallos": el contenido es
+   SIEMPRE visible por defecto; solo si el JS arranca bien se añade
+   `.mt-reveal-armed` y a partir de ahí se anima. Además cada función de
+   `mt-scripts.js` corre ahora en su propio try/catch para que un fallo en
+   una no bloquee las demás.
+2. **Contraste mejorado**: el fondo gris claro (`--mt-bg`) se ha oscurecido
+   ligeramente (de #F7F8FA a #EEF1F7) y las tarjetas de producto llevan
+   borde sutil, para que las secciones no se fundan unas con otras en blanco.
+3. **Fotos más "llenas"**: las fotos de producto (que traen aire alrededor
+   por ser fotos de estudio) se recortan un poco más de cerca con un zoom
+   sutil (`transform: scale`) en las tarjetas, para que el producto se vea
+   más grande dentro de su marco.
+4. **Preguntas frecuentes** (`sections/mt-faq.liquid`, acordeón): añadida a
+   la portada y a la página de producto.
+5. **Reseñas con avatar**: cada reseña ahora lleva un círculo con la
+   inicial del nombre (color de marca), insignia de "verificado" y un campo
+   de detalle (ej. "Compra verificada"), inspirado en el ejemplo que pasó el
+   usuario.
+
+Pendiente para una próxima ronda (footer más completo estilo "Explora /
+Ayuda y legal" con enlaces reales): necesita permiso adicional de la Admin
+API (gestión de menús de navegación) que hoy no está concedido — se puede
+pedir cuando el usuario quiera ese nivel de detalle en el pie.
+
 ## Nota pendiente (cosmética, no bloqueante)
 El título de la pestaña del navegador usa el nombre real de la tienda en
 Shopify (`autods-user-store-27923`), no "VOLTA", porque ese nombre vive en

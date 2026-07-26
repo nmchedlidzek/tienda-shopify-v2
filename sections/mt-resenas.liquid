@@ -16,15 +16,30 @@
     </div>
 
     <div class="mt-grid mt-grid-3" style="margin-top: 40px;">
+      {% assign avatar_colores = "#2F5FFF,#1E3FC4,#0E1116,#5B6572" | split: ',' %}
       {% for block in section.blocks %}
+        {% assign color_index = forloop.index0 | modulo: 4 %}
+        {% assign avatar_color = avatar_colores[color_index] %}
+        {% assign inicial = block.settings.autor | slice: 0, 1 | upcase %}
         <div class="mt-resena mt-reveal mt-reveal-{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <div class="mt-resena-cabecera">
+            <span class="mt-avatar" style="background: {{ avatar_color }};">{{ inicial }}</span>
+            <div>
+              <p class="mt-resena-autor">
+                {{ block.settings.autor }}
+                {% if block.settings.verificado %}
+                  <svg class="mt-resena-check" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="10"/><path d="M6 10.2l2.4 2.4L14.2 7" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {% endif %}
+              </p>
+              {% if block.settings.rol != blank %}<p class="mt-resena-rol">{{ block.settings.rol }}</p>{% endif %}
+            </div>
+          </div>
           <div class="mt-resena-estrellas">
             {% for i in (1..5) %}
               <svg viewBox="0 0 20 20" fill="{% if i <= block.settings.estrellas %}currentColor{% else %}none{% endif %}" stroke="currentColor" stroke-width="1.2"><path d="M10 1.5l2.6 5.4 5.9.6-4.4 4 1.2 5.9L10 14.9l-5.3 2.5 1.2-5.9-4.4-4 5.9-.6z"/></svg>
             {% endfor %}
           </div>
           <p class="mt-body mt-resena-texto">"{{ block.settings.texto }}"</p>
-          <p class="mt-resena-autor">{{ block.settings.autor }}</p>
         </div>
       {% endfor %}
     </div>
@@ -37,11 +52,15 @@
     border-radius: var(--mt-radius);
     padding: 28px;
     box-shadow: var(--mt-shadow);
+    border: 1px solid var(--mt-border);
   }
+  #shopify-section-{{ section.id }} .mt-resena-cabecera { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  #shopify-section-{{ section.id }} .mt-resena-autor { font-weight: 700; font-size: 14px; color: var(--mt-text); display: flex; align-items: center; gap: 6px; }
+  #shopify-section-{{ section.id }} .mt-resena-check { width: 15px; height: 15px; color: var(--mt-accent); }
+  #shopify-section-{{ section.id }} .mt-resena-rol { font-size: 12.5px; color: var(--mt-muted); margin-top: 2px; }
   #shopify-section-{{ section.id }} .mt-resena-estrellas { display: flex; gap: 3px; color: var(--mt-accent-2); margin-bottom: 14px; }
-  #shopify-section-{{ section.id }} .mt-resena-estrellas svg { width: 18px; height: 18px; color: #F5B400; }
+  #shopify-section-{{ section.id }} .mt-resena-estrellas svg { width: 16px; height: 16px; color: #F5B400; }
   #shopify-section-{{ section.id }} .mt-resena-texto { color: var(--mt-text); }
-  #shopify-section-{{ section.id }} .mt-resena-autor { margin-top: 16px; font-weight: 700; font-size: 14px; color: var(--mt-muted); }
 </style>
 
 {% schema %}
@@ -63,7 +82,9 @@
       "settings": [
         { "type": "range", "id": "estrellas", "label": "Estrellas", "min": 1, "max": 5, "step": 1, "default": 5 },
         { "type": "textarea", "id": "texto", "label": "Texto", "default": "Muy fácil de instalar y funciona genial. Superó lo que esperaba." },
-        { "type": "text", "id": "autor", "label": "Autor", "default": "Cliente verificado" }
+        { "type": "text", "id": "autor", "label": "Nombre", "default": "Cliente" },
+        { "type": "text", "id": "rol", "label": "Detalle (opcional)", "default": "Compra verificada" },
+        { "type": "checkbox", "id": "verificado", "label": "Mostrar insignia de verificado", "default": true }
       ]
     }
   ],
@@ -71,9 +92,9 @@
     {
       "name": "MT – Reseñas",
       "blocks": [
-        { "type": "resena", "settings": { "estrellas": 5, "texto": "Muy fácil de instalar y funciona genial. Superó lo que esperaba.", "autor": "Marta G." } },
-        { "type": "resena", "settings": { "estrellas": 5, "texto": "Buena calidad y llegó antes de lo previsto. Repetiré compra.", "autor": "Javier R." } },
-        { "type": "resena", "settings": { "estrellas": 4, "texto": "Justo lo que necesitaba para la casa. Recomendado.", "autor": "Laura M." } }
+        { "type": "resena", "settings": { "estrellas": 5, "texto": "Muy fácil de instalar y funciona genial. Superó lo que esperaba.", "autor": "Marta G.", "rol": "Compra verificada", "verificado": true } },
+        { "type": "resena", "settings": { "estrellas": 5, "texto": "Buena calidad y llegó antes de lo previsto. Repetiré compra.", "autor": "Javier R.", "rol": "Compra verificada", "verificado": true } },
+        { "type": "resena", "settings": { "estrellas": 4, "texto": "Justo lo que necesitaba para la casa. Recomendado.", "autor": "Laura M.", "rol": "Compra verificada", "verificado": true } }
       ]
     }
   ]

@@ -39,7 +39,25 @@
         "r3": { "type": "resena", "settings": { "estrellas": 4, "texto": "Justo lo que necesitaba para la casa. Recomendado.", "autor": "Laura M." } }
       },
       "block_order": ["r1", "r2", "r3"]
+    },
+    "faq": {
+      "type": "mt-faq",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "eyebrow": "Dudas resueltas",
+        "titulo": "Preguntas frecuentes",
+        "texto": "Todo lo que necesitas saber antes de comprar.",
+        "padding_top": 56,
+        "padding_bottom": 72
+      },
+      "blocks": {
+        "q1": { "type": "pregunta", "settings": { "pregunta": "¿Cuánto tarda el envío?", "respuesta": "<p>Normalmente entre 3 y 7 días laborables desde que confirmas el pedido.</p>" } },
+        "q2": { "type": "pregunta", "settings": { "pregunta": "¿Tiene garantía?", "respuesta": "<p>Sí, todos nuestros productos incluyen garantía. Si llega defectuoso, te lo cambiamos sin coste.</p>" } },
+        "q3": { "type": "pregunta", "settings": { "pregunta": "¿Puedo devolverlo si no me convence?", "respuesta": "<p>Tienes 30 días desde la recepción para devolverlo sin preguntas.</p>" } },
+        "q4": { "type": "pregunta", "settings": { "pregunta": "¿El pago es seguro?", "respuesta": "<p>Sí, todos los pagos se procesan de forma cifrada a través de Shopify. Nunca guardamos tus datos de tarjeta.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4"]
     }
   },
-  "order": ["principal", "resenas"]
+  "order": ["principal", "resenas", "faq"]
 }
