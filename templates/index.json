@@ -102,9 +102,9 @@
       },
       "blocks": {
         "p1": { "type": "producto", "settings": { "product": "120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car" } },
-        "p2": { "type": "producto", "settings": { "product": "eu-plug-ac-outlet-smart-home-power-strip-multipurpose-electrical-extension-cord-with-usb-ports-fast-charging" } },
+        "p2": { "type": "producto", "settings": { "product": "kinscoter-aroma-diffuser-air-humidifier-ultrasonic-cool-mist-maker-fogger-led-essential-oil-flame-lamp-difusor" } },
         "p3": { "type": "producto", "settings": { "product": "ws2812b-smart-pixel-led-strip-5050-rgb-50-leds-100-leds-dc5v-pre-installed-connectors-available-for-separate-purchase" } },
-        "p4": { "type": "producto", "settings": { "product": "smart-fingerprint-padlock" } }
+        "p4": { "type": "producto", "settings": { "product": "mini-bluetooth-speaker-shower-subwoofer-waterproof-handsfree-loudspeaker-with-suction-cup-mic-for-bathroom-pool-beach-car-phone" } }
       },
       "block_order": ["p1", "p2", "p3", "p4"]
     },
