@@ -15,7 +15,7 @@
         "padding_bottom": 96
       },
       "blocks": {
-        "c1": { "type": "confianza", "settings": { "texto": "Envío rápido y seguimiento incluido" } },
+        "c1": { "type": "confianza", "settings": { "texto": "Envío con seguimiento en todos los pedidos" } },
         "c2": { "type": "confianza", "settings": { "texto": "Devolución gratuita en 30 días" } },
         "c3": { "type": "confianza", "settings": { "texto": "Pago 100% seguro" } },
         "f1": { "type": "caracteristica", "settings": { "titulo": "Fácil de usar", "texto": "Listo para usar en menos de un minuto, sin instalación complicada." } },

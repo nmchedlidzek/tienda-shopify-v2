@@ -157,9 +157,19 @@
               </div>
             {%- endfor -%}
             <div class="footer-block grid__item footer-block--menu">
+              <h2 class="footer-block__heading inline-richtext">Explora</h2>
+              <ul class="footer-block__details-content list-unstyled">
+                <li><a href="{{ routes.root_url }}" class="link link--text list-menu__item list-menu__item--link">Inicio</a></li>
+                <li><a href="{{ routes.all_products_collection_url }}" class="link link--text list-menu__item list-menu__item--link">Comprar</a></li>
+                <li><a href="{{ routes.root_url }}#shopify-section-mt-historia" class="link link--text list-menu__item list-menu__item--link">Cómo funciona</a></li>
+                <li><a href="{{ routes.root_url }}#shopify-section-mt-resenas" class="link link--text list-menu__item list-menu__item--link">Opiniones</a></li>
+              </ul>
+            </div>
+            <div class="footer-block grid__item footer-block--menu">
               <h2 class="footer-block__heading inline-richtext">Ayuda y legal</h2>
               <ul class="footer-block__details-content list-unstyled">
                 <li><a href="mailto:{{ shop.email }}" class="link link--text list-menu__item list-menu__item--link">Contacto</a></li>
+                <li><a href="{{ routes.root_url }}#shopify-section-mt-faq" class="link link--text list-menu__item list-menu__item--link">Preguntas frecuentes</a></li>
                 {%- for policy in shop.policies -%}
                   {%- if policy != blank -%}
                     <li><a href="{{ policy.url }}" class="link link--text list-menu__item list-menu__item--link">{{ policy.title | escape }}</a></li>

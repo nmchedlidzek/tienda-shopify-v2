@@ -62,7 +62,7 @@
         "padding_bottom": 48
       },
       "blocks": {
-        "b1": { "type": "beneficio", "settings": { "icono": "envio", "titulo": "Envío rápido", "texto": "A toda España en pocos días" } },
+        "b1": { "type": "beneficio", "settings": { "icono": "envio", "titulo": "Envío con seguimiento", "texto": "Recibe tu pedido con número de seguimiento" } },
         "b2": { "type": "beneficio", "settings": { "icono": "garantia", "titulo": "Garantía incluida", "texto": "Compra con confianza" } },
         "b3": { "type": "beneficio", "settings": { "icono": "devolucion", "titulo": "Devolución fácil", "texto": "30 días para cambiar de idea" } },
         "b4": { "type": "beneficio", "settings": { "icono": "pago", "titulo": "Pago 100% seguro", "texto": "Tus datos siempre protegidos" } }
@@ -119,7 +119,7 @@
         "padding_bottom": 56
       },
       "blocks": {
-        "q1": { "type": "pregunta", "settings": { "pregunta": "¿Cuánto tarda el envío?", "respuesta": "<p>Normalmente entre 3 y 7 días laborables desde que confirmas el pedido.</p>" } },
+        "q1": { "type": "pregunta", "settings": { "pregunta": "¿Cuánto tarda el envío?", "respuesta": "<p>El envío se hace directamente desde el proveedor, así que suele tardar entre 7 y 20 días laborables según el producto y tu ubicación. Recibirás un número de seguimiento en cuanto se envíe.</p>" } },
         "q2": { "type": "pregunta", "settings": { "pregunta": "¿Tiene garantía?", "respuesta": "<p>Sí, todos nuestros productos incluyen garantía. Si llega defectuoso, te lo cambiamos sin coste.</p>" } },
         "q3": { "type": "pregunta", "settings": { "pregunta": "¿Puedo devolverlo si no me convence?", "respuesta": "<p>Tienes 30 días desde la recepción para devolverlo sin preguntas.</p>" } },
         "q4": { "type": "pregunta", "settings": { "pregunta": "¿El pago es seguro?", "respuesta": "<p>Sí, todos los pagos se procesan de forma cifrada a través de Shopify. Nunca guardamos tus datos de tarjeta.</p>" } }
