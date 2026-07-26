@@ -61,7 +61,7 @@
             endif
           -%}
           <div
-            class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet mt-footer-grid {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
             {% endif %}
@@ -353,6 +353,15 @@
     </div>
   </div>
 </footer>
+
+<style>
+  @media screen and (min-width: 750px) {
+    .mt-footer-grid.grid--4-col-tablet .grid__item {
+      width: calc(33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3);
+    }
+  }
+  .mt-footer-grid { justify-content: space-between; }
+</style>
 
 {% schema %}
 {

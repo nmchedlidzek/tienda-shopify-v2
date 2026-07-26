@@ -83,7 +83,7 @@
         { "type": "range", "id": "estrellas", "label": "Estrellas", "min": 1, "max": 5, "step": 1, "default": 5 },
         { "type": "textarea", "id": "texto", "label": "Texto", "default": "Muy fácil de instalar y funciona genial. Superó lo que esperaba." },
         { "type": "text", "id": "autor", "label": "Nombre", "default": "Cliente" },
-        { "type": "text", "id": "rol", "label": "Detalle (opcional)", "default": "Reseña de ejemplo — sustitúyela" },
+        { "type": "text", "id": "rol", "label": "Detalle (opcional, ej. 'Compra verificada')" },
         { "type": "checkbox", "id": "verificado", "label": "Mostrar insignia de verificado (solo si es una compra real verificada)", "default": false }
       ]
     }
@@ -92,9 +92,9 @@
     {
       "name": "MT – Reseñas",
       "blocks": [
-        { "type": "resena", "settings": { "estrellas": 5, "texto": "Muy fácil de instalar y funciona genial. Superó lo que esperaba.", "autor": "Marta G.", "rol": "Reseña de ejemplo — sustitúyela", "verificado": false } },
-        { "type": "resena", "settings": { "estrellas": 5, "texto": "Buena calidad y llegó antes de lo previsto. Repetiré compra.", "autor": "Javier R.", "rol": "Reseña de ejemplo — sustitúyela", "verificado": false } },
-        { "type": "resena", "settings": { "estrellas": 4, "texto": "Justo lo que necesitaba para la casa. Recomendado.", "autor": "Laura M.", "rol": "Reseña de ejemplo — sustitúyela", "verificado": false } }
+        { "type": "resena", "settings": { "estrellas": 5, "texto": "Muy fácil de instalar y funciona genial. Superó lo que esperaba.", "autor": "Marta G.", "verificado": false } },
+        { "type": "resena", "settings": { "estrellas": 5, "texto": "Buena calidad y llegó antes de lo previsto. Repetiré compra.", "autor": "Javier R.", "verificado": false } },
+        { "type": "resena", "settings": { "estrellas": 4, "texto": "Justo lo que necesitaba para la casa. Recomendado.", "autor": "Laura M.", "verificado": false } }
       ]
     }
   ]
