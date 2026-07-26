@@ -199,6 +199,30 @@ pedir cuando el usuario quiera ese nivel de detalle en el pie.
      usuario sus tiempos de envío reales y confirmar la política de
      devoluciones.
 
+## Quinta ronda: pie completo + políticas legales reales
+
+1. **Permiso ampliado**: se añadió el scope `write_legal_policies` a la app
+   "driveee" (shopify.app.toml + deploy) y el usuario reinstaló la app para
+   concederlo.
+2. **Políticas escritas de verdad vía Admin API** (`shopPolicyUpdate`),
+   adaptadas al modelo real del negocio (dropshipping sin stock propio,
+   confirmado por el usuario): Envíos, Devoluciones, Términos y condiciones.
+   Redactadas en español, con el aviso legal de que son una BASE y no
+   asesoría legal — el usuario debería revisarlas o pasarlas a un gestor
+   antes de un lanzamiento serio.
+   - La Política de Privacidad tiene "gestión automática" activada por
+     Shopify y la API no permite sobreescribirla mientras esté activa (se
+     necesita desactivar esa opción desde el panel: Configuración →
+     Políticas → Privacidad → desactivar "usar ajustes automáticos"). Por
+     eso sigue en inglés (plantilla de Shopify) hasta que el usuario la
+     desactive; en el pie de la web se traduce solo la ETIQUETA del enlace
+     ("Política de privacidad"), no el contenido.
+3. **Pie de página completo**: dos columnas —"Explora" (Inicio, Comprar,
+   Cómo funciona, Opiniones, con anclas reales a las secciones de la
+   portada) y "Ayuda y legal" (Contacto por email, Preguntas frecuentes,
+   y las políticas — con etiqueta en español aunque el título nativo de
+   Shopify esté en inglés).
+
 ## Nota pendiente (cosmética, no bloqueante)
 El título de la pestaña del navegador usa el nombre real de la tienda en
 Shopify (`autods-user-store-27923`), no "VOLTA", porque ese nombre vive en

@@ -172,7 +172,19 @@
                 <li><a href="{{ routes.root_url }}#shopify-section-mt-faq" class="link link--text list-menu__item list-menu__item--link">Preguntas frecuentes</a></li>
                 {%- for policy in shop.policies -%}
                   {%- if policy != blank -%}
-                    <li><a href="{{ policy.url }}" class="link link--text list-menu__item list-menu__item--link">{{ policy.title | escape }}</a></li>
+                    {%- liquid
+                      assign policy_label = policy.title
+                      if policy.title contains 'Refund'
+                        assign policy_label = 'Devoluciones'
+                      elsif policy.title contains 'Privacy'
+                        assign policy_label = 'Política de privacidad'
+                      elsif policy.title contains 'Terms'
+                        assign policy_label = 'Términos y condiciones'
+                      elsif policy.title contains 'Shipping'
+                        assign policy_label = 'Envíos'
+                      endif
+                    -%}
+                    <li><a href="{{ policy.url }}" class="link link--text list-menu__item list-menu__item--link">{{ policy_label | escape }}</a></li>
                   {%- endif -%}
                 {%- endfor -%}
               </ul>
