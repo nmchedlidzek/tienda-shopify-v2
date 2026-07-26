@@ -3,10 +3,50 @@
 - Tienda: autods-user-store-27923-ndpmhhbj.myshopify.com
 - Carpeta: raíz de este repositorio
 - Tema base: Dawn (descargado 2026-07-26, vía `shopify theme init --clone-url`)
-- Tema de trabajo en Shopify: "Tienda (Claude)" — id 166158106713 (NO publicado)
+- Tema de trabajo en Shopify: "Tienda (Claude)" — id 166158106713 — **PUBLICADO
+  (tema activo/live)** desde que el usuario lo publicó él mismo.
 - Entorno: Node v22.22.2, Shopify CLI 4.5.2 — OK
-- Preview: https://autods-user-store-27923-ndpmhhbj.myshopify.com?preview_theme_id=166158106713
-- Última publicación: primera subida de validación (Dawn sin modificar)
+- Dominio real de la tienda: **myvolta.es** (comprado y puesto como dominio
+  principal por el usuario). El myshopify.com (ahora con handle
+  `voltaaaa-store`, antes `autods-user-store-27923`) redirige automáticamente
+  a myvolta.es. IMPORTANTE: `shopify theme push` a partir de ahora necesita
+  el flag `--allow-live` porque el tema ya está publicado.
+- Nombre de cuenta Shopify (Configuración → General): el usuario lo cambió a
+  VOLTA (antes "autods-user-store-27923").
+
+## Sexta ronda: 8 productos nuevos + categorías (misma noche)
+
+Usuario importó 8 productos nuevos desde AutoDS (variedad de nicho, no solo
+"hogar inteligente"). Se procesaron igual que los 4 originales: fotos IA
+limpias (fondo de estudio, sin texto), título/descripción en español,
+precio ×3 sobre coste, plantilla `mt` asignada. Los 8 productos nuevos:
+difusor de aromas, tira LED para coche, altavoz bici, altavoz ducha, tira
+LED RGB con app, diadema bluetooth para dormir, báscula de cocina,
+limpiador de pantallas. (Ojo: el altavoz de bici trae de fábrica el logo
+"T&G" visible en la foto — es la marca real del fabricante, no algo que
+haya inventado yo; mencionado al usuario pendiente de decidir si le vale.)
+
+Se crearon 4 colecciones (categorías) y se repartieron los 12 productos
+activos:
+- **Hogar inteligente** (`hogar-inteligente`): aspiradora, regleta, candado,
+  difusor de aromas — 4 productos.
+- **Iluminación LED** (`iluminacion-led`): tira LED WS2812B, tira LED RGB app,
+  tira LED coche — 3 productos.
+- **Audio y sonido** (`audio-y-sonido`): altavoz bici, altavoz ducha, diadema
+  — 3 productos.
+- **Cocina y accesorios** (`cocina-y-accesorios`): báscula, limpiapantallas
+  — 2 productos.
+
+Nueva sección `sections/mt-categorias.liquid` (rejilla de categorías) añadida
+a la portada tras la barra de confianza. `mt-productos-destacados` pasa a
+llamarse "Los más vendidos" (los 4 originales). Los 8 productos ocultados
+antes (dron, proyectores, cámara, lámpara luna, etc.) siguen en borrador,
+el usuario decidió dejarlos así.
+
+PENDIENTE: las 4 colecciones dan 404 en la tienda porque no están publicadas
+en el canal "Tienda online" — hace falta el scope `read_publications` +
+`write_publications` (ya añadido a la app y desplegado; pendiente de que el
+usuario reinstale la app para concederlo, igual que las veces anteriores).
 
 ## Notas de entorno importantes
 

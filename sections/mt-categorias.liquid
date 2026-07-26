@@ -1,0 +1,130 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+{% endstyle %}
+
+<section class="mt-section mt-categorias">
+  <div class="mt-container">
+    <div class="mt-cabecera mt-center mt-reveal">
+      <p class="mt-eyebrow" style="justify-content:center;width:100%;">{{ section.settings.eyebrow }}</p>
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+    </div>
+
+    <div class="mt-categorias-grid" style="margin-top: 40px;">
+      {% for block in section.blocks %}
+        {% assign coleccion = block.settings.coleccion %}
+        <a href="{{ coleccion.url | default: '#' }}" class="mt-categoria-card mt-reveal mt-reveal-{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <div class="mt-categoria-media">
+            {% if block.settings.imagen != blank %}
+              <img src="{{ block.settings.imagen | image_url: width: 900 }}" alt="{{ block.settings.titulo | escape }}" loading="lazy">
+            {% elsif coleccion != blank and coleccion.image %}
+              <img src="{{ coleccion.image | image_url: width: 900 }}" alt="{{ block.settings.titulo | escape }}" loading="lazy">
+            {% elsif coleccion != blank and coleccion.products.first %}
+              <img src="{{ coleccion.products.first.featured_image | image_url: width: 900 }}" alt="{{ block.settings.titulo | escape }}" loading="lazy">
+            {% endif %}
+            <div class="mt-categoria-overlay"></div>
+          </div>
+          <div class="mt-categoria-texto">
+            <p class="mt-categoria-titulo">{{ block.settings.titulo }}</p>
+            {% if coleccion != blank %}
+              <p class="mt-categoria-count">{{ coleccion.products_count }} productos</p>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .mt-categorias-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  #shopify-section-{{ section.id }} .mt-categoria-card {
+    position: relative;
+    display: block;
+    border-radius: var(--mt-radius);
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    box-shadow: var(--mt-shadow);
+  }
+  #shopify-section-{{ section.id }} .mt-categoria-media {
+    position: absolute; inset: 0;
+    background: var(--mt-bg);
+  }
+  #shopify-section-{{ section.id }} .mt-categoria-media img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s var(--mt-ease);
+  }
+  #shopify-section-{{ section.id }} .mt-categoria-card:hover .mt-categoria-media img { transform: scale(1.08); }
+  #shopify-section-{{ section.id }} .mt-categoria-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(14,17,22,0.85) 0%, rgba(14,17,22,0.15) 55%, rgba(14,17,22,0) 100%);
+  }
+  #shopify-section-{{ section.id }} .mt-categoria-texto {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 22px;
+    color: #fff;
+  }
+  #shopify-section-{{ section.id }} .mt-categoria-titulo {
+    font-family: var(--font-heading-family);
+    font-weight: 700;
+    font-size: 19px;
+    margin: 0 0 4px;
+  }
+  #shopify-section-{{ section.id }} .mt-categoria-count {
+    font-size: 13px;
+    opacity: 0.8;
+    margin: 0;
+  }
+  @media (max-width: 989px) {
+    #shopify-section-{{ section.id }} .mt-categorias-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 539px) {
+    #shopify-section-{{ section.id }} .mt-categorias-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MT – Categorías",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#FFFFFF" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Compra por categoría" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Encuentra lo que buscas" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "categoria",
+      "name": "Categoría",
+      "settings": [
+        { "type": "collection", "id": "coleccion", "label": "Colección" },
+        { "type": "text", "id": "titulo", "label": "Título mostrado", "default": "Categoría" },
+        { "type": "image_picker", "id": "imagen", "label": "Imagen (opcional, si no se usa la de la colección)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Categorías",
+      "blocks": [
+        { "type": "categoria" },
+        { "type": "categoria" },
+        { "type": "categoria" },
+        { "type": "categoria" }
+      ]
+    }
+  ]
+}
+{% endschema %}

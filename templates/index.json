@@ -69,18 +69,35 @@
       },
       "block_order": ["b1", "b2", "b3", "b4"]
     },
+    "mt-categorias": {
+      "type": "mt-categorias",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "eyebrow": "Compra por categoría",
+        "titulo": "Encuentra lo que buscas",
+        "padding_top": 56,
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "c1": { "type": "categoria", "settings": { "coleccion": "hogar-inteligente", "titulo": "Hogar inteligente" } },
+        "c2": { "type": "categoria", "settings": { "coleccion": "iluminacion-led", "titulo": "Iluminación LED" } },
+        "c3": { "type": "categoria", "settings": { "coleccion": "audio-y-sonido", "titulo": "Audio y sonido" } },
+        "c4": { "type": "categoria", "settings": { "coleccion": "cocina-y-accesorios", "titulo": "Cocina y accesorios" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"]
+    },
     "mt-productos-destacados": {
       "type": "mt-productos-destacados",
       "settings": {
         "bg_color": "#F7F8FA",
         "alineacion": "center",
         "eyebrow": "Nuestra selección",
-        "titulo": "Esenciales de hogar inteligente",
-        "texto": "Cuatro gadgets pensados para hacerte la vida más fácil en casa.",
+        "titulo": "Los más vendidos",
+        "texto": "Los gadgets que más gustan de todo el catálogo.",
         "mostrar_boton": true,
         "boton_texto": "Ver todo el catálogo",
         "boton_enlace": "shopify://collections/all",
-        "padding_top": 56,
+        "padding_top": 32,
         "padding_bottom": 56
       },
       "blocks": {
@@ -103,7 +120,7 @@
         "padding_bottom": 56
       },
       "blocks": {
-        "s1": { "type": "stat", "settings": { "numero": 4, "sufijo": "", "etiqueta": "Productos seleccionados" } },
+        "s1": { "type": "stat", "settings": { "numero": 12, "sufijo": "+", "etiqueta": "Productos seleccionados" } },
         "s2": { "type": "stat", "settings": { "numero": 100, "sufijo": "%", "etiqueta": "Revisados antes de vender" } }
       },
       "block_order": ["s1", "s2"]
@@ -152,10 +169,10 @@
         "padding_bottom": 24
       },
       "blocks": {
-        "m1": { "type": "item", "settings": { "texto": "Aspiradora de mano" } },
-        "m2": { "type": "item", "settings": { "texto": "Regleta inteligente" } },
-        "m3": { "type": "item", "settings": { "texto": "Tira LED" } },
-        "m4": { "type": "item", "settings": { "texto": "Cerradura con huella" } },
+        "m1": { "type": "item", "settings": { "texto": "Hogar inteligente" } },
+        "m2": { "type": "item", "settings": { "texto": "Iluminación LED" } },
+        "m3": { "type": "item", "settings": { "texto": "Audio y sonido" } },
+        "m4": { "type": "item", "settings": { "texto": "Cocina y accesorios" } },
         "m5": { "type": "item", "settings": { "texto": "Y muchos más" } }
       },
       "block_order": ["m1", "m2", "m3", "m4", "m5"]
@@ -177,6 +194,7 @@
   "order": [
     "mt-hero",
     "mt-beneficios",
+    "mt-categorias",
     "mt-productos-destacados",
     "mt-historia",
     "mt-resenas",
