@@ -142,7 +142,7 @@
         "padding_bottom": 56
       },
       "blocks": {
-        "q1": { "type": "pregunta", "settings": { "pregunta": "¿Cuánto tarda el envío?", "respuesta": "<p>El envío se hace directamente desde el proveedor, así que suele tardar entre 7 y 20 días laborables según el producto y tu ubicación. Recibirás un número de seguimiento en cuanto se envíe.</p>" } },
+        "q1": { "type": "pregunta", "settings": { "pregunta": "¿Cuánto tarda el envío?", "respuesta": "<p>El envío se hace directamente desde el proveedor, así que suele tardar entre 7 y 20 días laborables según el producto y tu ubicación. Recibirás un número de seguimiento en cuanto se envíe. El IVA ya suele estar incluido en el precio; desde julio de 2026 la normativa europea aplica una pequeña tasa aduanera fija en envíos desde fuera de la UE, según la categoría del producto.</p>" } },
         "q2": { "type": "pregunta", "settings": { "pregunta": "¿Tiene garantía?", "respuesta": "<p>Sí, todos nuestros productos incluyen garantía. Si llega defectuoso, te lo cambiamos sin coste.</p>" } },
         "q3": { "type": "pregunta", "settings": { "pregunta": "¿Puedo devolverlo si no me convence?", "respuesta": "<p>Tienes 30 días desde la recepción para devolverlo sin preguntas.</p>" } },
         "q4": { "type": "pregunta", "settings": { "pregunta": "¿El pago es seguro?", "respuesta": "<p>Sí, todos los pagos se procesan de forma cifrada a través de Shopify. Nunca guardamos tus datos de tarjeta.</p>" } }

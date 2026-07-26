@@ -432,3 +432,26 @@ categoría más cercana disponible (Hogar inteligente o Cocina y accesorios)
 sin crear categorías nuevas. Si el catálogo sigue creciendo en esta
 dirección, en algún momento puede valer la pena crear una categoría nueva
 tipo "Cocina y bar" o "Baño" en vez de forzarlo todo en las 4 actuales.
+
+## Undécima ronda: "Los más vendidos" ampliado + aduanas actualizadas
+
+**Los más vendidos**: ampliada de 4 a 6 productos (rejilla de 3 columnas
+en vez de 4) para incluir el quemador de incienso y el proyector de
+galaxia, a petición del usuario, junto a los 4 que ya estaban (aspiradora,
+difusor, tira LED WS2812B, altavoz ducha). No hay datos reales de ventas
+todavía (la tienda no ha vendido nada real), así que la selección se basó
+en atractivo visual y potencial de conversión, no en ventas reales.
+
+**Aduanas — cambio normativo real de julio 2026**: el usuario preguntó si
+habría problemas con el envío del proveedor al comprador. Se investigó y
+se confirmó un cambio reciente y relevante: desde el 1 de julio de 2026
+la UE eliminó la exención de aduanas de 150€ y aplica una **tasa fija de
+3€ por categoría de producto (código HS6)** en envíos desde fuera de la UE,
+sin importar el valor del pedido (medida transitoria hasta 2028). El IVA
+no cambia — ya se aplicaba desde 2021 vía IOSS. No se ha podido confirmar
+cómo gestiona AutoDS concretamente esta tasa en sus envíos (si la absorbe,
+la repercute, o genera retrasos); se recomendó al usuario consultarlo
+directamente con AutoDS. Se actualizó el texto real de la política de
+envíos (Aduanas e impuestos) y la respuesta de la FAQ para reflejar esto
+con precisión en vez de la redacción genérica anterior ("es posible que
+se apliquen aranceles").
