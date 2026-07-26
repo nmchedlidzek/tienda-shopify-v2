@@ -37,7 +37,8 @@
             "eyebrow": "Esenciales de hogar inteligente",
             "headline": "Dale ambiente a cualquier rincón",
             "body": "Tira LED RGB direccionable: cambia de color, crea escenas y transforma tu habitación en segundos.",
-            "button_label": "Ver tira LED"
+            "button_label": "Ver tira LED",
+            "imagen_asset": "mt-ledstrip-ambiente.jpg"
           }
         },
         "slide-4": {
