@@ -63,16 +63,17 @@
   }
   #shopify-section-{{ section.id }} .mt-categoria-media img {
     width: 100%; height: 100%; object-fit: cover;
+    transform: scale(1.08);
     transition: transform 0.6s var(--mt-ease);
-    animation: mt-cat-breathe 8s ease-in-out infinite alternate;
+    animation: mt-cat-breathe 5s ease-in-out infinite alternate;
   }
   #shopify-section-{{ section.id }} .mt-categoria-card:hover .mt-categoria-media img {
     animation-play-state: paused;
-    transform: scale(1.1) !important;
+    transform: scale(1.28) !important;
   }
   @keyframes mt-cat-breathe {
-    from { transform: scale(1); }
-    to { transform: scale(1.06); }
+    from { transform: scale(1.08); }
+    to { transform: scale(1.24); }
   }
   @media (prefers-reduced-motion: reduce) {
     #shopify-section-{{ section.id }} .mt-categoria-media img { animation: none; }

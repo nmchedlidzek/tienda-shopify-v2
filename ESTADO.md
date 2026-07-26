@@ -286,4 +286,55 @@ plano anterior que dejaba varios productos por encima de mercado
 - Aspiradora: x2,6 (29€ → 25€)
 - Regleta: x2,15 (40€ → 29€)
 - Candado: x2,7 (31€ → 28€)
+## Octava ronda: animaciones más visibles + fotos mínimas por producto
+
+El usuario avisó de que las animaciones "respiración" de las fotos (tarjetas
+de producto, tarjetas de categoría, galería de producto) apenas se notaban
+pese a estar correctamente desplegadas. Se subió la intensidad en los tres
+sitios: rango de zoom ampliado de ~1,00-1,06 a 1,08-1,24 (antes apenas un
+5-6%, ahora ~15%), duración acortada de 7-9s a 5s, y el zoom al pasar el
+ratón por encima subido a 1,3x. Afecta a:
+- `assets/mt-styles.css` → `.mt-card-media img` / `@keyframes mt-card-breathe`
+- `sections/mt-categorias.liquid` → `@keyframes mt-cat-breathe`
+- `sections/mt-producto.liquid` → `@keyframes mt-kenburns`
+
+También se detectó que la tarjeta de categoría "Audio y sonido" usaba la
+misma foto que el producto destacado "Altavoz Bluetooth para Ducha" en "Los
+más vendidos" (y lo mismo pasaba con "Hogar inteligente" vs el difusor de
+aromas) — el usuario lo señaló como algo que quedaba raro/repetitivo.
+Solucionado asignando fotos distintas a cada tarjeta de categoría vía el
+setting `imagen_asset`: Audio y sonido → foto del altavoz de bici, Hogar
+inteligente → foto del candado (ninguna de las dos coincide ya con las
+fotos de "Los más vendidos").
+
+El usuario pidió mínimo 3 fotos por producto para que la galería
+auto-rotatoria tenga contenido real que animar (antes solo los 4 productos
+originales tenían 3 fotos; los 8 nuevos solo tenían 1). Se generaron 2 fotos
+adicionales por producto (ángulo distinto + foto de estilo de vida en un
+hogar) con `generar-foto.mjs` usando la foto ya limpia como referencia, y se
+subieron vía `stagedUploadsCreate` + `productCreateMedia`. Los 12 productos
+activos del catálogo tienen ahora 3 fotos cada uno.
+
+**Nota técnica**: la API de subida `stagedUploadsCreate` cambió de formato
+—ya no devuelve parámetros de formulario POST estilo Google Cloud Storage
+clásico, sino una URL firmada V4 para subir con `PUT` directo (headers
+`Content-Type`, cuerpo = bytes del archivo). El flujo antiguo con
+`FormData`/POST devolvía 403 `SignatureDoesNotMatch`. Ajustado en el script
+de subida.
+
+**Pago no configurado**: el usuario probó a comprar en la tienda real y el
+checkout mostró "This store can't accept payments right now" — no hay
+ningún método de pago activado todavía. Esto requiere que el propio usuario
+active Shopify Payments (o PayPal) en Configuración → Pagos con sus datos
+bancarios/fiscales reales; no es algo que se pueda hacer vía API. Pendiente
+de que el usuario lo active y se verifique el checkout.
+
+**Productos nuevos detectados a medio importar**: mientras se trabajaba se
+detectaron 5 productos más ya ACTIVOS y visibles en la tienda en vivo
+(cargador de coche, luz solar de pared, ventilador 3 en 1, proyector de
+galaxia, chimenea difusora) con título en inglés, precio a coste (sin
+margen) y sin categoría asignada — el usuario mencionó que iba a añadir
+más productos. Señalado al usuario, pendiente de confirmación antes de
+procesarlos igual que la tanda anterior (título/descripción en español,
+fotos limpias, precio competitivo, categoría).
 - Tira LED WS2812B (24 variantes): x2,3 (antes x3, bajan proporcionalmente)
