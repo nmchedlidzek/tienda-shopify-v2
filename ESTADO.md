@@ -124,6 +124,27 @@ original con descuento ya configurado por AutoDS).
 - Footer (`sections/footer-group.json`): marca + navegación + políticas.
 - `assets/mt-favicon.png`, `mt-*-hero.jpg`, `mt-historia-fondo.jpg`.
 
+## Correcciones tras feedback del usuario (2026-07-26, segunda ronda)
+
+1. **Catálogo reducido a 3-4 productos.** Los otros 8 productos (dron,
+   proyectores, cámara, altavoz, base de móvil, lámpara luna, diadema) se
+   pasaron a **borrador** (`status: DRAFT`) vía Admin API — ya NO aparecen en
+   la tienda online (ni en el catálogo, ni en el buscador, ni por enlace
+   directo). Siguen existiendo en el backend por si se quieren recuperar.
+   La sección nativa `featured_collection` (que mostraba "todo el catálogo")
+   se ha quitado de la portada por quedar redundante con "Esenciales de hogar
+   inteligente" ahora que solo hay 4 productos.
+2. **Galería 100% limpia.** Antes solo se había subido 1 foto IA por producto
+   y se dejaban las fotos de proveedor (con texto/collage) en la galería. Se
+   generaron 2 fotos limpias más por producto (detalle + ángulo/vida
+   cotidiana) y se **borraron todas las fotos originales de proveedor** de
+   los 4 productos destacados. Cada uno tiene ahora 3 fotos propias, sin
+   texto ni marcas de agua.
+3. **Espaciado corregido.** Los huecos entre secciones eran demasiado grandes
+   y desiguales (hasta 1000px sumados). Se ha reducido y homogeneizado el
+   espaciado de todas las secciones (registrado en cada ajuste de "Espacio
+   superior/inferior" del editor).
+
 ## Nota pendiente (cosmética, no bloqueante)
 El título de la pestaña del navegador usa el nombre real de la tienda en
 Shopify (`autods-user-store-27923`), no "VOLTA", porque ese nombre vive en
