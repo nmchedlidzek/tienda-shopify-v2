@@ -1,0 +1,81 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+{% endstyle %}
+
+<section class="mt-section mt-resenas">
+  <div class="mt-container">
+    <div class="mt-cabecera mt-center mt-reveal">
+      <p class="mt-eyebrow" style="justify-content:center;width:100%;">{{ section.settings.eyebrow }}</p>
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+    </div>
+
+    <div class="mt-grid mt-grid-3" style="margin-top: 40px;">
+      {% for block in section.blocks %}
+        <div class="mt-resena mt-reveal mt-reveal-{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <div class="mt-resena-estrellas">
+            {% for i in (1..5) %}
+              <svg viewBox="0 0 20 20" fill="{% if i <= block.settings.estrellas %}currentColor{% else %}none{% endif %}" stroke="currentColor" stroke-width="1.2"><path d="M10 1.5l2.6 5.4 5.9.6-4.4 4 1.2 5.9L10 14.9l-5.3 2.5 1.2-5.9-4.4-4 5.9-.6z"/></svg>
+            {% endfor %}
+          </div>
+          <p class="mt-body mt-resena-texto">"{{ block.settings.texto }}"</p>
+          <p class="mt-resena-autor">{{ block.settings.autor }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .mt-resena {
+    background: var(--mt-surface);
+    border-radius: var(--mt-radius);
+    padding: 28px;
+    box-shadow: var(--mt-shadow);
+  }
+  #shopify-section-{{ section.id }} .mt-resena-estrellas { display: flex; gap: 3px; color: var(--mt-accent-2); margin-bottom: 14px; }
+  #shopify-section-{{ section.id }} .mt-resena-estrellas svg { width: 18px; height: 18px; color: #F5B400; }
+  #shopify-section-{{ section.id }} .mt-resena-texto { color: var(--mt-text); }
+  #shopify-section-{{ section.id }} .mt-resena-autor { margin-top: 16px; font-weight: 700; font-size: 14px; color: var(--mt-muted); }
+</style>
+
+{% schema %}
+{
+  "name": "MT – Reseñas",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#F7F8FA" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Opiniones" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Lo que dicen nuestros clientes" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "default": 72 }
+  ],
+  "blocks": [
+    {
+      "type": "resena",
+      "name": "Reseña",
+      "settings": [
+        { "type": "range", "id": "estrellas", "label": "Estrellas", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "texto", "label": "Texto", "default": "Muy fácil de instalar y funciona genial. Superó lo que esperaba." },
+        { "type": "text", "id": "autor", "label": "Autor", "default": "Cliente verificado" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Reseñas",
+      "blocks": [
+        { "type": "resena", "settings": { "estrellas": 5, "texto": "Muy fácil de instalar y funciona genial. Superó lo que esperaba.", "autor": "Marta G." } },
+        { "type": "resena", "settings": { "estrellas": 5, "texto": "Buena calidad y llegó antes de lo previsto. Repetiré compra.", "autor": "Javier R." } },
+        { "type": "resena", "settings": { "estrellas": 4, "texto": "Justo lo que necesitaba para la casa. Recomendado.", "autor": "Laura M." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

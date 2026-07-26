@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "principal": {
+      "type": "mt-producto",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "eyebrow": "Esenciales de hogar inteligente",
+        "intro": "",
+        "boton_texto": "Añadir al carrito",
+        "texto_agotado": "Agotado",
+        "detalle_titulo": "Todo lo que necesitas saber",
+        "incluye_titulo": "Qué incluye",
+        "incluye": "1x producto\n1x cable de carga\n1x manual de instrucciones",
+        "padding_top": 56,
+        "padding_bottom": 96
+      },
+      "blocks": {
+        "c1": { "type": "confianza", "settings": { "texto": "Envío rápido y seguimiento incluido" } },
+        "c2": { "type": "confianza", "settings": { "texto": "Devolución gratuita en 30 días" } },
+        "c3": { "type": "confianza", "settings": { "texto": "Pago 100% seguro" } },
+        "f1": { "type": "caracteristica", "settings": { "titulo": "Fácil de usar", "texto": "Listo para usar en menos de un minuto, sin instalación complicada." } },
+        "f2": { "type": "caracteristica", "settings": { "titulo": "Pensado para el día a día", "texto": "Resuelve un problema real de la casa, no un capricho." } },
+        "f3": { "type": "caracteristica", "settings": { "titulo": "Calidad garantizada", "texto": "Seleccionado y probado antes de entrar en el catálogo." } }
+      },
+      "block_order": ["c1", "c2", "c3", "f1", "f2", "f3"]
+    },
+    "resenas": {
+      "type": "mt-resenas",
+      "settings": {
+        "bg_color": "#F7F8FA",
+        "eyebrow": "Opiniones",
+        "titulo": "Lo que dicen nuestros clientes",
+        "padding_top": 72,
+        "padding_bottom": 72
+      },
+      "blocks": {
+        "r1": { "type": "resena", "settings": { "estrellas": 5, "texto": "Muy fácil de instalar y funciona genial. Superó lo que esperaba.", "autor": "Marta G." } },
+        "r2": { "type": "resena", "settings": { "estrellas": 5, "texto": "Buena calidad y llegó antes de lo previsto. Repetiré compra.", "autor": "Javier R." } },
+        "r3": { "type": "resena", "settings": { "estrellas": 4, "texto": "Justo lo que necesitaba para la casa. Recomendado.", "autor": "Laura M." } }
+      },
+      "block_order": ["r1", "r2", "r3"]
+    }
+  },
+  "order": ["principal", "resenas"]
+}

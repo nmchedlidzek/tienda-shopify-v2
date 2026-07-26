@@ -1,0 +1,72 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+{% endstyle %}
+
+<section class="mt-section mt-marquee-cat">
+  <div class="mt-marquee-wrap" data-mt-marquee="{{ section.settings.velocidad }}">
+    <div class="mt-marquee-track">
+      {% for block in section.blocks %}
+        <span class="mt-marquee-item" {{ block.shopify_attributes }}>{{ block.settings.texto }}</span>
+        <span class="mt-marquee-sep">✦</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .mt-marquee-item {
+    font-family: var(--font-heading-family);
+    font-weight: 700;
+    font-size: clamp(24px, 3.4vw, 40px);
+    white-space: nowrap;
+    padding: 0 20px;
+  }
+  #shopify-section-{{ section.id }} .mt-marquee-sep {
+    font-size: 20px;
+    opacity: 0.5;
+    padding: 0 6px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MT – Marquesina",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#0E1116" },
+    { "type": "color", "id": "text_color", "label": "Color de texto", "default": "#FFFFFF" },
+    { "type": "range", "id": "velocidad", "label": "Velocidad (segundos por vuelta)", "min": 15, "max": 60, "step": 5, "default": 30 },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "default": 32 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "default": 32 }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Texto",
+      "settings": [
+        { "type": "text", "id": "texto", "label": "Texto", "default": "Nuevo gadget" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Marquesina",
+      "blocks": [
+        { "type": "item", "settings": { "texto": "Aspiradora de mano" } },
+        { "type": "item", "settings": { "texto": "Regleta inteligente" } },
+        { "type": "item", "settings": { "texto": "Tira LED" } },
+        { "type": "item", "settings": { "texto": "Cerradura con huella" } },
+        { "type": "item", "settings": { "texto": "Y muchos más" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

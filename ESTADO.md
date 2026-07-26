@@ -56,16 +56,77 @@ luna (10), mini proyector (6), altavoz retro (5).
 
 ## Fases completadas
 - [x] 0 Entorno
-- [x] 1 Conexión + sondeo (tema OK; catálogo leído por HTTP directo con token
-      de app personalizada)
+- [x] 1 Conexión + sondeo
 - [x] 2 Proyecto (Dawn descargado y primera subida de validación)
-- [ ] 3 Diseño (propuesta enviada al usuario, pendiente de confirmación)
-- [ ] 4 Construcción
-- [ ] 5 Páginas
-- [ ] 6 Publicación
+- [x] 3 Diseño — confirmado por el usuario: marca "VOLTA", enfoque en 4
+      productos de la misma categoría ("esenciales de hogar inteligente"):
+      aspiradora de mano, regleta inteligente, tira LED, candado con huella.
+      Paleta: fondo #F7F8FA, texto #14161A, acento azul eléctrico #2F5FFF,
+      esquinas redondeadas, tipografía Assistant (la de Dawn, reutilizada vía
+      var(--font-heading-family)/var(--font-body-family) para que todo el
+      tema — carrito, buscador — vaya a juego).
+- [x] 3b Fotos IA — clave de OpenAI guardada en `clave-openai.txt` (fuera de
+      git). Generadas y subidas a la galería de cada uno de los 4 productos
+      destacados (fondo de estudio limpio, sin texto/marcas de agua) +
+      favicon (monograma "V") + imagen de estilo de vida para la sección de
+      marca. Coste aproximado: ~0,30-0,40 $ (6 imágenes, calidad medium/high).
+- [x] 4 Construcción — secciones propias creadas (ver abajo) + portada
+      montada en `templates/index.json`.
+- [x] 5 Páginas — página de producto (`mt-producto.liquid` +
+      `templates/product.mt.json`, sufijo `mt`) asignada automáticamente vía
+      Admin API a los 12 productos activos del catálogo (no solo los 4
+      destacados, para que cualquier producto que se abra desde el catálogo
+      completo luzca igual de cuidado). Título + descripción reescritos en
+      español para los 4 destacados. Header con nombre de marca editable
+      (ajusta `logo_texto` en el editor si se sube un logo de imagen más
+      adelante). Footer reescrito (marca + navegación + políticas +
+      newsletter desactivada). Favicon propio.
+      PENDIENTE (requiere acción del usuario, no técnica): políticas legales
+      (privacidad, términos, devoluciones, envíos) — panel → Configuración →
+      Políticas → "Crear a partir de plantilla". El footer ya enlaza ahí solo.
+- [x] 6 Publicación (parcial) — subido como tema de trabajo NO publicado
+      (id 166158106713), auto-revisado leyendo el HTML servido en preview
+      (portada y ficha de producto, sin errores de Liquid/schema). Pendiente
+      el visto bueno del usuario para publicarlo como tema activo.
 
-## Decisiones de diseño
-(pendiente de confirmación del usuario — ver mensaje 2)
+## Precios (a petición del usuario, 2026-07-26)
 
-## Secciones creadas
-(se rellena en la fase 4)
+Recalculados para los 4 productos destacados con margen ×3 sobre el coste
+real (Admin API → `inventoryItem.unitCost`), redondeados a la baja en .99:
+- Aspiradora: 26.99 → 28.99 (coste 9.51)
+- Regleta inteligente: 16.99 → 39.99 (coste 13.11)
+- Candado con huella: 13.00 → 30.99 (coste 10.32)
+- Tira LED (24 variantes por longitud/voltaje/color): 12.99 a 125.99, cada
+  una × 3 sobre su coste individual.
+Los otros 8 productos del catálogo NO se han tocado (mantienen su precio
+original con descuento ya configurado por AutoDS).
+
+## Secciones creadas (assets/ y sections/)
+- `mt-styles.css` / `mt-scripts.js` — tokens de marca + JS (reveal, hero
+  rotativo, cuenta atrás, marquesina, galería y variantes de producto).
+- `sections/mt-hero.liquid` — héroe rotativo (4 bloques = 4 productos).
+- `sections/mt-beneficios.liquid` — barra de confianza (envío/garantía/
+  devolución/pago).
+- `sections/mt-productos-destacados.liquid` — rejilla de los 4 productos
+  estrella con precio en vivo desde el catálogo.
+- `sections/mt-historia.liquid` — historia de marca + cifras animadas.
+- `sections/mt-resenas.liquid` — reseñas (texto de ejemplo, editable).
+- `sections/mt-marquee-catalogo.liquid` — marquesina infinita.
+- `sections/mt-cta-final.liquid` — llamada final a ver el catálogo.
+- `sections/mt-producto.liquid` — página de producto completa (galería,
+  variantes, precio dinámico, confianza, características, qué incluye).
+- `templates/index.json` — portada montada con las secciones de arriba +
+  `featured_collection` nativa de Dawn (todo el catálogo, se actualiza sola
+  según se añadan productos).
+- `templates/product.mt.json` — plantilla de producto (sufijo `mt`).
+- Header (`sections/header.liquid`): añadido `logo_texto` (texto de marca
+  editable, por defecto "VOLTA") como alternativa a subir una imagen de logo.
+- Footer (`sections/footer-group.json`): marca + navegación + políticas.
+- `assets/mt-favicon.png`, `mt-*-hero.jpg`, `mt-historia-fondo.jpg`.
+
+## Nota pendiente (cosmética, no bloqueante)
+El título de la pestaña del navegador usa el nombre real de la tienda en
+Shopify (`autods-user-store-27923`), no "VOLTA", porque ese nombre vive en
+Configuración → General y no lo he tocado (cambiarlo no es necesario para
+que la web se vea bien, pero si el usuario quiere que la pestaña diga
+"VOLTA" hay que cambiarlo ahí).

@@ -1,0 +1,269 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+{{ 'mt-scripts.js' | asset_url | script_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+{% endstyle %}
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<section class="mt-section mt-producto" data-mt-producto>
+  <div class="mt-container">
+    <div class="mt-producto-grid">
+
+      <!-- Galería -->
+      <div class="mt-producto-galeria">
+        <div class="mt-producto-principal">
+          {% for media in product.media %}
+            <img class="mt-producto-imagen{% if forloop.first %} mt-activa{% endif %}"
+                 data-mt-galeria-imagen="{{ forloop.index0 }}"
+                 src="{{ media | image_url: width: 1200 }}"
+                 alt="{{ media.alt | escape }}"
+                 {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+          {% else %}
+            <img src="{{ 'mt-hero-fondo.jpg' | asset_url }}" alt="{{ product.title }}" loading="eager">
+          {% endfor %}
+        </div>
+        {% if product.media.size > 1 %}
+          <div class="mt-producto-miniaturas">
+            {% for media in product.media %}
+              <button class="mt-miniatura{% if forloop.first %} mt-activa{% endif %}" data-mt-miniatura="{{ forloop.index0 }}" aria-label="{{ 'Imagen' | append: ' ' | append: forloop.index }}">
+                <img src="{{ media | image_url: width: 200 }}" alt="{{ media.alt | escape }}" loading="lazy">
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Columna de compra -->
+      <div class="mt-producto-compra">
+        {% if section.settings.eyebrow != blank %}
+          <p class="mt-eyebrow">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+        <h1 class="mt-h2">{{ product.title }}</h1>
+
+        <div class="mt-producto-precio" data-mt-precio>
+          {% if current_variant.compare_at_price > current_variant.price %}
+            <s class="mt-precio-antes" data-mt-precio-antes>{{ current_variant.compare_at_price | money }}</s>
+          {% endif %}
+          <span class="mt-precio-actual" data-mt-precio-actual>{{ current_variant.price | money }}</span>
+        </div>
+
+        {% if section.settings.intro != blank %}
+          <p class="mt-body mt-producto-intro">{{ section.settings.intro | newline_to_br }}</p>
+        {% endif %}
+
+        {% form 'product', product, data-mt-producto-form: true %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}" data-mt-variant-id>
+
+          {% unless product.has_only_default_variant %}
+            <div class="mt-producto-opciones">
+              {% for option in product.options_with_values %}
+                <div class="mt-opcion">
+                  <p class="mt-opcion-label">{{ option.name }}</p>
+                  <div class="mt-opcion-valores" data-mt-opcion-index="{{ forloop.index0 }}">
+                    {% for value in option.values %}
+                      <button type="button"
+                              class="mt-opcion-valor{% if value == option.selected_value %} mt-activa{% endif %}"
+                              data-mt-opcion-valor="{{ value | escape }}">{{ value }}</button>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endunless %}
+
+          <button type="submit" name="add" class="mt-btn mt-btn-primary mt-producto-boton" data-mt-boton-add
+                  data-mt-texto-disponible="{{ section.settings.boton_texto | escape }}"
+                  data-mt-texto-agotado="{{ section.settings.texto_agotado | escape }}"
+                  {% if current_variant.available == false %}disabled{% endif %}>
+            <span data-mt-boton-texto>
+              {% if current_variant.available == false %}
+                {{ section.settings.texto_agotado }}
+              {% else %}
+                {{ section.settings.boton_texto }}
+              {% endif %}
+            </span>
+          </button>
+        {% endform %}
+
+        <script type="application/json" data-mt-variantes>
+          {{ product.variants | json }}
+        </script>
+
+        <!-- Confianza -->
+        <div class="mt-producto-confianza">
+          {% for block in section.blocks %}
+            {% if block.type == 'confianza' %}
+              <div class="mt-confianza-item" {{ block.shopify_attributes }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+                <span>{{ block.settings.texto }}</span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Descripción rica -->
+    <div class="mt-producto-detalle">
+      {% if section.settings.detalle_titulo != blank %}
+        <h2 class="mt-h2 mt-reveal mt-center">{{ section.settings.detalle_titulo }}</h2>
+      {% endif %}
+
+      {% assign feature_blocks = section.blocks | where: 'type', 'caracteristica' %}
+      {% if feature_blocks.size > 0 %}
+        <div class="mt-grid mt-grid-3 mt-producto-caracteristicas">
+          {% for block in feature_blocks %}
+            <div class="mt-caracteristica mt-reveal mt-reveal-{{ forloop.index }}" {{ block.shopify_attributes }}>
+              <h3 class="mt-h3">{{ block.settings.titulo }}</h3>
+              <p class="mt-body">{{ block.settings.texto }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.incluye != blank %}
+        {% assign incluye_lineas = section.settings.incluye | newline_to_br | split: '<br />' %}
+        <div class="mt-producto-incluye mt-reveal">
+          <h3 class="mt-h3">{{ section.settings.incluye_titulo }}</h3>
+          <ul>
+            {% for linea in incluye_lineas %}
+              {% if linea != blank %}<li>{{ linea | strip }}</li>{% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if product.description != blank %}
+        <div class="mt-body mt-producto-descripcion mt-reveal">{{ product.description }}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .mt-producto-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  #shopify-section-{{ section.id }} .mt-producto-principal {
+    position: relative;
+    aspect-ratio: 1/1;
+    border-radius: var(--mt-radius-lg);
+    overflow: hidden;
+    background: var(--mt-bg);
+  }
+  #shopify-section-{{ section.id }} .mt-producto-imagen {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; transition: opacity 0.4s ease;
+  }
+  #shopify-section-{{ section.id }} .mt-producto-imagen.mt-activa { opacity: 1; position: relative; }
+  #shopify-section-{{ section.id }} .mt-producto-miniaturas { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  #shopify-section-{{ section.id }} .mt-miniatura {
+    width: 72px; height: 72px; border-radius: 12px; overflow: hidden;
+    border: 2px solid transparent; padding: 0; cursor: pointer; background: var(--mt-bg);
+    transition: border-color 0.25s ease;
+  }
+  #shopify-section-{{ section.id }} .mt-miniatura.mt-activa { border-color: var(--mt-accent); }
+  #shopify-section-{{ section.id }} .mt-miniatura img { width: 100%; height: 100%; object-fit: cover; }
+
+  #shopify-section-{{ section.id }} .mt-producto-precio { display: flex; align-items: baseline; gap: 12px; margin: 18px 0 4px; }
+  #shopify-section-{{ section.id }} .mt-precio-actual { font-family: var(--font-heading-family); font-weight: 700; font-size: 26px; }
+  #shopify-section-{{ section.id }} .mt-precio-antes { color: var(--mt-muted); font-size: 18px; }
+  #shopify-section-{{ section.id }} .mt-producto-intro { margin-top: 12px; }
+
+  #shopify-section-{{ section.id }} .mt-producto-opciones { margin: 26px 0; display: flex; flex-direction: column; gap: 16px; }
+  #shopify-section-{{ section.id }} .mt-opcion-label { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+  #shopify-section-{{ section.id }} .mt-opcion-valores { display: flex; gap: 8px; flex-wrap: wrap; }
+  #shopify-section-{{ section.id }} .mt-opcion-valor {
+    padding: 9px 18px; border-radius: 999px; border: 1.5px solid var(--mt-border);
+    background: #fff; cursor: pointer; font-size: 14px; transition: all 0.25s ease;
+  }
+  #shopify-section-{{ section.id }} .mt-opcion-valor.mt-activa { border-color: var(--mt-accent); background: rgba(47,95,255,0.08); color: var(--mt-accent-dark); font-weight: 700; }
+  #shopify-section-{{ section.id }} .mt-opcion-valor[disabled] { opacity: 0.35; text-decoration: line-through; cursor: not-allowed; }
+
+  #shopify-section-{{ section.id }} .mt-producto-boton { width: 100%; margin-top: 12px; padding: 18px; font-size: 16px; }
+  #shopify-section-{{ section.id }} .mt-producto-boton[disabled] { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+
+  #shopify-section-{{ section.id }} .mt-producto-confianza { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
+  #shopify-section-{{ section.id }} .mt-confianza-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--mt-muted); }
+  #shopify-section-{{ section.id }} .mt-confianza-item svg { width: 18px; height: 18px; color: var(--mt-accent); flex-shrink: 0; }
+
+  #shopify-section-{{ section.id }} .mt-producto-detalle { margin-top: 96px; }
+  #shopify-section-{{ section.id }} .mt-producto-caracteristicas { margin-top: 40px; }
+  #shopify-section-{{ section.id }} .mt-caracteristica {
+    background: var(--mt-surface); border-radius: var(--mt-radius); padding: 26px; box-shadow: var(--mt-shadow);
+  }
+  #shopify-section-{{ section.id }} .mt-producto-incluye {
+    margin-top: 48px; background: var(--mt-surface); border-radius: var(--mt-radius); padding: 32px; box-shadow: var(--mt-shadow);
+    max-width: 480px;
+  }
+  #shopify-section-{{ section.id }} .mt-producto-incluye ul { margin: 12px 0 0; padding-left: 20px; color: var(--mt-muted); }
+  #shopify-section-{{ section.id }} .mt-producto-incluye li { margin-bottom: 6px; }
+  #shopify-section-{{ section.id }} .mt-producto-descripcion { margin-top: 48px; max-width: 720px; }
+  #shopify-section-{{ section.id }} .mt-producto-descripcion :is(h2,h3) { font-family: var(--font-heading-family); color: var(--mt-text); margin: 24px 0 8px; }
+  #shopify-section-{{ section.id }} .mt-producto-descripcion ul { padding-left: 20px; }
+
+  @media (max-width: 989px) {
+    #shopify-section-{{ section.id }} .mt-producto-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MT – Página de producto",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#FFFFFF" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Esenciales de hogar inteligente" },
+    { "type": "textarea", "id": "intro", "label": "Frase corta bajo el precio" },
+    { "type": "text", "id": "boton_texto", "label": "Texto del botón de compra", "default": "Añadir al carrito" },
+    { "type": "text", "id": "texto_agotado", "label": "Texto si está agotado", "default": "Agotado" },
+    { "type": "header", "content": "Detalle del producto" },
+    { "type": "text", "id": "detalle_titulo", "label": "Título de la sección de detalle", "default": "Todo lo que necesitas saber" },
+    { "type": "text", "id": "incluye_titulo", "label": "Título de 'qué incluye'", "default": "Qué incluye" },
+    { "type": "textarea", "id": "incluye", "label": "Qué incluye (un elemento por línea)", "default": "1x producto\n1x cable de carga\n1x manual de instrucciones" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "confianza",
+      "name": "Fila de confianza",
+      "settings": [
+        { "type": "text", "id": "texto", "label": "Texto", "default": "Envío rápido y seguimiento incluido" }
+      ]
+    },
+    {
+      "type": "caracteristica",
+      "name": "Característica",
+      "settings": [
+        { "type": "text", "id": "titulo", "label": "Título", "default": "Fácil de usar" },
+        { "type": "textarea", "id": "texto", "label": "Texto", "default": "Listo para usar en menos de un minuto, sin instalación complicada." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Página de producto",
+      "blocks": [
+        { "type": "confianza", "settings": { "texto": "Envío rápido y seguimiento incluido" } },
+        { "type": "confianza", "settings": { "texto": "Devolución gratuita en 30 días" } },
+        { "type": "confianza", "settings": { "texto": "Pago 100% seguro" } },
+        { "type": "caracteristica" },
+        { "type": "caracteristica" },
+        { "type": "caracteristica" }
+      ]
+    }
+  ]
+}
+{% endschema %}

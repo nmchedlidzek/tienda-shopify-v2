@@ -1,0 +1,51 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .mt-cta-banda {
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+{% endstyle %}
+
+<section class="mt-section mt-cta-final">
+  <div class="mt-container">
+    <div class="mt-cta-banda mt-reveal">
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+      <p class="mt-body" style="color: {{ section.settings.text_color }}; opacity: 0.85; max-width: 480px; margin: 18px auto 0;">{{ section.settings.texto }}</p>
+      <div style="margin-top: 32px;">
+        <a href="{{ section.settings.boton_enlace | default: '/collections/all' }}" class="mt-btn mt-btn-light">{{ section.settings.boton_texto }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .mt-cta-banda {
+    border-radius: var(--mt-radius-lg);
+    padding: 72px 40px;
+    text-align: center;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MT – Llamada final",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#2F5FFF" },
+    { "type": "color", "id": "text_color", "label": "Color de texto", "default": "#FFFFFF" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Da el salto a un hogar más inteligente" },
+    { "type": "textarea", "id": "texto", "label": "Texto", "default": "Explora todo el catálogo y encuentra el gadget que te faltaba." },
+    { "type": "text", "id": "boton_texto", "label": "Texto del botón", "default": "Ver todo el catálogo" },
+    { "type": "url", "id": "boton_enlace", "label": "Enlace del botón" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "default": 64 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "default": 96 }
+  ],
+  "presets": [ { "name": "MT – Llamada final" } ]
+}
+{% endschema %}

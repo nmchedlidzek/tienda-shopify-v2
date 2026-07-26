@@ -1,0 +1,156 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+  #shopify-section-{{ section.id }} .mt-hero-height {
+    min-height: {{ section.settings.height }}px;
+  }
+{% endstyle %}
+
+<section class="mt-section mt-hero" data-mt-hero data-mt-hero-interval="{{ section.settings.interval | times: 1000 }}">
+  <div class="mt-container">
+    <div class="mt-hero-height" style="position:relative;">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        <div class="mt-hero-slide{% if forloop.first %} mt-visible{% endif %}" data-mt-hero-slide {{ block.shopify_attributes }}>
+          <div class="mt-hero-grid">
+            <div class="mt-hero-copy">
+              {% if block.settings.eyebrow != blank %}
+                <p class="mt-eyebrow">{{ block.settings.eyebrow }}</p>
+              {% endif %}
+              <h1 class="mt-h1">{{ block.settings.headline }}</h1>
+              <p class="mt-body mt-hero-body">{{ block.settings.body | newline_to_br }}</p>
+              <div class="mt-hero-actions">
+                {% if product != blank %}
+                  <a href="{{ product.url }}" class="mt-btn mt-btn-primary">{{ block.settings.button_label | default: 'Ver producto' }}</a>
+                  <span class="mt-hero-price">{{ product.price | money }}</span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="mt-hero-media">
+              {% if block.settings.imagen != blank %}
+                <img src="{{ block.settings.imagen | image_url: width: 1400 }}"
+                     alt="{{ block.settings.imagen.alt | escape }}"
+                     {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+              {% elsif product != blank and product.featured_image %}
+                <img src="{{ product.featured_image | image_url: width: 1400 }}"
+                     alt="{{ product.featured_image.alt | escape }}"
+                     {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+      {% if section.blocks.size > 1 %}
+        <div class="mt-hero-dots">
+          {% for block in section.blocks %}
+            <button class="mt-hero-dot{% if forloop.first %} mt-active{% endif %}" data-mt-hero-dot aria-label="{{ 'Ver' | append: ' ' | append: forloop.index }}"></button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .mt-hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    align-items: center;
+    gap: 48px;
+    min-height: {{ section.settings.height }}px;
+  }
+  #shopify-section-{{ section.id }} .mt-hero-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+  }
+  #shopify-section-{{ section.id }} .mt-hero-slide.mt-visible {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  #shopify-section-{{ section.id }} .mt-hero-body { max-width: 460px; margin-top: 18px; }
+  #shopify-section-{{ section.id }} .mt-hero-actions { display: flex; align-items: center; gap: 18px; margin-top: 34px; }
+  #shopify-section-{{ section.id }} .mt-hero-price { font-family: var(--font-heading-family); font-weight: 700; font-size: 20px; }
+  #shopify-section-{{ section.id }} .mt-hero-media {
+    position: relative;
+    aspect-ratio: 4 / 3.4;
+    border-radius: var(--mt-radius-lg);
+    overflow: hidden;
+    background: var(--mt-bg);
+  }
+  #shopify-section-{{ section.id }} .mt-hero-media img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  #shopify-section-{{ section.id }} .mt-hero-dots {
+    position: absolute;
+    left: 0; bottom: 8px;
+    display: flex;
+    gap: 10px;
+  }
+  #shopify-section-{{ section.id }} .mt-hero-dot {
+    width: 34px; height: 4px; border-radius: 4px;
+    background: var(--mt-border); border: none; cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #shopify-section-{{ section.id }} .mt-hero-dot.mt-active { background: var(--mt-accent); }
+
+  @media (max-width: 989px) {
+    #shopify-section-{{ section.id }} .mt-hero-grid { grid-template-columns: 1fr; gap: 28px; }
+    #shopify-section-{{ section.id }} .mt-hero-slide { position: relative; }
+    #shopify-section-{{ section.id }} .mt-hero-height { min-height: unset !important; }
+    #shopify-section-{{ section.id }} .mt-hero-media { order: -1; aspect-ratio: 4/3; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MT – Héroe rotativo",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#F7F8FA" },
+    { "type": "range", "id": "height", "label": "Altura (px)", "min": 380, "max": 760, "step": 10, "default": 560 },
+    { "type": "range", "id": "interval", "label": "Segundos entre productos", "min": 3, "max": 12, "step": 1, "default": 6 },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Producto destacado",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Producto" },
+        { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Esenciales de hogar inteligente" },
+        { "type": "text", "id": "headline", "label": "Título", "default": "Tu hogar, más inteligente" },
+        { "type": "textarea", "id": "body", "label": "Texto", "default": "Descubre los gadgets que hacen tu día a día más fácil." },
+        { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Ver producto" },
+        { "type": "image_picker", "id": "imagen", "label": "Imagen (opcional, sustituye la foto del producto)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Héroe rotativo",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}

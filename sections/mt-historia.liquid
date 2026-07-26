@@ -1,0 +1,97 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+{% endstyle %}
+
+<section class="mt-section mt-historia">
+  <div class="mt-container mt-historia-grid">
+    <div class="mt-historia-media mt-reveal">
+      {%- if section.settings.imagen != blank -%}
+        <img src="{{ section.settings.imagen | image_url: width: 1200 }}" alt="{{ section.settings.imagen.alt | escape }}" loading="lazy">
+      {%- else -%}
+        <img src="{{ 'mt-historia-fondo.jpg' | asset_url }}" alt="" loading="lazy">
+      {%- endif -%}
+    </div>
+    <div class="mt-historia-copy">
+      <p class="mt-eyebrow mt-reveal">{{ section.settings.eyebrow }}</p>
+      <h2 class="mt-h2 mt-reveal mt-reveal-1">{{ section.settings.titulo }}</h2>
+      <p class="mt-body mt-reveal mt-reveal-2" style="margin-top:18px; max-width: 480px;">{{ section.settings.texto | newline_to_br }}</p>
+
+      <div class="mt-historia-stats mt-reveal mt-reveal-3">
+        {% for block in section.blocks %}
+          <div class="mt-historia-stat">
+            <p class="mt-countup" data-mt-countup="{{ block.settings.numero }}" data-mt-countup-suffix="{{ block.settings.sufijo }}" {{ block.shopify_attributes }}>0{{ block.settings.sufijo }}</p>
+            <p class="mt-body">{{ block.settings.etiqueta }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .mt-historia-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  #shopify-section-{{ section.id }} .mt-historia-media {
+    aspect-ratio: 4/5;
+    border-radius: var(--mt-radius-lg);
+    overflow: hidden;
+    background: var(--mt-bg);
+  }
+  #shopify-section-{{ section.id }} .mt-historia-media img { width: 100%; height: 100%; object-fit: cover; }
+  #shopify-section-{{ section.id }} .mt-historia-stats {
+    display: flex; gap: 40px; margin-top: 40px; flex-wrap: wrap;
+  }
+  @media (max-width: 989px) {
+    #shopify-section-{{ section.id }} .mt-historia-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MT – Historia de marca",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Color de texto", "default": "#14161A" },
+    { "type": "image_picker", "id": "imagen", "label": "Imagen" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Por qué VOLTA" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Gadgets pensados para el día a día" },
+    { "type": "textarea", "id": "texto", "label": "Texto", "default": "Seleccionamos cada producto por su utilidad real: fácil de instalar, fácil de usar, y que de verdad mejora tu casa." },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "default": 80 }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Cifra",
+      "settings": [
+        { "type": "number", "id": "numero", "label": "Número", "default": 12 },
+        { "type": "text", "id": "sufijo", "label": "Sufijo (ej. +, %)", "default": "+" },
+        { "type": "text", "id": "etiqueta", "label": "Etiqueta", "default": "Productos en catálogo" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Historia de marca",
+      "blocks": [
+        { "type": "stat", "settings": { "numero": 12, "sufijo": "+", "etiqueta": "Productos en catálogo" } },
+        { "type": "stat", "settings": { "numero": 2, "sufijo": " años", "etiqueta": "De garantía" } },
+        { "type": "stat", "settings": { "numero": 48, "sufijo": "h", "etiqueta": "Envío en" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

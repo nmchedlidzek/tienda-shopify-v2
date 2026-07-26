@@ -1,3 +1,11 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+<style>
+  .mt-wordmark {
+    font-family: var(--font-heading-family);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+</style>
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -172,7 +180,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <span class="h2 mt-wordmark">{{ section.settings.logo_texto | default: shop.name }}</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -215,7 +223,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <span class="h2 mt-wordmark">{{ section.settings.logo_texto | default: shop.name }}</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -472,6 +480,12 @@
   "class": "section-header",
   "max_blocks": 3,
   "settings": [
+    {
+      "type": "text",
+      "id": "logo_texto",
+      "label": "Nombre de marca (si no subes un logo)",
+      "default": "VOLTA"
+    },
     {
       "type": "select",
       "id": "logo_position",

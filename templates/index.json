@@ -1,75 +1,198 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "mt-hero": {
+      "type": "mt-hero",
+      "settings": {
+        "bg_color": "#F7F8FA",
+        "height": 560,
+        "interval": 6,
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "slide-1": {
+          "type": "slide",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "product": "120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car",
+            "eyebrow": "Esenciales de hogar inteligente",
+            "headline": "Limpieza rápida, sin cables de por medio",
+            "body": "Una aspiradora de mano ligera y potente para esos líos del día a día: migas, pelo de mascota, el interior del coche.",
+            "button_label": "Ver aspiradora"
           }
         },
-        "button": {
-          "type": "buttons",
+        "slide-2": {
+          "type": "slide",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "product": "eu-plug-ac-outlet-smart-home-power-strip-multipurpose-electrical-extension-cord-with-usb-ports-fast-charging",
+            "eyebrow": "Esenciales de hogar inteligente",
+            "headline": "Todos tus aparatos, un único enchufe",
+            "body": "Regleta inteligente con puertos USB y carga rápida: organiza tu escritorio o tu salón sin liarte con adaptadores.",
+            "button_label": "Ver regleta"
+          }
+        },
+        "slide-3": {
+          "type": "slide",
+          "settings": {
+            "product": "ws2812b-smart-pixel-led-strip-5050-rgb-50-leds-100-leds-dc5v-pre-installed-connectors-available-for-separate-purchase",
+            "eyebrow": "Esenciales de hogar inteligente",
+            "headline": "Dale ambiente a cualquier rincón",
+            "body": "Tira LED RGB direccionable: cambia de color, crea escenas y transforma tu habitación en segundos.",
+            "button_label": "Ver tira LED"
+          }
+        },
+        "slide-4": {
+          "type": "slide",
+          "settings": {
+            "product": "smart-fingerprint-padlock",
+            "eyebrow": "Esenciales de hogar inteligente",
+            "headline": "Seguridad sin llaves que perder",
+            "body": "Candado con huella dactilar: abre en un segundo y olvídate de duplicar llaves.",
+            "button_label": "Ver candado"
           }
         }
       },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+      "block_order": ["slide-1", "slide-2", "slide-3", "slide-4"]
+    },
+    "mt-beneficios": {
+      "type": "mt-beneficios",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
+        "bg_color": "#FFFFFF",
+        "alineacion": "center",
+        "padding_top": 56,
+        "padding_bottom": 56
+      },
+      "blocks": {
+        "b1": { "type": "beneficio", "settings": { "icono": "envio", "titulo": "Envío rápido", "texto": "A toda España en pocos días" } },
+        "b2": { "type": "beneficio", "settings": { "icono": "garantia", "titulo": "Garantía incluida", "texto": "Compra con confianza" } },
+        "b3": { "type": "beneficio", "settings": { "icono": "devolucion", "titulo": "Devolución fácil", "texto": "30 días para cambiar de idea" } },
+        "b4": { "type": "beneficio", "settings": { "icono": "pago", "titulo": "Pago 100% seguro", "texto": "Tus datos siempre protegidos" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"]
+    },
+    "mt-productos-destacados": {
+      "type": "mt-productos-destacados",
+      "settings": {
+        "bg_color": "#F7F8FA",
+        "alineacion": "center",
+        "eyebrow": "Nuestra selección",
+        "titulo": "Esenciales de hogar inteligente",
+        "texto": "Cuatro gadgets pensados para hacerte la vida más fácil en casa.",
+        "mostrar_boton": true,
+        "boton_texto": "Ver todo el catálogo",
+        "boton_enlace": "shopify://collections/all",
+        "padding_top": 72,
+        "padding_bottom": 40
+      },
+      "blocks": {
+        "p1": { "type": "producto", "settings": { "product": "120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car" } },
+        "p2": { "type": "producto", "settings": { "product": "eu-plug-ac-outlet-smart-home-power-strip-multipurpose-electrical-extension-cord-with-usb-ports-fast-charging" } },
+        "p3": { "type": "producto", "settings": { "product": "ws2812b-smart-pixel-led-strip-5050-rgb-50-leds-100-leds-dc5v-pre-installed-connectors-available-for-separate-purchase" } },
+        "p4": { "type": "producto", "settings": { "product": "smart-fingerprint-padlock" } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"]
+    },
+    "mt-historia": {
+      "type": "mt-historia",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "text_color": "#14161A",
+        "eyebrow": "Por qué VOLTA",
+        "titulo": "Gadgets pensados para el día a día",
+        "texto": "Seleccionamos cada producto por su utilidad real: fácil de instalar, fácil de usar, y que de verdad mejora tu casa.\n\nY seguimos ampliando el catálogo cada semana.",
+        "padding_top": 88,
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "numero": 12, "sufijo": "+", "etiqueta": "Productos en catálogo" } },
+        "s2": { "type": "stat", "settings": { "numero": 2, "sufijo": " años", "etiqueta": "De garantía" } },
+        "s3": { "type": "stat", "settings": { "numero": 48, "sufijo": "h", "etiqueta": "Envío en" } }
+      },
+      "block_order": ["s1", "s2", "s3"]
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
+        "title": "Todo el catálogo",
+        "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
         "collection": "all",
-        "products_to_show": 8,
+        "products_to_show": 12,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
+        "enable_desktop_slider": true,
+        "swipe_on_mobile": true,
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "mt-resenas": {
+      "type": "mt-resenas",
+      "settings": {
+        "bg_color": "#F7F8FA",
+        "eyebrow": "Opiniones",
+        "titulo": "Lo que dicen nuestros clientes",
+        "padding_top": 72,
+        "padding_bottom": 72
+      },
+      "blocks": {
+        "r1": { "type": "resena", "settings": { "estrellas": 5, "texto": "Muy fácil de instalar y funciona genial. Superó lo que esperaba.", "autor": "Marta G." } },
+        "r2": { "type": "resena", "settings": { "estrellas": 5, "texto": "Buena calidad y llegó antes de lo previsto. Repetiré compra.", "autor": "Javier R." } },
+        "r3": { "type": "resena", "settings": { "estrellas": 4, "texto": "Justo lo que necesitaba para la casa. Recomendado.", "autor": "Laura M." } }
+      },
+      "block_order": ["r1", "r2", "r3"]
+    },
+    "mt-marquee-catalogo": {
+      "type": "mt-marquee-catalogo",
+      "settings": {
+        "bg_color": "#0E1116",
+        "text_color": "#FFFFFF",
+        "velocidad": 30,
+        "padding_top": 32,
+        "padding_bottom": 32
+      },
+      "blocks": {
+        "m1": { "type": "item", "settings": { "texto": "Aspiradora de mano" } },
+        "m2": { "type": "item", "settings": { "texto": "Regleta inteligente" } },
+        "m3": { "type": "item", "settings": { "texto": "Tira LED" } },
+        "m4": { "type": "item", "settings": { "texto": "Cerradura con huella" } },
+        "m5": { "type": "item", "settings": { "texto": "Y muchos más" } }
+      },
+      "block_order": ["m1", "m2", "m3", "m4", "m5"]
+    },
+    "mt-cta-final": {
+      "type": "mt-cta-final",
+      "settings": {
+        "bg_color": "#2F5FFF",
+        "text_color": "#FFFFFF",
+        "titulo": "Da el salto a un hogar más inteligente",
+        "texto": "Explora todo el catálogo y encuentra el gadget que te faltaba.",
+        "boton_texto": "Ver todo el catálogo",
+        "boton_enlace": "shopify://collections/all",
+        "padding_top": 64,
+        "padding_bottom": 96
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "mt-hero",
+    "mt-beneficios",
+    "mt-productos-destacados",
+    "mt-historia",
+    "featured_collection",
+    "mt-resenas",
+    "mt-marquee-catalogo",
+    "mt-cta-final"
   ]
 }

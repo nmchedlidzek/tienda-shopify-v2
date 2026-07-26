@@ -1,0 +1,113 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+  #shopify-section-{{ section.id }} .mt-h2 { text-align: {{ section.settings.alineacion }}; }
+  #shopify-section-{{ section.id }} .mt-body-cabecera { text-align: {{ section.settings.alineacion }}; }
+{% endstyle %}
+
+<section class="mt-section mt-productos-destacados">
+  <div class="mt-container">
+    <div class="mt-cabecera mt-reveal">
+      {% if section.settings.eyebrow != blank %}
+        <p class="mt-eyebrow" style="{% if section.settings.alineacion == 'center' %}justify-content:center;width:100%;{% endif %}">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+      {% if section.settings.texto != blank %}
+        <p class="mt-body mt-body-cabecera">{{ section.settings.texto }}</p>
+      {% endif %}
+    </div>
+
+    <div class="mt-grid mt-grid-4" style="margin-top: 40px;">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        <a href="{{ product.url | default: '#' }}" class="mt-card mt-reveal mt-reveal-{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <div class="mt-card-media">
+            {% if product != blank and product.featured_image %}
+              <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy">
+            {% endif %}
+            {% if block.settings.etiqueta != blank %}
+              <span class="mt-card-badge">{{ block.settings.etiqueta }}</span>
+            {% endif %}
+          </div>
+          <div class="mt-card-body">
+            <p class="mt-card-title">{{ block.settings.titulo_custom | default: product.title }}</p>
+            {% if product != blank %}
+              <p class="mt-card-price">
+                {% if product.compare_at_price > product.price %}
+                  <s>{{ product.compare_at_price | money }}</s>
+                {% endif %}
+                {{ product.price | money }}
+              </p>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.mostrar_boton %}
+      <div class="mt-center" style="margin-top: 44px;">
+        <a href="{{ section.settings.boton_enlace | default: '/collections/all' }}" class="mt-btn mt-btn-ghost">{{ section.settings.boton_texto }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .mt-card-badge {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--mt-accent-2); color: #14161A;
+    font-weight: 700; font-size: 12px;
+    padding: 5px 12px; border-radius: 999px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MT – Productos destacados",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#F7F8FA" },
+    { "type": "select", "id": "alineacion", "label": "Alineación de la cabecera", "options": [
+        {"value": "left", "label": "Izquierda"},
+        {"value": "center", "label": "Centro"}
+      ], "default": "center" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Nuestra selección" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Esenciales de hogar inteligente" },
+    { "type": "textarea", "id": "texto", "label": "Texto", "default": "Los gadgets que no pueden faltar en tu casa." },
+    { "type": "header", "content": "Botón inferior" },
+    { "type": "checkbox", "id": "mostrar_boton", "label": "Mostrar botón", "default": true },
+    { "type": "text", "id": "boton_texto", "label": "Texto del botón", "default": "Ver todo el catálogo" },
+    { "type": "url", "id": "boton_enlace", "label": "Enlace del botón" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "default": 72 }
+  ],
+  "blocks": [
+    {
+      "type": "producto",
+      "name": "Producto",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Producto" },
+        { "type": "text", "id": "titulo_custom", "label": "Título alternativo (opcional)" },
+        { "type": "text", "id": "etiqueta", "label": "Etiqueta (opcional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Productos destacados",
+      "blocks": [
+        { "type": "producto" },
+        { "type": "producto" },
+        { "type": "producto" },
+        { "type": "producto" }
+      ]
+    }
+  ]
+}
+{% endschema %}

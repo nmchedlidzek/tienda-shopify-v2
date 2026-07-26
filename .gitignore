@@ -10,3 +10,7 @@ Thumbs.db
 .shopify
 node_modules
 *.zip
+
+# Claves y credenciales sensibles — nunca se suben
+clave-openai.txt
+.tmp-*.json
