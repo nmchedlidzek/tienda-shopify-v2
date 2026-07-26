@@ -479,3 +479,20 @@ principios directamente sobre el CSS de la tienda:
 - Se confirmó que ya cumplíamos otro principio clave sin querer: nunca
   animar entradas desde `scale(0)` (el reveal-on-scroll ya partía de
   `scale(0.98)`, no de 0).
+
+## Decimotercera ronda: puntos del hero tapados por la sombra del botón (móvil)
+
+El usuario mandó una captura desde el móvil mostrando que "lo azul tapa
+los 4 recuadritos de abajo" — los puntos de navegación del carrusel del
+hero (4 rectángulos pequeños, uno por diapositiva) viven en
+`.mt-hero-dots`, posicionados en `position: absolute; bottom: 8px` dentro
+del contenedor del hero. En escritorio esto cae muy por debajo del botón
+gracias al `min-height` fijo. En móvil, al quitarse ese `min-height`, el
+borde inferior del contenedor queda muy cerca del botón "Ver producto", y
+la sombra azul difuminada del botón (`box-shadow` con blur de 24px) se
+solapaba visualmente con los puntos, tapándolos.
+
+Arreglado reservando una franja propia de 36px debajo del contenido en
+móvil (`padding-bottom: 36px` en `.mt-hero-height`) y centrando los puntos
+dentro de esa franja (`.mt-hero-dots { justify-content: center; left:0;
+right:0; bottom:0; }`), separados del botón y de su sombra.
