@@ -609,3 +609,40 @@ oscuras anteriores (candado y termo v1) se eliminaron del repo.
 Se verificó con especial cuidado tras el incidente de la ronda anterior:
 salida completa del push revisada (sin errores de borrado) y comprobación
 inmediata de la web (200 OK) antes y después de la propagación.
+
+## Decimoctava ronda: re-precio completo de los 26 productos (coste real + competencia)
+
+A petición explícita del usuario ("ajusta otra vez los precios basándote
+en la competencia... aunque quiero que se saque lo máximo posible pero
+muy competitivamente, como si hay que vender más a menos precio"), se
+revisó el coste real de cada producto (dato del proveedor vía
+`inventoryItem.unitCost`) y se investigaron precios reales de mercado
+(Amazon España/USA) para varias categorías clave antes de recalcular.
+
+Cambios más relevantes (multiplicador anterior → nuevo, motivo):
+- **Difusor con efecto chimenea 3D** (el más caro del catálogo): x2,0 →
+  x1,75 (69,99€ → 60,99€) — era el que más se alejaba de precios reales
+  de mercado para este tipo de producto premium; bajar el margen relativo
+  aquí tiene más impacto en conversión que en cualquier otro producto.
+- **Alfombrilla de baño diatomita** (30 variantes): x2,0 → x1,6 (hasta
+  73,99€ → hasta 59,99€) — el extremo superior superaba claramente lo que
+  se ve en Amazon para alfombras de este tipo, incluso las grandes.
+- **Cargador de coche 66W**: x3,0 → x2,6 (15,99€ → 13,99€) — era el
+  multiplicador más alto de todo el catálogo, sin justificación de
+  mercado real.
+- **Tira LED coche fibra óptica**: x2,2 → x1,9 (hasta 81,99€ → 70,99€).
+- **Proyector de galaxia**: x2,3-2,8 → x1,9-2,3 (más agresivo, es un
+  producto muy competido).
+- **Quemador de incienso**: x2,3 → x2,0 (23,99€ → 20,99€).
+- **Candado, diadema, altavoz ducha, báscula, limpiapantallas, tira LED
+  WS2812B, ventilador**: bajadas moderadas (multiplicador -0,1 a -0,3)
+  para ganar competitividad sin perder margen de forma relevante.
+- **Aspiradora, difusor kinscoter, regleta, abrebotellas, copa cóctel,
+  báscula ya investigados a fondo antes**: se mantuvieron casi igual, ya
+  estaban bien posicionados (en el caso del abridor de vino eléctrico, la
+  referencia real de El Corte Inglés es 35,95€ — el nuestro a 32,99€ ya
+  es más barato mantiniendo buen margen).
+
+Se mantuvo siempre un margen mínimo de al menos x1,6 sobre coste en
+cualquier variante, para cubrir comisiones de pago, devoluciones y
+publicidad.
