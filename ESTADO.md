@@ -691,3 +691,20 @@ precio de referencia sea el más bajo real de los últimos 30 días: un
 precio tachado inventado es sancionable por Consumo, más aún facturando
 como autónomo. Se ofreció como alternativa legal ampliar los descuentos
 automáticos reales a más productos y darles visibilidad en portada.
+
+**Incidente: portada caída (404) por `templates/index.json` borrado del
+tema en vivo**. Al ajustar el encuadre de las fotos de la sección de
+ofertas, una tanda de `shopify theme push --only <archivo>` seguidos
+(cada uno con un único archivo distinto) acabó borrando
+`templates/index.json` del tema remoto — sin ese archivo, Shopify no
+tiene qué renderizar en "/" y la portada daba 404. El resto del tema
+(65+ secciones, todos los assets) seguía intacto, verificado
+descargando el tema completo y comparándolo archivo por archivo con el
+repositorio local. Se restauró subiendo `templates/index.json` de
+nuevo. **Lección reforzada**: cada `theme push --only` individual
+también puede arrastrar un "cleaning" que borre otros archivos del
+remoto si el estado previo quedó inconsistente (p. ej. por un push
+combinado con varios `--only` anterior) — tras cualquier tanda de
+pushes con `--only`, verificar con `shopify theme pull` completo (no
+solo los archivos tocados) y comprobar códigos HTTP 200 en las páginas
+clave, no solo en la página que se acaba de editar.
