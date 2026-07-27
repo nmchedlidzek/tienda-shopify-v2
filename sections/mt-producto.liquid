@@ -15,13 +15,13 @@
 {% assign mt_oferta_tipo = '' %}
 {% assign mt_oferta_img_asset = '' %}
 {% case product.handle %}
-  when 'creative-cocktail-glass-porcupine-fish-swan-rose-octopus-bird-design-cocktail-glass-novelty-drink-cup-for-ktv-bar-night-party' %}
+  {% when 'creative-cocktail-glass-porcupine-fish-swan-rose-octopus-bird-design-cocktail-glass-novelty-drink-cup-for-ktv-bar-night-party' %}
     {% assign mt_oferta_tipo = '2x1' %}
     {% assign mt_oferta_img_asset = 'mt-anuncio-copa.png' %}
-  when 'zinc-alloy-bottle-opener-wall-mounted-vintage-glass-bar-beer-cap-cover-opener-bar-drinking-accessories-kitchen-tool-apriscatole' %}
+  {% when 'zinc-alloy-bottle-opener-wall-mounted-vintage-glass-bar-beer-cap-cover-opener-bar-drinking-accessories-kitchen-tool-apriscatole' %}
     {% assign mt_oferta_tipo = '3x2' %}
     {% assign mt_oferta_img_asset = 'mt-anuncio-abridor.png' %}
-  when 'led-white-birch-branch-festive-lights-christmas-tree-branch-fairy-garland-light-party-wedding-decoration-twig-dinner-table-lamp' %}
+  {% when 'led-white-birch-branch-festive-lights-christmas-tree-branch-fairy-garland-light-party-wedding-decoration-twig-dinner-table-lamp' %}
     {% assign mt_oferta_tipo = '3x2' %}
     {% assign mt_oferta_img_asset = 'mt-anuncio-abedul.png' %}
 {% endcase %}
@@ -125,17 +125,17 @@
         {% assign mt_combo_handle = '' %}
         {% assign mt_combo_pct = 15 %}
         {% case product.handle %}
-          when '120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car' %}
+          {% when '120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car' %}
             {% assign mt_combo_handle = 'removes-lint-from-clothes-electric-pet-hair-remover-clothing-home-cats-hair-brush-take-out-of-clothes-hairs-cleaning-roller' %}
-          when 'removes-lint-from-clothes-electric-pet-hair-remover-clothing-home-cats-hair-brush-take-out-of-clothes-hairs-cleaning-roller' %}
+          {% when 'removes-lint-from-clothes-electric-pet-hair-remover-clothing-home-cats-hair-brush-take-out-of-clothes-hairs-cleaning-roller' %}
             {% assign mt_combo_handle = '120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car' %}
-          when 'kinscoter-aroma-diffuser-air-humidifier-ultrasonic-cool-mist-maker-fogger-led-essential-oil-flame-lamp-difusor' %}
+          {% when 'kinscoter-aroma-diffuser-air-humidifier-ultrasonic-cool-mist-maker-fogger-led-essential-oil-flame-lamp-difusor' %}
             {% assign mt_combo_handle = 'free-20cones-creative-home-decor-backflow-stick-incense-burner-ceramic-censer-home-decoration-use-in-home-teahouse' %}
-          when 'free-20cones-creative-home-decor-backflow-stick-incense-burner-ceramic-censer-home-decoration-use-in-home-teahouse' %}
+          {% when 'free-20cones-creative-home-decor-backflow-stick-incense-burner-ceramic-censer-home-decoration-use-in-home-teahouse' %}
             {% assign mt_combo_handle = 'kinscoter-aroma-diffuser-air-humidifier-ultrasonic-cool-mist-maker-fogger-led-essential-oil-flame-lamp-difusor' %}
-          when 'diatomite-bathroom-carpet-foot-mat-quick-dry-bath-mats-non-slip-shower-rug-toilet-pad-doormat-washable' %}
+          {% when 'diatomite-bathroom-carpet-foot-mat-quick-dry-bath-mats-non-slip-shower-rug-toilet-pad-doormat-washable' %}
             {% assign mt_combo_handle = 'bathroom-shelf-aluminum-alloy-shampoo-rack-makeup-storage-organizer-shower-shelf-bathroom-accessories-no-drill-wall-corner-shelf' %}
-          when 'bathroom-shelf-aluminum-alloy-shampoo-rack-makeup-storage-organizer-shower-shelf-bathroom-accessories-no-drill-wall-corner-shelf' %}
+          {% when 'bathroom-shelf-aluminum-alloy-shampoo-rack-makeup-storage-organizer-shower-shelf-bathroom-accessories-no-drill-wall-corner-shelf' %}
             {% assign mt_combo_handle = 'diatomite-bathroom-carpet-foot-mat-quick-dry-bath-mats-non-slip-shower-rug-toilet-pad-doormat-washable' %}
         {% endcase %}
         {% if mt_combo_handle != '' %}
