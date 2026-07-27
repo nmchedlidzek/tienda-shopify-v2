@@ -83,10 +83,10 @@
         "padding_bottom": 24
       },
       "blocks": {
-        "c1": { "type": "categoria", "settings": { "coleccion": "hogar-inteligente", "titulo": "Hogar inteligente", "imagen_asset": "mt-padlock-hero.jpg" } },
-        "c2": { "type": "categoria", "settings": { "coleccion": "iluminacion-led", "titulo": "Iluminación LED" } },
-        "c3": { "type": "categoria", "settings": { "coleccion": "audio-y-sonido", "titulo": "Audio y sonido", "imagen_asset": "mt-bicispeaker-hero.jpg" } },
-        "c4": { "type": "categoria", "settings": { "coleccion": "cocina-y-accesorios", "titulo": "Cocina y accesorios" } }
+        "c1": { "type": "categoria", "settings": { "coleccion": "hogar-inteligente", "titulo": "Hogar inteligente", "imagen_asset": "mt-padlock-categoria.jpg" } },
+        "c2": { "type": "categoria", "settings": { "coleccion": "iluminacion-led", "titulo": "Iluminación LED", "imagen_asset": "mt-abedul-hero.jpg" } },
+        "c3": { "type": "categoria", "settings": { "coleccion": "audio-y-sonido", "titulo": "Audio y sonido", "imagen_asset": "mt-bicispeaker-c.jpg" } },
+        "c4": { "type": "categoria", "settings": { "coleccion": "cocina-y-accesorios", "titulo": "Cocina y accesorios", "imagen_asset": "mt-termo-categoria.jpg" } }
       },
       "block_order": ["c1", "c2", "c3", "c4"]
     },
@@ -105,12 +105,12 @@
         "padding_bottom": 56
       },
       "blocks": {
-        "p1": { "type": "producto", "settings": { "product": "120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car" } },
-        "p2": { "type": "producto", "settings": { "product": "kinscoter-aroma-diffuser-air-humidifier-ultrasonic-cool-mist-maker-fogger-led-essential-oil-flame-lamp-difusor" } },
-        "p3": { "type": "producto", "settings": { "product": "ws2812b-smart-pixel-led-strip-5050-rgb-50-leds-100-leds-dc5v-pre-installed-connectors-available-for-separate-purchase" } },
-        "p4": { "type": "producto", "settings": { "product": "mini-bluetooth-speaker-shower-subwoofer-waterproof-handsfree-loudspeaker-with-suction-cup-mic-for-bathroom-pool-beach-car-phone" } },
+        "p1": { "type": "producto", "settings": { "product": "120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car", "imagen_asset": "mt-vacuum-ambiente.jpg" } },
+        "p2": { "type": "producto", "settings": { "product": "kinscoter-aroma-diffuser-air-humidifier-ultrasonic-cool-mist-maker-fogger-led-essential-oil-flame-lamp-difusor", "imagen_asset": "mt-difusor-c.jpg" } },
+        "p3": { "type": "producto", "settings": { "product": "ws2812b-smart-pixel-led-strip-5050-rgb-50-leds-100-leds-dc5v-pre-installed-connectors-available-for-separate-purchase", "imagen_asset": "mt-ledstrip-ambiente.jpg" } },
+        "p4": { "type": "producto", "settings": { "product": "mini-bluetooth-speaker-shower-subwoofer-waterproof-handsfree-loudspeaker-with-suction-cup-mic-for-bathroom-pool-beach-car-phone", "imagen_asset": "mt-duchaspeaker-c.jpg" } },
         "p5": { "type": "producto", "settings": { "product": "free-20cones-creative-home-decor-backflow-stick-incense-burner-ceramic-censer-home-decoration-use-in-home-teahouse" } },
-        "p6": { "type": "producto", "settings": { "product": "led-starry-galaxy-ocean-wave-projector-rgb-smart-remote-control-lamp-ktv-usb-christmas-lights-auto-rotate-for-home-bedroom-decor" } }
+        "p6": { "type": "producto", "settings": { "product": "led-starry-galaxy-ocean-wave-projector-rgb-smart-remote-control-lamp-ktv-usb-christmas-lights-auto-rotate-for-home-bedroom-decor", "imagen_asset": "mt-galaxia-c.jpg" } }
       },
       "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"]
     },

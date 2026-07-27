@@ -496,3 +496,43 @@ Arreglado reservando una franja propia de 36px debajo del contenido en
 móvil (`padding-bottom: 36px` en `.mt-hero-height`) y centrando los puntos
 dentro de esa franja (`.mt-hero-dots { justify-content: center; left:0;
 right:0; bottom:0; }`), separados del botón y de su sombra.
+
+## Decimocuarta ronda: fotos más estéticas y consistentes (categorías + destacados)
+
+El usuario señaló que varias tarjetas (categorías y "Los más vendidos")
+mezclaban fotos de estudio planas sobre fondo blanco con la foto de la
+tira LED, mucho más atmosférica sobre fondo oscuro — quedaba
+inconsistente. Se unificó el estilo:
+
+**Tarjetas de categoría** (mt-categorias.liquid, ya tenía el workaround
+`imagen_asset`):
+- Hogar inteligente: candado sobre fondo blanco → nueva foto de ambiente
+  (candado asegurando un armario de madera oscura, luz cálida nocturna,
+  `mt-padlock-categoria.jpg`, generada de nuevo)
+- Iluminación LED: pasa a usar la foto de la rama de abedul iluminada
+  (`mt-abedul-hero.jpg`, ya existente, oscura y cálida) en vez de que la
+  colección eligiera automáticamente la primera foto (que era la tira LED
+  de coche, poco favorecedora)
+- Audio y sonido: altavoz de bici sobre fondo blanco → foto de estilo de
+  vida ya existente (`mt-bicispeaker-c.jpg`, en un salón acogedor)
+- Cocina y accesorios: termo sobre fondo blanco → nueva foto de ambiente
+  (termo en una cocina de madera oscura al atardecer,
+  `mt-termo-categoria.jpg`, generada de nuevo)
+
+**"Los más vendidos"** (mt-productos-destacados.liquid — se le añadió el
+mismo workaround `imagen_asset` que ya tenían el hero y las categorías,
+antes solo usaba `product.featured_image`):
+- Aspiradora → foto de ambiente ya existente (limpiando un sofá)
+- Difusor → foto de estilo de vida ya existente (salón acogedor) en vez
+  de la de estudio
+- Tira LED WS2812B → la foto de ambiente ya existente (mueble de salón)
+  en vez de la de estudio con cables sueltos
+- Altavoz ducha → foto de estilo de vida ya existente (baño con gotas de
+  agua) en vez de la de estudio
+- Incienso y proyector de galaxia → ya tenían fotos atmosféricas de por
+  sí, el proyector pasa a usar su foto de dormitorio nocturno en vez de
+  la de estudio
+
+Ninguna de estas fotos necesitó generarse de cero salvo las 2 de candado
+y termo — el resto ya existían de rondas anteriores (fotos "b"/"c" de
+cada producto) y solo hacía falta enlazarlas.
