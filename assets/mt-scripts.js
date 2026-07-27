@@ -38,6 +38,17 @@ function initGaleriaProducto() {
     var timer = null;
     function detenerAuto() { if (timer) { clearInterval(timer); timer = null; } }
 
+    seccion._mtMostrarPorMediaId = function (mediaId) {
+      if (!mediaId) return;
+      var index = -1;
+      imagenes.forEach(function (img, i) {
+        if (img.getAttribute('data-mt-media-id') === String(mediaId)) index = i;
+      });
+      if (index === -1) return;
+      detenerAuto();
+      mostrar(index);
+    };
+
     if (principal && principal.hasAttribute('data-mt-galeria-auto') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var intervalo = parseInt(principal.getAttribute('data-mt-galeria-auto'), 10) || 4500;
       var actual = 0;
@@ -108,6 +119,9 @@ function initVariantesProducto() {
         if (botonTexto) botonTexto.textContent = variante.available
           ? (boton.getAttribute('data-mt-texto-disponible') || botonTexto.textContent)
           : (boton.getAttribute('data-mt-texto-agotado') || 'Agotado');
+      }
+      if (variante.featured_image_id && seccion._mtMostrarPorMediaId) {
+        seccion._mtMostrarPorMediaId(variante.featured_image_id);
       }
     }
 
