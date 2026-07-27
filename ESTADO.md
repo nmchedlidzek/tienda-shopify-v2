@@ -708,3 +708,34 @@ combinado con varios `--only` anterior) — tras cualquier tanda de
 pushes con `--only`, verificar con `shopify theme pull` completo (no
 solo los archivos tocados) y comprobar códigos HTTP 200 en las páginas
 clave, no solo en la página que se acaba de editar.
+
+**Bug real (no caché) en el selector de pack y el aviso de complementarios**:
+todos los bloques `{% case %}` de `mt-producto.liquid` tenían las
+cláusulas `when` sin su `{%` de apertura (escrito `when '...' %}` en vez
+de `{% when '...' %}`). Shopify Liquid ignora esas ramas en silencio sin
+mostrar error, así que `mt_oferta_tipo` y `mt_combo_handle` quedaban
+siempre vacíos — el selector de pack y el aviso de "cómpralo junto con"
+nunca llegaron a renderizarse desde que se crearon, aunque parecía un
+problema de propagación de caché. Se diagnosticó comparando el render
+directo de la Section Rendering API (`?section_id=...`) con un debug
+temporal, confirmando que el contenido nunca se generaba. Corregido
+añadiendo el `{%` que faltaba en las 9 cláusulas `when` afectadas.
+
+## Vigésima ronda: 8 productos nuevos importados automáticamente por AutoDS
+
+El 25-26 de julio AutoDS importó 8 productos nuevos en estado borrador,
+sin traducir y con multiplicador de precio muy bajo (1.24x-1.60x en vez
+de 2x+): diadema Bluetooth para dormir, lámpara luna LED, dron plegable
+E88 Pro, soporte de móvil magnético con carga rápida, mini proyector
+1080P, altavoz Bluetooth retro, mini cámara de acción, y proyector
+Salange P300 4K. Se tradujeron títulos y descripciones al español (mismo
+formato que el resto del catálogo: párrafo corto + lista de 4
+características), se recalcularon precios con `nicePrice(coste, mult)`
+usando un multiplicador ajustado por categoría (1.7x para el proyector
+premium Salange, hasta 2.3x para los accesorios más baratos), se
+categorizaron en las colecciones existentes (Audio y sonido, Iluminación
+LED, Hogar inteligente) y se publicaron en la tienda online. Pendiente:
+limpiar las fotos del proveedor (siguen siendo las fotos originales de
+AliExpress, sin el tratamiento UGC que se le dio a los productos de
+rondas anteriores) — no hay herramienta de generación de imágenes en
+este entorno.
