@@ -59,6 +59,12 @@
     box-shadow: 0 8px 20px rgba(20,22,26,0.25);
   }
   #shopify-section-{{ section.id }} .mt-oferta-desc { color: var(--mt-muted); font-size: 13.5px; margin: 4px 0 8px; }
+  #shopify-section-{{ section.id }} .mt-oferta-card .mt-card-media img {
+    object-fit: contain;
+    transform: none;
+    animation: none;
+  }
+  #shopify-section-{{ section.id }} .mt-oferta-card:hover .mt-card-media img { transform: none !important; }
 </style>
 
 {% schema %}
