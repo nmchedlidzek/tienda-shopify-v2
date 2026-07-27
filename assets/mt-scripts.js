@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  [initReveal, initHero, initCountUp, initMarquee, initGaleriaProducto, initVariantesProducto, initFaq].forEach(function (fn) {
+  [initReveal, initHero, initCountUp, initMarquee, initGaleriaProducto, initVariantesProducto, initCantidadOferta, initFaq].forEach(function (fn) {
     try { fn(); } catch (e) { console.error('mt-scripts:', fn.name, e); }
   });
 });
@@ -106,6 +106,7 @@ function initVariantesProducto() {
       if (!variante) return;
       idInput.value = variante.id;
       if (precioActual) precioActual.textContent = formatearDinero(variante.price);
+      if (seccion._mtActualizarCantidadPrecios) seccion._mtActualizarCantidadPrecios(variante.price);
       if (precioAntes) {
         if (variante.compare_at_price && variante.compare_at_price > variante.price) {
           precioAntes.textContent = formatearDinero(variante.compare_at_price);
@@ -134,6 +135,43 @@ function initVariantesProducto() {
         });
       });
     });
+  });
+}
+
+function initCantidadOferta() {
+  document.querySelectorAll('[data-mt-producto]').forEach(function (seccion) {
+    var selector = seccion.querySelector('[data-mt-cantidad-selector]');
+    if (!selector) return;
+    var form = seccion.querySelector('[data-mt-producto-form]');
+    var cantidadInput = form ? form.querySelector('[data-mt-cantidad-input]') : null;
+    var tiles = selector.querySelectorAll('.mt-cantidad-opcion');
+
+    function formatearDinero(centavos) {
+      var base = (window.Shopify && Shopify.currency && Shopify.currency.active) || '';
+      var valor = (centavos / 100).toFixed(2).replace('.', ',');
+      return valor + ' ' + base;
+    }
+
+    function actualizarPrecios(precioCentavos) {
+      tiles.forEach(function (tile) {
+        var mult = parseInt(tile.getAttribute('data-mt-cantidad-mult'), 10) || 1;
+        var span = tile.querySelector('[data-mt-cantidad-precio]');
+        if (span) span.textContent = formatearDinero(precioCentavos * mult);
+      });
+    }
+
+    tiles.forEach(function (tile) {
+      tile.addEventListener('click', function () {
+        tiles.forEach(function (t) { t.classList.remove('mt-activa'); });
+        tile.classList.add('mt-activa');
+        if (cantidadInput) cantidadInput.value = tile.getAttribute('data-mt-cantidad-valor');
+      });
+    });
+
+    seccion._mtActualizarCantidadPrecios = actualizarPrecios;
+
+    var precioBase = parseFloat(selector.getAttribute('data-mt-precio-base')) || 0;
+    actualizarPrecios(Math.round(precioBase * 100));
   });
 }
 

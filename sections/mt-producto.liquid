@@ -58,19 +58,39 @@
           <p class="mt-body mt-producto-intro">{{ section.settings.intro | newline_to_br }}</p>
         {% endif %}
 
-        {% comment %} Avisos de ofertas automáticas activas (2x1 / 3x2) {% endcomment %}
+        {% comment %} Selector de cantidad para ofertas automáticas activas (2x1 / 3x2) {% endcomment %}
+        {% assign mt_oferta_tipo = '' %}
         {% case product.handle %}
           when 'creative-cocktail-glass-porcupine-fish-swan-rose-octopus-bird-design-cocktail-glass-novelty-drink-cup-for-ktv-bar-night-party' %}
-            <div class="mt-oferta-aviso mt-oferta-2x1">
-              <span class="mt-oferta-tag">2X1</span>
-              <span class="mt-oferta-texto">Elige 2 diseños (o el mismo) y paga solo 1. Se aplica automáticamente en el carrito.</span>
-            </div>
+            {% assign mt_oferta_tipo = '2x1' %}
           when 'zinc-alloy-bottle-opener-wall-mounted-vintage-glass-bar-beer-cap-cover-opener-bar-drinking-accessories-kitchen-tool-apriscatole', 'led-white-birch-branch-festive-lights-christmas-tree-branch-fairy-garland-light-party-wedding-decoration-twig-dinner-table-lamp' %}
-            <div class="mt-oferta-aviso mt-oferta-3x2">
-              <span class="mt-oferta-tag">3X2</span>
-              <span class="mt-oferta-texto">Compra 2 unidades y llévate la 3ª gratis. Se aplica automáticamente en el carrito.</span>
-            </div>
+            {% assign mt_oferta_tipo = '3x2' %}
         {% endcase %}
+
+        {% if mt_oferta_tipo != '' %}
+          <div class="mt-cantidad-selector" data-mt-cantidad-selector data-mt-precio-base="{{ current_variant.price }}">
+            <p class="mt-opcion-label">¿Cuántas unidades quieres?</p>
+            <div class="mt-cantidad-opciones">
+              <button type="button" class="mt-cantidad-opcion mt-activa" data-mt-cantidad-valor="1" data-mt-cantidad-mult="1">
+                <span class="mt-cantidad-num">1 unidad</span>
+                <span class="mt-cantidad-precio" data-mt-cantidad-precio>{{ current_variant.price | money }}</span>
+              </button>
+              {% if mt_oferta_tipo == '2x1' %}
+                <button type="button" class="mt-cantidad-opcion mt-cantidad-oferta" data-mt-cantidad-valor="2" data-mt-cantidad-mult="1">
+                  <span class="mt-cantidad-badge">2X1</span>
+                  <span class="mt-cantidad-num">2 unidades</span>
+                  <span class="mt-cantidad-precio" data-mt-cantidad-precio>{{ current_variant.price | money }}</span>
+                </button>
+              {% else %}
+                <button type="button" class="mt-cantidad-opcion mt-cantidad-oferta" data-mt-cantidad-valor="3" data-mt-cantidad-mult="2">
+                  <span class="mt-cantidad-badge">3X2</span>
+                  <span class="mt-cantidad-num">3 unidades</span>
+                  <span class="mt-cantidad-precio" data-mt-cantidad-precio>{{ current_variant.price | times: 2 | money }}</span>
+                </button>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
 
         {% comment %} Aviso de producto complementario con descuento {% endcomment %}
         {% assign mt_combo_handle = '' %}
@@ -103,6 +123,7 @@
 
         {% form 'product', product, data-mt-producto-form: true %}
           <input type="hidden" name="id" value="{{ current_variant.id }}" data-mt-variant-id>
+          <input type="hidden" name="quantity" value="1" data-mt-cantidad-input>
 
           {% unless product.has_only_default_variant %}
             <div class="mt-producto-opciones">
@@ -257,23 +278,28 @@
   #shopify-section-{{ section.id }} .mt-precio-antes { color: var(--mt-muted); font-size: 18px; }
   #shopify-section-{{ section.id }} .mt-producto-intro { margin-top: 12px; }
 
-  #shopify-section-{{ section.id }} .mt-oferta-aviso {
-    display: flex; align-items: center; gap: 12px;
-    margin-top: 18px; padding: 14px 18px;
-    border-radius: var(--mt-radius-sm);
-    background: rgba(47,95,255,0.08);
-    border: 1.5px solid rgba(47,95,255,0.25);
+  #shopify-section-{{ section.id }} .mt-cantidad-selector { margin-top: 18px; }
+  #shopify-section-{{ section.id }} .mt-cantidad-opciones { display: flex; gap: 12px; flex-wrap: wrap; }
+  #shopify-section-{{ section.id }} .mt-cantidad-opcion {
+    position: relative;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+    padding: 12px 18px; min-width: 140px;
+    border-radius: var(--mt-radius-sm); border: 1.5px solid var(--mt-border);
+    background: #fff; cursor: pointer; text-align: left;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.1s var(--mt-ease);
   }
-  #shopify-section-{{ section.id }} .mt-oferta-aviso .mt-oferta-tag {
-    flex-shrink: 0;
-    font-family: var(--font-heading-family);
-    font-weight: 700; font-size: 20px; letter-spacing: 0.02em;
-    color: var(--mt-accent);
-    background: #fff; border-radius: 999px; padding: 4px 14px;
+  #shopify-section-{{ section.id }} .mt-cantidad-opcion:active { transform: scale(0.97); }
+  #shopify-section-{{ section.id }} .mt-cantidad-opcion.mt-activa { border-color: var(--mt-accent); background: rgba(47,95,255,0.08); }
+  #shopify-section-{{ section.id }} .mt-cantidad-opcion.mt-cantidad-oferta.mt-activa { border-color: var(--mt-text); background: rgba(198,255,61,0.14); }
+  #shopify-section-{{ section.id }} .mt-cantidad-num { font-weight: 700; font-size: 14px; }
+  #shopify-section-{{ section.id }} .mt-cantidad-precio { font-size: 14px; color: var(--mt-muted); }
+  #shopify-section-{{ section.id }} .mt-cantidad-opcion.mt-activa .mt-cantidad-precio { color: var(--mt-text); }
+  #shopify-section-{{ section.id }} .mt-cantidad-badge {
+    position: absolute; top: -10px; right: 10px;
+    font-family: var(--font-heading-family); font-weight: 700; font-size: 12px; letter-spacing: 0.03em;
+    background: var(--mt-text); color: var(--mt-accent-2);
+    padding: 3px 10px; border-radius: 999px;
   }
-  #shopify-section-{{ section.id }} .mt-oferta-aviso .mt-oferta-texto { font-size: 14px; color: var(--mt-text); font-weight: 600; }
-  #shopify-section-{{ section.id }} .mt-oferta-3x2 { background: rgba(198,255,61,0.14); border-color: rgba(20,22,26,0.15); }
-  #shopify-section-{{ section.id }} .mt-oferta-3x2 .mt-oferta-tag { color: var(--mt-text); }
 
   #shopify-section-{{ section.id }} .mt-combo-aviso {
     display: flex; align-items: center; gap: 14px;
