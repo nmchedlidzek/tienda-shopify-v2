@@ -536,3 +536,23 @@ antes solo usaba `product.featured_image`):
 Ninguna de estas fotos necesitó generarse de cero salvo las 2 de candado
 y termo — el resto ya existían de rondas anteriores (fotos "b"/"c" de
 cada producto) y solo hacía falta enlazarlas.
+
+## Decimoquinta ronda: hero — más cambios de foto/producto, permiso de envíos
+
+- La foto de la regleta (estilo UGC) le siguió sin gustar al usuario, que
+  pidió cambiar el producto entero de esa diapositiva. Sustituida por el
+  difusor de aromas (efecto llama), con nueva foto estilo UGC
+  (`mt-difusor-ugc.jpg`) — luz natural, fondo de madera clara, encuadre
+  de cliente real. `mt-powerstrip-ugc.jpg` se eliminó por quedar huérfana.
+- **Permiso de envíos añadido**: se añadió `read_shipping`/`write_shipping`
+  al scope de la app (shopify.app.toml en `/tmp/app-config`, fuera del
+  repo), se desplegó y el usuario reinstaló la app. Con esto se pudo
+  comprobar la configuración real de envíos por primera vez:
+  - **Todos los 30 productos** (activos y borradores) están en el perfil
+    **"AutoDS Free Shipping"**, que cubre la zona "Resto del mundo" con
+    envío gratis — es decir, la tienda YA envía a cualquier país sin
+    coste, incluida España. No hay ningún problema de configuración aquí.
+  - Existe un segundo perfil ("General profile", el que Shopify crea por
+    defecto) que solo cubre Estados Unidos con tarifas de pago
+    ($8 estándar / $15 exprés), pero tiene 0 productos asignados — no
+    afecta a nada, se puede ignorar o borrar si se quiere limpiar.
