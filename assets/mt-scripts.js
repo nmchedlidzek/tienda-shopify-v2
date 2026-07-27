@@ -23,9 +23,14 @@ function initGaleriaProducto() {
     var principal = seccion.querySelector('[data-mt-galeria]');
     if (!imagenes.length) return;
 
+    var imagenesNormales = Array.prototype.filter.call(imagenes, function (img) { return !img.hasAttribute('data-mt-oferta-imagen'); });
+    var ultimoIndexNormal = 0;
+
     function mostrar(index) {
       miniaturas.forEach(function (b) { b.classList.toggle('mt-activa', b.getAttribute('data-mt-miniatura') === String(index)); });
       imagenes.forEach(function (img) { img.classList.toggle('mt-activa', img.getAttribute('data-mt-galeria-imagen') === String(index)); });
+      var actual = imagenes[index];
+      if (actual && !actual.hasAttribute('data-mt-oferta-imagen')) ultimoIndexNormal = index;
     }
 
     miniaturas.forEach(function (btn) {
@@ -49,12 +54,26 @@ function initGaleriaProducto() {
       mostrar(index);
     };
 
-    if (principal && principal.hasAttribute('data-mt-galeria-auto') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    seccion._mtMostrarOferta = function () {
+      var index = -1;
+      imagenes.forEach(function (img, i) { if (img.hasAttribute('data-mt-oferta-imagen')) index = i; });
+      if (index === -1) return;
+      detenerAuto();
+      mostrar(index);
+    };
+
+    seccion._mtOcultarOferta = function () {
+      detenerAuto();
+      mostrar(ultimoIndexNormal);
+    };
+
+    if (principal && principal.hasAttribute('data-mt-galeria-auto') && imagenesNormales.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var intervalo = parseInt(principal.getAttribute('data-mt-galeria-auto'), 10) || 4500;
-      var actual = 0;
+      var actualPos = 0;
       timer = setInterval(function () {
-        actual = (actual + 1) % imagenes.length;
-        mostrar(actual);
+        actualPos = (actualPos + 1) % imagenesNormales.length;
+        var idx = Array.prototype.indexOf.call(imagenes, imagenesNormales[actualPos]);
+        mostrar(idx);
       }, intervalo);
       principal.addEventListener('mouseenter', detenerAuto);
     }
@@ -165,6 +184,11 @@ function initCantidadOferta() {
         tiles.forEach(function (t) { t.classList.remove('mt-activa'); });
         tile.classList.add('mt-activa');
         if (cantidadInput) cantidadInput.value = tile.getAttribute('data-mt-cantidad-valor');
+        if (tile.classList.contains('mt-cantidad-oferta')) {
+          if (seccion._mtMostrarOferta) seccion._mtMostrarOferta();
+        } else if (seccion._mtOcultarOferta) {
+          seccion._mtOcultarOferta();
+        }
       });
     });
 

@@ -11,6 +11,21 @@
 
 {% assign current_variant = product.selected_or_first_available_variant %}
 
+{% comment %} Detección de oferta activa (2x1 / 3x2) para selector de cantidad + foto {% endcomment %}
+{% assign mt_oferta_tipo = '' %}
+{% assign mt_oferta_img_asset = '' %}
+{% case product.handle %}
+  when 'creative-cocktail-glass-porcupine-fish-swan-rose-octopus-bird-design-cocktail-glass-novelty-drink-cup-for-ktv-bar-night-party' %}
+    {% assign mt_oferta_tipo = '2x1' %}
+    {% assign mt_oferta_img_asset = 'mt-anuncio-copa.png' %}
+  when 'zinc-alloy-bottle-opener-wall-mounted-vintage-glass-bar-beer-cap-cover-opener-bar-drinking-accessories-kitchen-tool-apriscatole' %}
+    {% assign mt_oferta_tipo = '3x2' %}
+    {% assign mt_oferta_img_asset = 'mt-anuncio-abridor.png' %}
+  when 'led-white-birch-branch-festive-lights-christmas-tree-branch-fairy-garland-light-party-wedding-decoration-twig-dinner-table-lamp' %}
+    {% assign mt_oferta_tipo = '3x2' %}
+    {% assign mt_oferta_img_asset = 'mt-anuncio-abedul.png' %}
+{% endcase %}
+
 <section class="mt-section mt-producto" data-mt-producto>
   <div class="mt-container">
     <div class="mt-producto-grid">
@@ -28,6 +43,14 @@
           {% else %}
             <img src="{{ 'mt-hero-fondo.jpg' | asset_url }}" alt="{{ product.title }}" loading="eager">
           {% endfor %}
+          {% if mt_oferta_img_asset != '' %}
+            <img class="mt-producto-imagen"
+                 data-mt-galeria-imagen="{{ product.media.size }}"
+                 data-mt-oferta-imagen
+                 src="{{ mt_oferta_img_asset | asset_url }}"
+                 alt="Oferta {{ mt_oferta_tipo }}"
+                 loading="lazy">
+          {% endif %}
         </div>
         {% if product.media.size > 1 %}
           <div class="mt-producto-miniaturas">
@@ -59,14 +82,6 @@
         {% endif %}
 
         {% comment %} Selector de cantidad para ofertas automáticas activas (2x1 / 3x2) {% endcomment %}
-        {% assign mt_oferta_tipo = '' %}
-        {% case product.handle %}
-          when 'creative-cocktail-glass-porcupine-fish-swan-rose-octopus-bird-design-cocktail-glass-novelty-drink-cup-for-ktv-bar-night-party' %}
-            {% assign mt_oferta_tipo = '2x1' %}
-          when 'zinc-alloy-bottle-opener-wall-mounted-vintage-glass-bar-beer-cap-cover-opener-bar-drinking-accessories-kitchen-tool-apriscatole', 'led-white-birch-branch-festive-lights-christmas-tree-branch-fairy-garland-light-party-wedding-decoration-twig-dinner-table-lamp' %}
-            {% assign mt_oferta_tipo = '3x2' %}
-        {% endcase %}
-
         {% if mt_oferta_tipo != '' %}
           <div class="mt-cantidad-selector" data-mt-cantidad-selector data-mt-precio-base="{{ current_variant.price }}">
             <p class="mt-opcion-label">¿Cuántas unidades quieres?</p>
