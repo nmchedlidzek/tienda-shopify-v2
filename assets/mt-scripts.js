@@ -163,7 +163,7 @@ function initCantidadOferta() {
     if (!selector) return;
     var form = seccion.querySelector('[data-mt-producto-form]');
     var cantidadInput = form ? form.querySelector('[data-mt-cantidad-input]') : null;
-    var tiles = selector.querySelectorAll('.mt-cantidad-opcion');
+    var tiles = selector.querySelectorAll('.mt-cantidad-fila');
 
     function formatearDinero(centavos) {
       var base = (window.Shopify && Shopify.currency && Shopify.currency.active) || '';
@@ -174,8 +174,11 @@ function initCantidadOferta() {
     function actualizarPrecios(precioCentavos) {
       tiles.forEach(function (tile) {
         var mult = parseInt(tile.getAttribute('data-mt-cantidad-mult'), 10) || 1;
+        var valor = parseInt(tile.getAttribute('data-mt-cantidad-valor'), 10) || 1;
         var span = tile.querySelector('[data-mt-cantidad-precio]');
+        var spanAntes = tile.querySelector('[data-mt-cantidad-precio-antes]');
         if (span) span.textContent = formatearDinero(precioCentavos * mult);
+        if (spanAntes) spanAntes.textContent = formatearDinero(precioCentavos * valor);
       });
     }
 

@@ -81,28 +81,42 @@
           <p class="mt-body mt-producto-intro">{{ section.settings.intro | newline_to_br }}</p>
         {% endif %}
 
-        {% comment %} Selector de cantidad para ofertas automáticas activas (2x1 / 3x2) {% endcomment %}
+        {% comment %} Selector de pack para ofertas automáticas activas (2x1 / 3x2) {% endcomment %}
         {% if mt_oferta_tipo != '' %}
+          {% if mt_oferta_tipo == '2x1' %}
+            {% assign mt_oferta_cantidad = 2 %}
+            {% assign mt_oferta_mult = 1 %}
+            {% assign mt_oferta_ahorro = 50 %}
+          {% else %}
+            {% assign mt_oferta_cantidad = 3 %}
+            {% assign mt_oferta_mult = 2 %}
+            {% assign mt_oferta_ahorro = 33 %}
+          {% endif %}
           <div class="mt-cantidad-selector" data-mt-cantidad-selector data-mt-precio-base="{{ current_variant.price }}">
-            <p class="mt-opcion-label">¿Cuántas unidades quieres?</p>
-            <div class="mt-cantidad-opciones">
-              <button type="button" class="mt-cantidad-opcion mt-activa" data-mt-cantidad-valor="1" data-mt-cantidad-mult="1">
-                <span class="mt-cantidad-num">1 unidad</span>
-                <span class="mt-cantidad-precio" data-mt-cantidad-precio>{{ current_variant.price | money }}</span>
-              </button>
-              {% if mt_oferta_tipo == '2x1' %}
-                <button type="button" class="mt-cantidad-opcion mt-cantidad-oferta" data-mt-cantidad-valor="2" data-mt-cantidad-mult="1">
-                  <span class="mt-cantidad-badge">2X1</span>
-                  <span class="mt-cantidad-num">2 unidades</span>
+            <p class="mt-opcion-label">Elige tu pack</p>
+            <div class="mt-cantidad-filas">
+              <button type="button" class="mt-cantidad-fila mt-activa" data-mt-cantidad-valor="1" data-mt-cantidad-mult="1">
+                <span class="mt-cantidad-check"></span>
+                <span class="mt-cantidad-info">
+                  <span class="mt-cantidad-num">1 unidad</span>
+                  <span class="mt-cantidad-sub">Precio estándar</span>
+                </span>
+                <span class="mt-cantidad-precios">
                   <span class="mt-cantidad-precio" data-mt-cantidad-precio>{{ current_variant.price | money }}</span>
-                </button>
-              {% else %}
-                <button type="button" class="mt-cantidad-opcion mt-cantidad-oferta" data-mt-cantidad-valor="3" data-mt-cantidad-mult="2">
-                  <span class="mt-cantidad-badge">3X2</span>
-                  <span class="mt-cantidad-num">3 unidades</span>
-                  <span class="mt-cantidad-precio" data-mt-cantidad-precio>{{ current_variant.price | times: 2 | money }}</span>
-                </button>
-              {% endif %}
+                </span>
+              </button>
+              <button type="button" class="mt-cantidad-fila mt-cantidad-oferta" data-mt-cantidad-valor="{{ mt_oferta_cantidad }}" data-mt-cantidad-mult="{{ mt_oferta_mult }}">
+                <span class="mt-cantidad-popular">Más popular</span>
+                <span class="mt-cantidad-check"></span>
+                <span class="mt-cantidad-info">
+                  <span class="mt-cantidad-num">{{ mt_oferta_cantidad }} unidades</span>
+                  <span class="mt-cantidad-sub">Ahorras un {{ mt_oferta_ahorro }}% · {{ mt_oferta_tipo | upcase }}</span>
+                </span>
+                <span class="mt-cantidad-precios">
+                  <s class="mt-cantidad-precio-antes" data-mt-cantidad-precio-antes>{{ current_variant.price | times: mt_oferta_cantidad | money }}</s>
+                  <span class="mt-cantidad-precio" data-mt-cantidad-precio>{{ current_variant.price | times: mt_oferta_mult | money }}</span>
+                </span>
+              </button>
             </div>
           </div>
         {% endif %}
@@ -294,26 +308,39 @@
   #shopify-section-{{ section.id }} .mt-producto-intro { margin-top: 12px; }
 
   #shopify-section-{{ section.id }} .mt-cantidad-selector { margin-top: 18px; }
-  #shopify-section-{{ section.id }} .mt-cantidad-opciones { display: flex; gap: 12px; flex-wrap: wrap; }
-  #shopify-section-{{ section.id }} .mt-cantidad-opcion {
+  #shopify-section-{{ section.id }} .mt-cantidad-filas { display: flex; flex-direction: column; gap: 10px; }
+  #shopify-section-{{ section.id }} .mt-cantidad-fila {
     position: relative;
-    display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
-    padding: 12px 18px; min-width: 140px;
+    display: flex; align-items: center; gap: 14px;
+    width: 100%; padding: 14px 18px;
     border-radius: var(--mt-radius-sm); border: 1.5px solid var(--mt-border);
     background: #fff; cursor: pointer; text-align: left;
     transition: border-color 0.2s ease, background 0.2s ease, transform 0.1s var(--mt-ease);
   }
-  #shopify-section-{{ section.id }} .mt-cantidad-opcion:active { transform: scale(0.97); }
-  #shopify-section-{{ section.id }} .mt-cantidad-opcion.mt-activa { border-color: var(--mt-accent); background: rgba(47,95,255,0.08); }
-  #shopify-section-{{ section.id }} .mt-cantidad-opcion.mt-cantidad-oferta.mt-activa { border-color: var(--mt-text); background: rgba(198,255,61,0.14); }
-  #shopify-section-{{ section.id }} .mt-cantidad-num { font-weight: 700; font-size: 14px; }
-  #shopify-section-{{ section.id }} .mt-cantidad-precio { font-size: 14px; color: var(--mt-muted); }
-  #shopify-section-{{ section.id }} .mt-cantidad-opcion.mt-activa .mt-cantidad-precio { color: var(--mt-text); }
-  #shopify-section-{{ section.id }} .mt-cantidad-badge {
-    position: absolute; top: -10px; right: 10px;
-    font-family: var(--font-heading-family); font-weight: 700; font-size: 12px; letter-spacing: 0.03em;
+  #shopify-section-{{ section.id }} .mt-cantidad-fila:active { transform: scale(0.99); }
+  #shopify-section-{{ section.id }} .mt-cantidad-check {
+    flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+    border: 1.5px solid var(--mt-border); background: #fff;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  #shopify-section-{{ section.id }} .mt-cantidad-fila.mt-activa .mt-cantidad-check {
+    border-color: var(--mt-accent); border-width: 6px;
+  }
+  #shopify-section-{{ section.id }} .mt-cantidad-fila.mt-cantidad-oferta.mt-activa .mt-cantidad-check { border-color: var(--mt-text); }
+  #shopify-section-{{ section.id }} .mt-cantidad-fila.mt-activa { border-color: var(--mt-accent); background: rgba(47,95,255,0.06); }
+  #shopify-section-{{ section.id }} .mt-cantidad-fila.mt-cantidad-oferta.mt-activa { border-color: var(--mt-text); background: rgba(198,255,61,0.12); }
+  #shopify-section-{{ section.id }} .mt-cantidad-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  #shopify-section-{{ section.id }} .mt-cantidad-num { font-weight: 700; font-size: 15px; }
+  #shopify-section-{{ section.id }} .mt-cantidad-sub { font-size: 13px; color: var(--mt-muted); }
+  #shopify-section-{{ section.id }} .mt-cantidad-fila.mt-cantidad-oferta .mt-cantidad-sub { color: var(--mt-accent-dark); font-weight: 600; }
+  #shopify-section-{{ section.id }} .mt-cantidad-precios { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+  #shopify-section-{{ section.id }} .mt-cantidad-precio { font-weight: 700; font-size: 16px; }
+  #shopify-section-{{ section.id }} .mt-cantidad-precio-antes { font-size: 12.5px; color: var(--mt-muted); }
+  #shopify-section-{{ section.id }} .mt-cantidad-popular {
+    position: absolute; top: -11px; right: 16px;
+    font-family: var(--font-heading-family); font-weight: 700; font-size: 11px; letter-spacing: 0.04em;
     background: var(--mt-text); color: var(--mt-accent-2);
-    padding: 3px 10px; border-radius: 999px;
+    padding: 3px 12px; border-radius: 999px;
   }
 
   #shopify-section-{{ section.id }} .mt-combo-aviso {
