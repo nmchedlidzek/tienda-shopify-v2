@@ -83,10 +83,10 @@
         "padding_bottom": 24
       },
       "blocks": {
-        "c1": { "type": "categoria", "settings": { "coleccion": "hogar-inteligente", "titulo": "Hogar inteligente", "imagen_asset": "mt-padlock-categoria.jpg" } },
-        "c2": { "type": "categoria", "settings": { "coleccion": "iluminacion-led", "titulo": "Iluminación LED", "imagen_asset": "mt-abedul-hero.jpg" } },
-        "c3": { "type": "categoria", "settings": { "coleccion": "audio-y-sonido", "titulo": "Audio y sonido", "imagen_asset": "mt-bicispeaker-c.jpg" } },
-        "c4": { "type": "categoria", "settings": { "coleccion": "cocina-y-accesorios", "titulo": "Cocina y accesorios", "imagen_asset": "mt-termo-categoria.jpg" } }
+        "c1": { "type": "categoria", "settings": { "coleccion": "hogar-inteligente", "titulo": "Hogar inteligente", "imagen_asset": "mt-padlock-categoria2.jpg" } },
+        "c2": { "type": "categoria", "settings": { "coleccion": "iluminacion-led", "titulo": "Iluminación LED", "imagen_asset": "mt-abedul-categoria2.jpg" } },
+        "c3": { "type": "categoria", "settings": { "coleccion": "audio-y-sonido", "titulo": "Audio y sonido", "imagen_asset": "mt-bicispeaker-categoria2.jpg" } },
+        "c4": { "type": "categoria", "settings": { "coleccion": "cocina-y-accesorios", "titulo": "Cocina y accesorios", "imagen_asset": "mt-termo-categoria2.jpg" } }
       },
       "block_order": ["c1", "c2", "c3", "c4"]
     },

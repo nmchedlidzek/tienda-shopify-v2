@@ -594,3 +594,18 @@ secciones y 279 assets volvían a estar todos en el tema remoto.
 **Lección**: revisar siempre la salida completa de `theme push` en busca
 de errores de "no se pudo eliminar" antes de dar por bueno un push, no
 solo el mensaje final de "success"/"pushed with errors".
+
+## Decimoséptima ronda: fotos de categoría demasiado oscuras
+
+El usuario dijo que las 4 fotos de categoría (candado, abedul, altavoz de
+bici, termo) quedaban "muy agobiantes" juntas — demasiado oscuras/de
+ambiente nocturno en conjunto. Se regeneraron las 4 con un tono mucho más
+suave y luminoso mismo estilo UGC (luz de día natural, fondos claros y
+aireados) en vez del ambiente nocturno cinematográfico anterior:
+`mt-padlock-categoria2.jpg`, `mt-abedul-categoria2.jpg`,
+`mt-bicispeaker-categoria2.jpg`, `mt-termo-categoria2.jpg`. Las versiones
+oscuras anteriores (candado y termo v1) se eliminaron del repo.
+
+Se verificó con especial cuidado tras el incidente de la ronda anterior:
+salida completa del push revisada (sin errores de borrado) y comprobación
+inmediata de la web (200 OK) antes y después de la propagación.
