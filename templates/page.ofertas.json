@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "banner": {
+      "type": "mt-cta-final",
+      "settings": {
+        "bg_color": "#2F5FFF",
+        "text_color": "#FFFFFF",
+        "titulo": "Todas las ofertas activas",
+        "texto": "Descuentos automáticos que se aplican solos en el carrito, sin cupón.",
+        "boton_texto": "Ver todo el catálogo",
+        "boton_enlace": "shopify://collections/all",
+        "padding_top": 56,
+        "padding_bottom": 32
+      }
+    },
+    "ofertas-cantidad": {
+      "type": "mt-ofertas",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "eyebrow": "Compra más, paga menos",
+        "titulo": "2X1 y 3X2",
+        "texto": "Elige varias unidades del mismo producto y ahorra.",
+        "padding_top": 24,
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "o1": { "type": "producto", "settings": { "product": "creative-cocktail-glass-porcupine-fish-swan-rose-octopus-bird-design-cocktail-glass-novelty-drink-cup-for-ktv-bar-night-party", "imagen_asset": "mt-anuncio-copa.png" } },
+        "o2": { "type": "producto", "settings": { "product": "zinc-alloy-bottle-opener-wall-mounted-vintage-glass-bar-beer-cap-cover-opener-bar-drinking-accessories-kitchen-tool-apriscatole", "imagen_asset": "mt-anuncio-abridor.png" } },
+        "o3": { "type": "producto", "settings": { "product": "led-white-birch-branch-festive-lights-christmas-tree-branch-fairy-garland-light-party-wedding-decoration-twig-dinner-table-lamp", "imagen_asset": "mt-anuncio-abedul.png" } },
+        "o4": { "type": "producto", "settings": { "product": "new-digital-display-car-with-4usb-car-charger-66w-fast-charging-car-mobile-phone-adapter-pd-mobile-phone-charging-head", "imagen_asset": "mt-anuncio-cargador.png" } }
+      },
+      "block_order": ["o1", "o2", "o3", "o4"]
+    },
+    "ofertas-kits": {
+      "type": "mt-ofertas",
+      "settings": {
+        "bg_color": "#F7F8FA",
+        "eyebrow": "Cómpralos juntos",
+        "titulo": "Kits con descuento",
+        "texto": "15% de descuento en el segundo producto al comprarlos juntos.",
+        "padding_top": 32,
+        "padding_bottom": 56
+      },
+      "blocks": {
+        "k1": { "type": "producto", "settings": { "product": "120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car", "etiqueta": "-15%", "oferta_desc": "En el Quitapelusas al comprarlo junto con esta aspiradora" } },
+        "k2": { "type": "producto", "settings": { "product": "kinscoter-aroma-diffuser-air-humidifier-ultrasonic-cool-mist-maker-fogger-led-essential-oil-flame-lamp-difusor", "etiqueta": "-15%", "oferta_desc": "En el Quemador de Incienso al comprarlo junto con este difusor" } },
+        "k3": { "type": "producto", "settings": { "product": "diatomite-bathroom-carpet-foot-mat-quick-dry-bath-mats-non-slip-shower-rug-toilet-pad-doormat-washable", "etiqueta": "-15%", "oferta_desc": "En el Estante de Baño al comprarla junto con esta alfombrilla" } }
+      },
+      "block_order": ["k1", "k2", "k3"]
+    }
+  },
+  "order": ["banner", "ofertas-cantidad", "ofertas-kits"]
+}
