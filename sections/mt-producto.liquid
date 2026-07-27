@@ -107,16 +107,18 @@
           {% unless product.has_only_default_variant %}
             <div class="mt-producto-opciones">
               {% for option in product.options_with_values %}
-                <div class="mt-opcion">
-                  <p class="mt-opcion-label">{{ option.name }}</p>
-                  <div class="mt-opcion-valores" data-mt-opcion-index="{{ forloop.index0 }}">
-                    {% for value in option.values %}
-                      <button type="button"
-                              class="mt-opcion-valor{% if value == option.selected_value %} mt-activa{% endif %}"
-                              data-mt-opcion-valor="{{ value | escape }}">{{ value }}</button>
-                    {% endfor %}
+                {% unless option.values.size == 1 %}
+                  <div class="mt-opcion">
+                    <p class="mt-opcion-label">{{ option.name }}</p>
+                    <div class="mt-opcion-valores" data-mt-opcion-index="{{ forloop.index0 }}">
+                      {% for value in option.values %}
+                        <button type="button"
+                                class="mt-opcion-valor{% if value == option.selected_value %} mt-activa{% endif %}"
+                                data-mt-opcion-valor="{{ value | escape }}">{{ value }}</button>
+                      {% endfor %}
+                    </div>
                   </div>
-                </div>
+                {% endunless %}
               {% endfor %}
             </div>
           {% endunless %}
