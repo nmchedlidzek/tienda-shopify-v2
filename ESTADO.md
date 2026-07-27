@@ -739,3 +739,28 @@ limpiar las fotos del proveedor (siguen siendo las fotos originales de
 AliExpress, sin el tratamiento UGC que se le dio a los productos de
 rondas anteriores) — no hay herramienta de generación de imágenes en
 este entorno.
+
+## Vigesimoprimera ronda: bug de precio x100, limpieza de catálogo y foto de la luna
+
+**Bug de precio x100 en el selector de pack**: el usuario reportó ver
+"1100,00 USD" en vez de "11,00" en las tarjetas de cantidad. Causa:
+`current_variant.price` sin el filtro `money` en Liquid ya devuelve el
+valor en céntimos (confirmado: 1100 = 11,00€), pero el JS
+(`initCantidadOferta`) lo multiplicaba por 100 otra vez al calcular el
+valor inicial. Se corrigió quitando esa multiplicación duplicada.
+
+**Limpieza de catálogo**: a petición del usuario se eliminaron 5
+productos del lote de 8 recién importados/duplicados: Mini Cámara de
+Acción, Mini Proyector 1080P, Proyector Salange P300, Dron E88 Pro, y
+el Difusor con Efecto Chimenea 3D (60,99€). También se eliminó la
+Diadema Bluetooth original (19,99-20,99€) por quedar duplicada con la
+nueva "Diadema Bluetooth para Dormir con Altavoces Integrados", y el
+Altavoz Bluetooth Retro con Sonido Relajante.
+
+**Foto de la Lámpara Luna LED**: las fotos originales del proveedor
+tenían texto en inglés superpuesto ("Moon Night Light: 8.5cm...") y
+collages con miniaturas de colores. Se sustituyeron por las 2 fotos
+limpias sin texto que sí existían en el lote original (ambiente con
+velas de fondo, y ambiente de dormitorio con flores) más un recorte
+manual de una tercera foto para quitarle el texto superpuesto,
+reordenadas para que la de ambiente con velas sea la principal.
