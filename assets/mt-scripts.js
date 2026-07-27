@@ -198,7 +198,7 @@ function initCantidadOferta() {
     seccion._mtActualizarCantidadPrecios = actualizarPrecios;
 
     var precioBase = parseFloat(selector.getAttribute('data-mt-precio-base')) || 0;
-    actualizarPrecios(Math.round(precioBase * 100));
+    actualizarPrecios(Math.round(precioBase));
   });
 }
 
