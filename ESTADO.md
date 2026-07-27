@@ -556,3 +556,41 @@ cada producto) y solo hacía falta enlazarlas.
     defecto) que solo cubre Estados Unidos con tarifas de pago
     ($8 estándar / $15 exprés), pero tiene 0 productos asignados — no
     afecta a nada, se puede ignorar o borrar si se quiere limpiar.
+
+## Decimosexta ronda: Mercados (España/EE.UU./Internacional), bug de idioma e incidente de theme push
+
+**Configuración de Mercados**: el usuario creó 3 mercados en el panel de
+Shopify (no vía API, a mano): "España" (EUR), "United States" (USD, FX
+dinámico) y "World" (~237 países restantes, con "usar monedas locales" —
+recomendado para que cada visitante vea el precio en su propia moneda).
+Esto es necesario además del envío: los Mercados controlan si un país
+puede completar el checkout, aparte de si el envío llega allí.
+
+**Bug de idioma corregido**: la cabecera HTTP `content-language` marcaba
+"en-US" pese a que todo el contenido está en español. Causa real: en la
+convención de temas de Shopify, el archivo de idioma con el sufijo
+`.default` en el nombre es el idioma por defecto del tema — y el tema
+tenía `en.default.json` (inglés) en vez de `es.default.json`. Se
+renombraron los 4 archivos afectados (`en.default.json` → `en.json`,
+`en.default.schema.json` → `en.schema.json`, `es.json` →
+`es.default.json`, `es.schema.json` → `es.default.schema.json`) para que
+español sea el idioma por defecto real del tema.
+
+**INCIDENTE — la tienda estuvo caída unos minutos**: al hacer
+`shopify theme push` tras el renombrado de locales, el CLI intentó
+además **borrar del tema remoto casi todos los demás archivos**
+(secciones, assets, snippets) —aparentemente confundido por el cambio de
+nombres de los locales—, dejando solo `config/`, `layout/` y
+`templates/` en el tema remoto; la web devolvía 404. Los únicos archivos
+que sobrevivieron sin querer fueron los que Shopify protege de borrado
+en un tema publicado (`layout/theme.liquid`, `config/settings_data.json`,
+`config/settings_schema.json`, `templates/gift_card.liquid` — de ahí los
+errores "no se pudo eliminar" en la consola, que en este caso fueron
+positivos). Se detectó con un curl inmediato tras el push (404) y se
+solucionó al momento haciendo `shopify theme push` de nuevo completo
+desde el repositorio local (que estaba intacto en todo momento) —
+recuperado en menos de un minuto, confirmado con `theme pull` que las 65
+secciones y 279 assets volvían a estar todos en el tema remoto.
+**Lección**: revisar siempre la salida completa de `theme push` en busca
+de errores de "no se pudo eliminar" antes de dar por bueno un push, no
+solo el mensaje final de "success"/"pushed with errors".
