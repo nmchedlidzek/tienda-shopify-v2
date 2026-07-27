@@ -646,3 +646,48 @@ Cambios más relevantes (multiplicador anterior → nuevo, motivo):
 Se mantuvo siempre un margen mínimo de al menos x1,6 sobre coste en
 cualquier variante, para cubrir comisiones de pago, devoluciones y
 publicidad.
+
+## Decimonovena ronda: ofertas 2x1/3x2, kits complementarios, fotos por variante y visibilidad en la web
+
+**Descuentos automáticos** (vía `discountAutomaticBxgyCreate`, sin cupón):
+- **Copa de Cóctel → 2X1 real** (compra 1, la 2ª gratis): tiene el margen
+  más alto del catálogo (coste ~3x menos que el precio), aguanta un 50%
+  de descuento efectivo sin problema. Se sustituyó el 3x2 inicial que
+  tenía (que además llevaba mal el rótulo "2X1" siendo en realidad 3x2).
+- **Abrebotellas de Pared y Rama de Abedul → 3X2** (compra 2, la 3ª
+  gratis): margen más justo, un 2x1 real dejaría muy poco beneficio por
+  unidad.
+- **3 kits de productos complementarios** (15% en el segundo producto al
+  comprar el primero, verificado con margen de sobra en todos los casos):
+  Aspiradora + Quitapelusas, Difusor de aromas + Incienso, Alfombrilla de
+  baño + Estante de baño.
+
+**Fotos por variante**: se añadió infraestructura real en
+`mt-producto.liquid` + `mt-scripts.js` — el JSON de variantes ahora
+incluye `featured_image_id`, la galería/miniaturas llevan
+`data-mt-media-id`, y al elegir una opción con foto asignada la imagen
+principal cambia sola (reutilizando el sistema de galería ya existente).
+Se asignaron las fotos que ya existían a sus variantes correctas: Copa de
+Cóctel (Rose/Swan/Octopus), Abrebotellas (Green Bronze), Abedul (rama
+negra). **Pendiente real**: no hay herramienta de generación de imágenes
+en este entorno, así que faltan fotos de ~19 diseños de copa más, 3
+colores de abridor (Silver/Red Bronze/Black) y la rama blanca del abedul
+— la infraestructura ya soporta conectarlas en cuanto haya fotos reales.
+
+**Visibilidad de las ofertas en la web** (antes solo se aplicaban en
+silencio en el carrito, sin ningún aviso en la ficha de producto — fallo
+detectado por el usuario): se añadió un aviso de oferta (badge 2X1/3X2) y
+una tarjeta de "cómpralo con..." con el producto complementario
+directamente en `mt-producto.liquid` para los 9 productos afectados.
+También se creó una sección nueva `mt-ofertas.liquid`, colocada justo
+debajo del hero en la portada, mostrando los 3 productos con oferta real
+para que se vean nada más entrar en la web.
+
+**Nota de cumplimiento normativo**: el usuario pidió también subir el
+precio de otros productos para simular un descuento ("antes X, ahora Y"
+sin que X haya sido un precio real). Se rechazó esa petición explicando
+el riesgo: la normativa europea de anuncios de rebajas exige que el
+precio de referencia sea el más bajo real de los últimos 30 días: un
+precio tachado inventado es sancionable por Consumo, más aún facturando
+como autónomo. Se ofreció como alternativa legal ampliar los descuentos
+automáticos reales a más productos y darles visibilidad en portada.
