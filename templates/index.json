@@ -57,6 +57,23 @@
       },
       "block_order": ["slide-1", "slide-2", "slide-3", "slide-4"]
     },
+    "mt-ofertas": {
+      "type": "mt-ofertas",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "eyebrow": "Por tiempo limitado",
+        "titulo": "Ofertas activas ahora mismo",
+        "texto": "Descuentos automáticos que se aplican solos en el carrito, sin cupón.",
+        "padding_top": 48,
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "o1": { "type": "producto", "settings": { "product": "creative-cocktail-glass-porcupine-fish-swan-rose-octopus-bird-design-cocktail-glass-novelty-drink-cup-for-ktv-bar-night-party", "etiqueta": "2X1", "oferta_desc": "Elige 2 diseños y paga solo 1", "imagen_asset": "mt-copa-hero.jpg" } },
+        "o2": { "type": "producto", "settings": { "product": "zinc-alloy-bottle-opener-wall-mounted-vintage-glass-bar-beer-cap-cover-opener-bar-drinking-accessories-kitchen-tool-apriscatole", "etiqueta": "3X2", "oferta_desc": "Compra 2 y llévate la 3ª gratis", "imagen_asset": "mt-abridorpared-hero.jpg" } },
+        "o3": { "type": "producto", "settings": { "product": "led-white-birch-branch-festive-lights-christmas-tree-branch-fairy-garland-light-party-wedding-decoration-twig-dinner-table-lamp", "etiqueta": "3X2", "oferta_desc": "Compra 2 y llévate la 3ª gratis", "imagen_asset": "mt-abedul-categoria2.jpg" } }
+      },
+      "block_order": ["o1", "o2", "o3"]
+    },
     "mt-beneficios": {
       "type": "mt-beneficios",
       "settings": {
@@ -199,6 +216,7 @@
   },
   "order": [
     "mt-hero",
+    "mt-ofertas",
     "mt-beneficios",
     "mt-categorias",
     "mt-productos-destacados",

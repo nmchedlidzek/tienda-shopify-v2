@@ -1,0 +1,100 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.bg_color }};
+  }
+{% endstyle %}
+
+<section class="mt-section mt-ofertas">
+  <div class="mt-container">
+    <div class="mt-cabecera mt-reveal mt-center">
+      {% if section.settings.eyebrow != blank %}
+        <p class="mt-eyebrow" style="justify-content:center;width:100%;">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+      {% if section.settings.texto != blank %}
+        <p class="mt-body mt-body-cabecera">{{ section.settings.texto }}</p>
+      {% endif %}
+    </div>
+
+    <div class="mt-grid mt-grid-3" style="margin-top: 40px;">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        <a href="{{ product.url | default: '#' }}" class="mt-card mt-oferta-card mt-reveal mt-reveal-{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <div class="mt-card-media">
+            {% if block.settings.imagen_asset != blank %}
+              <img src="{{ block.settings.imagen_asset | asset_url }}" alt="{{ product.title | escape }}" loading="lazy">
+            {% elsif product != blank and product.featured_image %}
+              <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy">
+            {% endif %}
+            {% if block.settings.etiqueta != blank %}
+              <span class="mt-oferta-etiqueta">{{ block.settings.etiqueta }}</span>
+            {% endif %}
+          </div>
+          <div class="mt-card-body">
+            <p class="mt-card-title">{{ product.title }}</p>
+            {% if block.settings.oferta_desc != blank %}
+              <p class="mt-oferta-desc">{{ block.settings.oferta_desc }}</p>
+            {% endif %}
+            {% if product != blank %}
+              <p class="mt-card-price">{{ product.price | money }}</p>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .mt-oferta-card { position: relative; }
+  #shopify-section-{{ section.id }} .mt-oferta-etiqueta {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--mt-text); color: var(--mt-accent-2);
+    font-family: var(--font-heading-family); font-weight: 700; font-size: 15px; letter-spacing: 0.03em;
+    padding: 6px 16px; border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(20,22,26,0.25);
+  }
+  #shopify-section-{{ section.id }} .mt-oferta-desc { color: var(--mt-muted); font-size: 13.5px; margin: 4px 0 8px; }
+</style>
+
+{% schema %}
+{
+  "name": "MT – Ofertas activas",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#FFFFFF" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Por tiempo limitado" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Ofertas activas ahora mismo" },
+    { "type": "textarea", "id": "texto", "label": "Texto", "default": "Descuentos automáticos que se aplican solos en el carrito, sin cupón." },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "producto",
+      "name": "Producto con oferta",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Producto" },
+        { "type": "text", "id": "etiqueta", "label": "Etiqueta (ej. 2X1, 3X2)" },
+        { "type": "text", "id": "oferta_desc", "label": "Descripción corta de la oferta" },
+        { "type": "text", "id": "imagen_asset", "label": "Nombre de archivo en assets (uso interno)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Ofertas activas",
+      "blocks": [
+        { "type": "producto" },
+        { "type": "producto" },
+        { "type": "producto" }
+      ]
+    }
+  ]
+}
+{% endschema %}
