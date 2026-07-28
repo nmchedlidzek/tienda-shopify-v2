@@ -764,3 +764,41 @@ limpias sin texto que sí existían en el lote original (ambiente con
 velas de fondo, y ambiente de dormitorio con flores) más un recorte
 manual de una tercera foto para quitarle el texto superpuesto,
 reordenadas para que la de ambiente con velas sea la principal.
+
+## Vigesimosegunda ronda: 4 productos nuevos, oferta del cargador y página /ofertas
+
+**4 productos nuevos** (importados ya en ACTIVE, no borrador): Bote Spray
+de Aceite 200/300ml, Escurridor Extensible de Fregadero 2 en 1, Soporte
+Magnético de Móvil para Coche 360°, y Aspiradora Portátil para Coche
+15.000PA. Traducidos, repreciados y categorizados igual que las rondas
+anteriores. El soporte de móvil tenía un coste de importación
+claramente erróneo (133,13€ para un simple soporte magnético) — se
+ignoró ese dato y se fijó un precio manual competitivo de 24,99€.
+
+**Aspiradora nueva vs antigua**: la nueva aspiradora tiene coste MÁS
+ALTO (17,99€-31,82€) que la antigua (9,51€), al contrario de lo que
+esperaba el usuario ("más económica"). Se decidió mantener ambas en vez
+de sustituir: la antigua como opción de entrada (25,99€) y la nueva
+como gama superior (35,99€-63,99€ según versión), ya que da más
+beneficio absoluto por venta y no compiten exactamente por el mismo
+cliente.
+
+**Nueva oferta 3x2 del Cargador de Coche Rápido 66W** (cost ~4,78-5,04€,
+buen margen) creada vía `discountAutomaticBxgyCreate`. Se generó un 4º
+estilo de creativo (badge hexagonal morado, `mt-anuncio-cargador.png`)
+y se sustituyó la tarjeta del abridor por la del cargador en la
+portada — el descuento del abridor sigue activo, solo cambia qué se
+destaca visualmente en home. Se añadió el cargador a la detección de
+oferta de `mt-producto.liquid` (selector de pack + foto de oferta en su
+propia ficha).
+
+**Página `/ofertas`** creada (`templates/page.ofertas.json`, Page real
+vía `pageCreate`) con TODAS las ofertas activas: las 4 de cantidad
+(2x1 copa, 3x2 abridor, 3x2 abedul, 3x2 cargador) reutilizando
+`mt-ofertas.liquid`, más un segundo bloque con los 3 kits
+complementarios al 15%. Requirió el scope `write_content` — usuario
+reinstaló la app "driveee" de nuevo para concederlo. Pendiente: añadir
+el enlace a esta página en el menú de navegación (requiere scope
+`write_online_store_navigation`, no solicitado esta ronda — se indicó
+al usuario que lo añada manualmente desde Tienda Online → Navegación,
+o pedirlo en otra ronda si prefiere que lo haga yo).
