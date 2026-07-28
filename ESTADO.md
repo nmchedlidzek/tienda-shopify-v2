@@ -802,3 +802,12 @@ el enlace a esta página en el menú de navegación (requiere scope
 `write_online_store_navigation`, no solicitado esta ronda — se indicó
 al usuario que lo añada manualmente desde Tienda Online → Navegación,
 o pedirlo en otra ronda si prefiere que lo haga yo).
+
+Enlace "Ofertas" añadido al menú principal (`menuUpdate`, requirió
+reinstalar la app una vez más con el scope `write_online_store_navigation`).
+
+**Eliminados a petición del usuario** (por feos/repetitivos): Aspiradora
+Portátil para Coche 15.000PA (la de gama alta añadida esta misma
+ronda), Foco Solar de Pared con Sensor de Movimiento, y Soporte
+Magnético de Móvil para Coche 360°. Ninguno estaba en ofertas ni
+portada, sin impacto en otras secciones.
