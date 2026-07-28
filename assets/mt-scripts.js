@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  [initReveal, initHero, initCountUp, initMarquee, initGaleriaProducto, initVariantesProducto, initCantidadOferta, initFaq].forEach(function (fn) {
+  [initReveal, initHero, initCountUp, initMarquee, initGaleriaProducto, initVariantesProducto, initCantidadOferta, initComboProducto, initFaq].forEach(function (fn) {
     try { fn(); } catch (e) { console.error('mt-scripts:', fn.name, e); }
   });
 });
@@ -199,6 +199,47 @@ function initCantidadOferta() {
 
     var precioBase = parseFloat(selector.getAttribute('data-mt-precio-base')) || 0;
     actualizarPrecios(Math.round(precioBase));
+  });
+}
+
+function initComboProducto() {
+  document.querySelectorAll('[data-mt-producto]').forEach(function (seccion) {
+    var toggle = seccion.querySelector('[data-mt-combo-toggle]');
+    var form = seccion.querySelector('[data-mt-producto-form]');
+    if (!toggle || !form) return;
+
+    toggle.addEventListener('click', function () {
+      toggle.classList.toggle('mt-activa');
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var idInput = form.querySelector('[data-mt-variant-id]');
+      var cantidadInput = form.querySelector('[data-mt-cantidad-input]');
+      var boton = form.querySelector('[data-mt-boton-add]');
+      var items = [{
+        id: parseInt(idInput.value, 10),
+        quantity: parseInt(cantidadInput ? cantidadInput.value : '1', 10) || 1
+      }];
+      if (toggle.classList.contains('mt-activa')) {
+        items.push({ id: parseInt(toggle.getAttribute('data-mt-combo-variant-id'), 10), quantity: 1 });
+      }
+      if (boton) boton.setAttribute('disabled', 'disabled');
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: items })
+      }).then(function (res) {
+        if (!res.ok) throw new Error('add to cart failed');
+        return res.json();
+      }).then(function () {
+        window.location.href = '/cart';
+      }).catch(function (err) {
+        console.error('mt-scripts combo add:', err);
+        if (boton) boton.removeAttribute('disabled');
+        form.submit();
+      });
+    });
   });
 }
 
