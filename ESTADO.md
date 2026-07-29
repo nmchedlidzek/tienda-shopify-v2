@@ -811,3 +811,42 @@ Portátil para Coche 15.000PA (la de gama alta añadida esta misma
 ronda), Foco Solar de Pared con Sensor de Movimiento, y Soporte
 Magnético de Móvil para Coche 360°. Ninguno estaba en ofertas ni
 portada, sin impacto en otras secciones.
+
+## Pivote de nicho: de gadgets de hogar a boxeo/fitness
+
+El usuario decidió especializar la tienda en un nicho: boxeo y fitness,
+manteniendo el nombre "VOLTA" pero con una paleta nueva más enérgica
+(pendiente de diseñar — pensada en rojo/negro en vez del azul actual).
+Se decidió NO borrar el catálogo antiguo todavía (para no dejar la
+tienda vacía) — primero se prepara y publica el catálogo nuevo, y más
+adelante se decide qué hacer con los productos de gadgets antiguos.
+
+**10 productos nuevos creados desde cero** (no importados por AutoDS —
+creados directamente vía `productCreate` con fotos generadas por IA, ya
+que aún no hay proveedor real ligado): Reflex Ball (bola de reflejos de
+boxeo, producto viral en TikTok con +250M visualizaciones), Saco de
+Boxeo de Pie con base de agua, Panel de Boxeo para Puerta, Guantes de
+Boxeo con Vendas, Comba de Velocidad Ajustable, Pesas de Muñeca
+Ajustables, Cinturón EMS Abdominal, Traje de Sudoración, Pistola de
+Masaje por Percusión, y Set de Bandas de Resistencia. Precios y costes
+son ESTIMADOS (investigación de mercado, no de un proveedor real
+todavía) — pendiente de que el usuario los enlace a un proveedor real
+en AutoDS (con almacén UE/DDP para evitar sorpresas de aduanas al
+cliente, según pidió) y confirmar coste/margen reales.
+
+Creadas 2 colecciones nuevas: "Boxeo" (`/collections/boxeo`) y "Fitness
+y Recuperación" (`/collections/fitness-y-recuperacion`), publicadas al
+canal Tienda Online.
+
+**Flujo de trabajo acordado de aquí en adelante**: para *nuevos*
+productos que se vayan añadiendo, preparar todo (fotos, precio,
+descripción) y pedir el visto bueno del usuario ANTES de publicar. Este
+primer lote de 10 fue la excepción acordada explícitamente, para tener
+ya una tienda visualmente completa sobre la que iterar.
+
+Pendiente: diseñar la nueva paleta de colores fitness/boxeo, decidir
+qué hacer con los ~30 productos de gadgets antiguos (mantener, archivar,
+o borrar), y buscar más productos de boxeo puro (el listado inicial se
+quedó algo generalista en la parte de fitness). También queda pendiente
+desplegar al tema en vivo el fix del bug de mt-scripts.js duplicado
+(ya corregido en el repo, commit anterior).
