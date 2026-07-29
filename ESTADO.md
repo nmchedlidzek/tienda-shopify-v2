@@ -891,3 +891,36 @@ se investigue se prepara (fotos + precio + descripción) y se enseña al
 usuario para su visto bueno ANTES de publicarlo — este pivote fue la
 excepción explícita para tener ya una tienda completa sobre la que
 iterar.
+
+## Fix del texto invisible del hero + fotos v2 + repricing
+
+**Bug real encontrado**: al poner el hero con fondo oscuro (#14161A)
+para el nuevo estilo, el texto (heredaba `--mt-text`, oscuro) se volvía
+casi invisible — texto oscuro sobre fondo oscuro. `mt-hero.liquid` no
+tenía setting de color de texto. Se añadió `text_color` al schema y se
+fijó en blanco (#FFFFFF) en `templates/index.json`. También se
+descubrió que `templates/page.ofertas.json` seguía sin actualizar tras
+el pivote (apuntaba a productos del catálogo antiguo ya eliminado) —
+corregido para usar Reflex Ball, Comba, Saco+Guantes y Massage+Bandas.
+
+**Fotos v2**: las fotos generadas en el pivote (1 por producto) perdían
+detalle en las zonas negras por poco contraste con el fondo. Se
+regeneraron las 10 con iluminación de 3 puntos + luz de contorno, 2
+ángulos por producto, y se sustituyeron en Shopify (galería de producto
++ imágenes de portada/anuncios de Reflex Ball y Comba).
+
+**Repricing**: precios bajados para ser más agresivos/atractivos —
+Saco de Boxeo 71.99→64.99€, Guantes 22.99→19.99€, Panel de puerta
+20.99→18.99€, Comba 9.99→8.99€, Pesas 16.99→14.99€, Cinturón EMS
+14.99→12.99€, Traje de sudor 18.99→16.99€, Pistola de masaje
+39.99→34.99€, Bandas 10.99→9.99€. Reflex Ball se quedó en 9.99€ (ya
+competitivo).
+
+**Cobertura de ofertas completa**: se añadió 3x2 a los 4 productos que
+aún no tenían ninguna oferta (Panel de puerta, Pesas de muñeca,
+Cinturón EMS, Traje de sudoración) para que todos los 10 productos
+tengan alguna opción de pack antes de añadir al carrito.
+
+Pendiente (mencionado por el usuario, no abordado aún esta ronda):
+añadir más productos al catálogo (10 se sienten pocos para "completar
+la web").
