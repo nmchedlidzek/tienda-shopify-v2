@@ -18,18 +18,16 @@
       "settings": {
         "bg_color": "#FFFFFF",
         "eyebrow": "Compra más, paga menos",
-        "titulo": "2X1 y 3X2",
+        "titulo": "3X2",
         "texto": "Elige varias unidades del mismo producto y ahorra.",
         "padding_top": 24,
         "padding_bottom": 24
       },
       "blocks": {
-        "o1": { "type": "producto", "settings": { "product": "creative-cocktail-glass-porcupine-fish-swan-rose-octopus-bird-design-cocktail-glass-novelty-drink-cup-for-ktv-bar-night-party", "imagen_asset": "mt-anuncio-copa.png" } },
-        "o2": { "type": "producto", "settings": { "product": "zinc-alloy-bottle-opener-wall-mounted-vintage-glass-bar-beer-cap-cover-opener-bar-drinking-accessories-kitchen-tool-apriscatole", "imagen_asset": "mt-anuncio-abridor.png" } },
-        "o3": { "type": "producto", "settings": { "product": "led-white-birch-branch-festive-lights-christmas-tree-branch-fairy-garland-light-party-wedding-decoration-twig-dinner-table-lamp", "imagen_asset": "mt-anuncio-abedul.png" } },
-        "o4": { "type": "producto", "settings": { "product": "new-digital-display-car-with-4usb-car-charger-66w-fast-charging-car-mobile-phone-adapter-pd-mobile-phone-charging-head", "imagen_asset": "mt-anuncio-cargador.png" } }
+        "o1": { "type": "producto", "settings": { "product": "reflex-ball-bola-de-reflejos-para-boxeo", "imagen_asset": "mt-anuncio-reflex.png" } },
+        "o2": { "type": "producto", "settings": { "product": "comba-de-velocidad-ajustable", "imagen_asset": "mt-anuncio-comba.png" } }
       },
-      "block_order": ["o1", "o2", "o3", "o4"]
+      "block_order": ["o1", "o2"]
     },
     "ofertas-kits": {
       "type": "mt-ofertas",
@@ -42,11 +40,10 @@
         "padding_bottom": 56
       },
       "blocks": {
-        "k1": { "type": "producto", "settings": { "product": "120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car", "etiqueta": "-15%", "oferta_desc": "En el Quitapelusas al comprarlo junto con esta aspiradora" } },
-        "k2": { "type": "producto", "settings": { "product": "kinscoter-aroma-diffuser-air-humidifier-ultrasonic-cool-mist-maker-fogger-led-essential-oil-flame-lamp-difusor", "etiqueta": "-15%", "oferta_desc": "En el Quemador de Incienso al comprarlo junto con este difusor" } },
-        "k3": { "type": "producto", "settings": { "product": "diatomite-bathroom-carpet-foot-mat-quick-dry-bath-mats-non-slip-shower-rug-toilet-pad-doormat-washable", "etiqueta": "-15%", "oferta_desc": "En el Estante de Baño al comprarla junto con esta alfombrilla" } }
+        "k1": { "type": "producto", "settings": { "product": "saco-de-boxeo-de-pie-con-base-de-agua", "etiqueta": "-15%", "oferta_desc": "En los Guantes con Vendas al comprarlos junto con este saco" } },
+        "k2": { "type": "producto", "settings": { "product": "pistola-de-masaje-por-percusion", "etiqueta": "-15%", "oferta_desc": "En el Set de Bandas de Resistencia al comprarlo junto con esta pistola" } }
       },
-      "block_order": ["k1", "k2", "k3"]
+      "block_order": ["k1", "k2"]
     }
   },
   "order": ["banner", "ofertas-cantidad", "ofertas-kits"]

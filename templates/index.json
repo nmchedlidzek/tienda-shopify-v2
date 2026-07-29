@@ -4,6 +4,7 @@
       "type": "mt-hero",
       "settings": {
         "bg_color": "#14161A",
+        "text_color": "#FFFFFF",
         "height": 560,
         "interval": 6,
         "padding_top": 40,
