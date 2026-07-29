@@ -12,18 +12,12 @@
 {% assign mt_oferta_tipo = '' %}
 {% assign mt_oferta_img_asset = '' %}
 {% case product.handle %}
-  {% when 'creative-cocktail-glass-porcupine-fish-swan-rose-octopus-bird-design-cocktail-glass-novelty-drink-cup-for-ktv-bar-night-party' %}
-    {% assign mt_oferta_tipo = '2x1' %}
-    {% assign mt_oferta_img_asset = 'mt-anuncio-copa.png' %}
-  {% when 'zinc-alloy-bottle-opener-wall-mounted-vintage-glass-bar-beer-cap-cover-opener-bar-drinking-accessories-kitchen-tool-apriscatole' %}
+  {% when 'reflex-ball-bola-de-reflejos-para-boxeo' %}
     {% assign mt_oferta_tipo = '3x2' %}
-    {% assign mt_oferta_img_asset = 'mt-anuncio-abridor.png' %}
-  {% when 'led-white-birch-branch-festive-lights-christmas-tree-branch-fairy-garland-light-party-wedding-decoration-twig-dinner-table-lamp' %}
+    {% assign mt_oferta_img_asset = 'mt-anuncio-reflex.png' %}
+  {% when 'comba-de-velocidad-ajustable' %}
     {% assign mt_oferta_tipo = '3x2' %}
-    {% assign mt_oferta_img_asset = 'mt-anuncio-abedul.png' %}
-  {% when 'new-digital-display-car-with-4usb-car-charger-66w-fast-charging-car-mobile-phone-adapter-pd-mobile-phone-charging-head' %}
-    {% assign mt_oferta_tipo = '3x2' %}
-    {% assign mt_oferta_img_asset = 'mt-anuncio-cargador.png' %}
+    {% assign mt_oferta_img_asset = 'mt-anuncio-comba.png' %}
 {% endcase %}
 
 <section class="mt-section mt-producto" data-mt-producto>
@@ -125,18 +119,14 @@
         {% assign mt_combo_handle = '' %}
         {% assign mt_combo_pct = 15 %}
         {% case product.handle %}
-          {% when '120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car' %}
-            {% assign mt_combo_handle = 'removes-lint-from-clothes-electric-pet-hair-remover-clothing-home-cats-hair-brush-take-out-of-clothes-hairs-cleaning-roller' %}
-          {% when 'removes-lint-from-clothes-electric-pet-hair-remover-clothing-home-cats-hair-brush-take-out-of-clothes-hairs-cleaning-roller' %}
-            {% assign mt_combo_handle = '120w-cordless-handheld-vacuum-cleaner-small-mini-portable-car' %}
-          {% when 'kinscoter-aroma-diffuser-air-humidifier-ultrasonic-cool-mist-maker-fogger-led-essential-oil-flame-lamp-difusor' %}
-            {% assign mt_combo_handle = 'free-20cones-creative-home-decor-backflow-stick-incense-burner-ceramic-censer-home-decoration-use-in-home-teahouse' %}
-          {% when 'free-20cones-creative-home-decor-backflow-stick-incense-burner-ceramic-censer-home-decoration-use-in-home-teahouse' %}
-            {% assign mt_combo_handle = 'kinscoter-aroma-diffuser-air-humidifier-ultrasonic-cool-mist-maker-fogger-led-essential-oil-flame-lamp-difusor' %}
-          {% when 'diatomite-bathroom-carpet-foot-mat-quick-dry-bath-mats-non-slip-shower-rug-toilet-pad-doormat-washable' %}
-            {% assign mt_combo_handle = 'bathroom-shelf-aluminum-alloy-shampoo-rack-makeup-storage-organizer-shower-shelf-bathroom-accessories-no-drill-wall-corner-shelf' %}
-          {% when 'bathroom-shelf-aluminum-alloy-shampoo-rack-makeup-storage-organizer-shower-shelf-bathroom-accessories-no-drill-wall-corner-shelf' %}
-            {% assign mt_combo_handle = 'diatomite-bathroom-carpet-foot-mat-quick-dry-bath-mats-non-slip-shower-rug-toilet-pad-doormat-washable' %}
+          {% when 'saco-de-boxeo-de-pie-con-base-de-agua' %}
+            {% assign mt_combo_handle = 'guantes-de-boxeo-con-vendas-incluidas' %}
+          {% when 'guantes-de-boxeo-con-vendas-incluidas' %}
+            {% assign mt_combo_handle = 'saco-de-boxeo-de-pie-con-base-de-agua' %}
+          {% when 'pistola-de-masaje-por-percusion' %}
+            {% assign mt_combo_handle = 'set-de-bandas-de-resistencia' %}
+          {% when 'set-de-bandas-de-resistencia' %}
+            {% assign mt_combo_handle = 'pistola-de-masaje-por-percusion' %}
         {% endcase %}
         {% if mt_combo_handle != '' %}
           {% assign mt_combo_producto = all_products[mt_combo_handle] %}
@@ -325,7 +315,7 @@
     border-color: var(--mt-accent); border-width: 6px;
   }
   #shopify-section-{{ section.id }} .mt-cantidad-fila.mt-cantidad-oferta.mt-activa .mt-cantidad-check { border-color: var(--mt-text); }
-  #shopify-section-{{ section.id }} .mt-cantidad-fila.mt-activa { border-color: var(--mt-accent); background: rgba(47,95,255,0.06); }
+  #shopify-section-{{ section.id }} .mt-cantidad-fila.mt-activa { border-color: var(--mt-accent); background: rgba(229,35,27,0.06); }
   #shopify-section-{{ section.id }} .mt-cantidad-fila.mt-cantidad-oferta.mt-activa { border-color: var(--mt-text); background: rgba(198,255,61,0.12); }
   #shopify-section-{{ section.id }} .mt-cantidad-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
   #shopify-section-{{ section.id }} .mt-cantidad-num { font-weight: 700; font-size: 15px; }
@@ -355,7 +345,7 @@
   }
   #shopify-section-{{ section.id }} .mt-combo-aviso:hover { border-color: var(--mt-accent); }
   #shopify-section-{{ section.id }} .mt-combo-aviso:active { transform: scale(0.98); }
-  #shopify-section-{{ section.id }} .mt-combo-aviso.mt-activa { border-style: solid; border-color: var(--mt-accent); background: rgba(47,95,255,0.06); }
+  #shopify-section-{{ section.id }} .mt-combo-aviso.mt-activa { border-style: solid; border-color: var(--mt-accent); background: rgba(229,35,27,0.06); }
   #shopify-section-{{ section.id }} .mt-combo-check {
     flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px;
     border: 1.5px solid var(--mt-border); background: #fff;
@@ -383,7 +373,7 @@
     background: #fff; cursor: pointer; font-size: 14px;
     transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.1s var(--mt-ease);
   }
-  #shopify-section-{{ section.id }} .mt-opcion-valor.mt-activa { border-color: var(--mt-accent); background: rgba(47,95,255,0.08); color: var(--mt-accent-dark); font-weight: 700; }
+  #shopify-section-{{ section.id }} .mt-opcion-valor.mt-activa { border-color: var(--mt-accent); background: rgba(229,35,27,0.08); color: var(--mt-accent-dark); font-weight: 700; }
   #shopify-section-{{ section.id }} .mt-opcion-valor:active { transform: scale(0.95); }
   #shopify-section-{{ section.id }} .mt-opcion-valor[disabled] { opacity: 0.35; text-decoration: line-through; cursor: not-allowed; }
 

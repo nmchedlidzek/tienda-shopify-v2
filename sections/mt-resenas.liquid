@@ -14,7 +14,7 @@
     </div>
 
     <div class="mt-grid mt-grid-3" style="margin-top: 40px;">
-      {% assign avatar_colores = "#2F5FFF,#1E3FC4,#0E1116,#5B6572" | split: ',' %}
+      {% assign avatar_colores = "#E5231B,#A81511,#0E1116,#5B6572" | split: ',' %}
       {% for block in section.blocks %}
         {% assign color_index = forloop.index0 | modulo: 4 %}
         {% assign avatar_color = avatar_colores[color_index] %}

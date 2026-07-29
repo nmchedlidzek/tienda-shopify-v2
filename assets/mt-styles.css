@@ -5,8 +5,8 @@
   --mt-surface: #FFFFFF;
   --mt-text: #14161A;
   --mt-muted: #5B6572;
-  --mt-accent: #2F5FFF;
-  --mt-accent-dark: #1E3FC4;
+  --mt-accent: #E5231B;
+  --mt-accent-dark: #A81511;
   --mt-accent-2: #C6FF3D;
   --mt-dark: #0E1116;
   --mt-dark-surface: #171B22;
@@ -93,9 +93,9 @@
 .mt-btn-primary {
   background: var(--mt-accent);
   color: #fff;
-  box-shadow: 0 10px 24px rgba(47, 95, 255, 0.32);
+  box-shadow: 0 10px 24px rgba(229, 35, 27, 0.32);
 }
-.mt-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(47, 95, 255, 0.4); background: var(--mt-accent-dark); }
+.mt-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(229, 35, 27, 0.4); background: var(--mt-accent-dark); }
 
 .mt-btn-ghost {
   background: transparent;
@@ -121,7 +121,7 @@
   border-radius: 999px;
   font-size: 12.5px;
   font-weight: 700;
-  background: rgba(47, 95, 255, 0.1);
+  background: rgba(229, 35, 27, 0.1);
   color: var(--mt-accent-dark);
 }
 
