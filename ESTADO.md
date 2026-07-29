@@ -924,3 +924,31 @@ tengan alguna opción de pack antes de añadir al carrito.
 Pendiente (mencionado por el usuario, no abordado aún esta ronda):
 añadir más productos al catálogo (10 se sienten pocos para "completar
 la web").
+
+## 5 productos nuevos añadidos (investigados por tendencia real)
+
+Investigación de tendencias TikTok/mercado 2026 (búsqueda web) confirmó
+como productos genuinamente virales/trending: entrenador de
+respiración (breathing resistance trainer / "lung flexor"),
+fortalecedores de agarre, ruedas abdominales, chalecos lastrados y
+tableros de flexiones multifunción. Se presentó la lista al usuario
+para su visto bueno antes de crearlos (vía AskUserQuestion) — aprobó
+los 4 + pidió añadir también el tablero de flexiones.
+
+Creados y publicados directamente (igual que el lote de 10 anterior,
+con fotos generadas por IA con el mismo cuidado de iluminación/contraste):
+- Entrenador de Respiración con Resistencia Ajustable — 11,99€ (Boxeo)
+- Fortalecedor de Agarre y Muñeca Ajustable (Par) — 9,99€ (Boxeo)
+- Rueda Abdominal para Entrenamiento de Core — 10,99€ (Fitness)
+- Chaleco Lastrado Ajustable — 34,99€ (Fitness)
+- Tablero de Flexiones Multifunción con Asas — 13,99€ (Fitness)
+
+Nota: el usuario corrigió a mitad de generación que "la barra de
+flexiones" debía ser un tablero multiposición (pecho/tríceps/hombros/
+espalda/abdomen), no unas simples asas giratorias — se regeneró la
+foto y el texto antes de crear el producto.
+
+Catálogo total ahora: 15 productos (6 Boxeo + 9 Fitness y Recuperación).
+
+Precios y costes de estos 5, igual que los 10 anteriores, son
+estimados de mercado — pendiente de proveedor real en AutoDS.
