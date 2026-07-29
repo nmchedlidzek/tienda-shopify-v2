@@ -850,3 +850,44 @@ o borrar), y buscar más productos de boxeo puro (el listado inicial se
 quedó algo generalista en la parte de fitness). También queda pendiente
 desplegar al tema en vivo el fix del bug de mt-scripts.js duplicado
 (ya corregido en el repo, commit anterior).
+
+## Borrón y cuenta nueva: catálogo de gadgets eliminado, plantilla fitness lista
+
+Se eliminaron los 28 productos antiguos de gadgets de hogar, sus 4
+colecciones (Hogar inteligente, Iluminación LED, Audio y sonido, Cocina
+y accesorios — todas quedaron a 0 productos) y sus 7 descuentos
+automáticos (quedaron huérfanos al borrar los productos). La tienda
+ahora solo tiene los 10 productos de boxeo/fitness.
+
+**Nueva paleta**: acento pasó de azul (#2F5FFF/#1E3FC4) a rojo
+(#E5231B/#A81511) en `mt-styles.css` (variables raíz + box-shadows) y
+en todos los `bg_color`/`button` guardados en `templates/index.json`,
+`templates/page.ofertas.json` y `config/settings_data.json` que
+apuntaban al azul viejo.
+
+**Portada reescrita** (`templates/index.json`): hero con 4 slides
+(Reflex Ball, Saco de Boxeo, Guantes+Vendas, Pistola de Masaje) sobre
+fondo oscuro; ofertas (Reflex Ball 3x2, Comba 3x2, kit Saco+Guantes);
+categorías reducidas a las 2 nuevas (Boxeo, Fitness y Recuperación);
+destacados con 6 de los 10 productos; historia/CTA con copy nuevo para
+el público de boxeo/fitness.
+
+**2 nuevos descuentos 3x2** (Reflex Ball, Comba de Velocidad) y **2 kits
+complementarios al 15%** (Saco de Boxeo → Guantes con Vendas; Pistola de
+Masaje → Bandas de Resistencia), creados vía `discountAutomaticBxgyCreate`
+igual que el resto. `mt-producto.liquid` actualizado para detectar
+estas ofertas en vez de las del catálogo antiguo (ya eliminado).
+
+**Creativos de oferta** generados con la nueva plantilla roja/negra
+(hexágono en vez de círculo/estrella, mismo patrón que los anteriores):
+`mt-anuncio-reflex.png`, `mt-anuncio-comba.png`.
+
+Assets huérfanos que quedaron sin usar (no eliminados, por si se
+reutiliza el diseño): `mt-anuncio-copa.png`, `mt-anuncio-abridor.png`,
+`mt-anuncio-abedul.png`, `mt-anuncio-cargador.png`.
+
+**Flujo acordado**: de aquí en adelante, cualquier producto nuevo que
+se investigue se prepara (fotos + precio + descripción) y se enseña al
+usuario para su visto bueno ANTES de publicarlo — este pivote fue la
+excepción explícita para tener ya una tienda completa sobre la que
+iterar.
