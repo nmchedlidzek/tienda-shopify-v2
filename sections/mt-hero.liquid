@@ -12,6 +12,9 @@
     color: {{ section.settings.text_color }};
     opacity: 0.8;
   }
+  #shopify-section-{{ section.id }} .mt-h1 {
+    color: {{ section.settings.text_color }};
+  }
 {% endstyle %}
 
 <section class="mt-section mt-hero" data-mt-hero data-mt-hero-interval="{{ section.settings.interval | times: 1000 }}">
